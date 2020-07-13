@@ -1,0 +1,17 @@
+{
+	"PitchClassSetNames" : [
+		{},
+		{},
+		{},
+		{
+			"Major": [0, 4, 7],
+			"Minor": [0, 3, 7],
+			"Suspended": [0, 2, 5]
+		},
+		{
+			"Diminished": [0, 3, 6, 9],
+			"Half Diminished": [0, 2, 5, 8],
+			"Dominant Seventh": [0, 3, 6, 8]
+		}
+	]
+}

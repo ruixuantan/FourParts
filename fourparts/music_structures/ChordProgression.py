@@ -61,5 +61,5 @@ class ChordProgression:
 
             results.append(sub_result.get_dict())
 
-        return results
+        return results 
             
