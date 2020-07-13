@@ -4,6 +4,15 @@ import pytest
 
 
 def test_cases():
+    """
+    Test cases:
+    1. Standard Test
+    2. Standard negative test
+    3. Test of same chords but with change of notes in between.
+       Should not incur parallels.
+
+    """
+
     test_cases = [
         (
             [Chord(0, 1, 2, 3), Chord(1, 2, 3, 4)],
@@ -27,6 +36,19 @@ def test_cases():
                     'TenorSoprano': 'Correct',
                     'AltoSoprano': 'Correct'
                 },
+                {
+                    'BassTenor': 'Correct',
+                    'BassAlto': 'Correct',
+                    'BassSoprano': 'Correct',
+                    'TenorAlto': 'Correct',
+                    'TenorSoprano': 'Correct',
+                    'AltoSoprano': 'Correct'
+                }
+            ]
+        ),
+        (
+            [Chord(20, 27, 32, 36), Chord(8, 27, 32, 36)],
+            [
                 {
                     'BassTenor': 'Correct',
                     'BassAlto': 'Correct',

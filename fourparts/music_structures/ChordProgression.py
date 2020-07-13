@@ -38,11 +38,14 @@ class ChordProgression:
             next_intervals = next_chord.get_intervals()
 
             sub_result = Result()
+            # iterate through all 6 possible voicing_intervals
             for voicing_interval in curr_intervals.keys():
 
                 curr_voicing_interval = curr_intervals[voicing_interval]
                 next_voicing_interval = next_intervals[voicing_interval]
 
+                # get the melodic interval between the voicing interval
+                # etc. the perfect 4th between the C Bass note and F Alto note
                 curr_melodic_interval = curr_voicing_interval.melodic_interval
                 next_melodic_interval = next_voicing_interval.melodic_interval
 

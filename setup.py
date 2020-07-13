@@ -4,7 +4,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="fourparts-rxtan",
+    name="fourparts",
     version="0.0.1",
     author="rxtan",
     description="A package related to all things 4 parts",
