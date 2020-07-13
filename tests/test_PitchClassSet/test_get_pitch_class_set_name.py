@@ -8,7 +8,7 @@ def test_cases():
     test_cases = [
         ([0, 4, 7], "Major"), 
         ([0, 3, 6, 9], "Diminished"),
-        ([0, 1, 2], "Not Found")
+        ([0, 1, 2], "Not Named")
     ]
 
     return test_cases

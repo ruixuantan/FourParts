@@ -1,7 +1,9 @@
 # FourParts #
 
 A python package to analyse 4 part writing. \
-Currently, can only check for parallel fifths and octaves.
+Currently, it can only check for:
+* parallel fifths and octaves.
+* Pitch Class Set.
 
 ## Build Package ##
 First, run:

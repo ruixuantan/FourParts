@@ -3,6 +3,7 @@
 from fourparts.music_structures.Voice import *
 from fourparts.music_structures.MelodicInterval import MelodicInterval
 from fourparts.music_structures.VoicingInterval import *
+from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 
 
 class Chord:
@@ -40,6 +41,7 @@ class Chord:
         -------
         dict of VoicingInterval
         """
+
         intervals = {}
 
         intervals['BassTenor'] = BassTenor.create_voicing_interval(self.bass, self.tenor)
@@ -50,3 +52,19 @@ class Chord:
         intervals['AltoSoprano'] = AltoSoprano.create_voicing_interval(self.alto, self.soprano)
 
         return intervals
+
+    def get_pitch_class_set(self):
+        """Generates the associated PitchClassSet.
+
+        Returns
+        -------
+        PitchClassSet
+        """
+
+        pitch_class_set = PitchClassSet.create_pitch_class_set([
+            self.bass.note,
+            self.tenor.note,
+            self.alto.note,
+            self.soprano.note])
+
+        return pitch_class_set

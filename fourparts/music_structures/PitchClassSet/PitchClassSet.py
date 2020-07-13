@@ -1,5 +1,6 @@
 from copy import deepcopy
 import json
+import math
 
 
 def _shift_pitch(pitches):
@@ -7,7 +8,7 @@ def _shift_pitch(pitches):
     Removes the last element of pitches and
     appends to the front. Mutable operation.
 
-    Attributes
+    Parameters
     ----------
     pitches : list of int
     """
@@ -20,7 +21,7 @@ def _zero(pitches):
     """
     Subtracts away the value of the first element from all elements.
 
-    Attributes
+    Parameters
     ----------
     pitches : list of int
 
@@ -39,12 +40,36 @@ def _zero(pitches):
     return pitches
 
 
+def _get_interval_distances(pitches):
+    """
+    Gets the interval (distance) between the 
+    first and each note.
+
+    Parameters
+    ----------
+    pitches : list of int
+
+    Returns
+    -------
+    list of int
+    """
+
+    distances = []
+    for i in range(len(pitches) - 1, 0, -1):
+        distance = pitches[i] - pitches[0]
+        if distance < 0:
+            distance += 12
+        distances.append(distance)
+
+    return distances
+
+
 def _minimise_interval(pitches):
     """
     Finds the number of pitch shifts in order to minimise
     the intervals. Assumes that pitch has been sorted.
 
-    Attributes
+    Parameters
     ----------
     pitches : list of int
         Should have been pre-sorted.
@@ -55,21 +80,21 @@ def _minimise_interval(pitches):
         The number of shifts required.
     """
 
-    # want to minimise `greatest_interval`
-    # maximum value of interval is always 12
+    # want to minimise `least_distances`
     n = 0
-    greatest_interval = 12
-    size = len(pitches)
+    least_distances = _get_interval_distances(pitches)
+    _shift_pitch(pitches)
 
-    for i in range(size):
-        curr_interval = pitches[size - 1] - pitches[0]
+    for i in range(1, len(pitches)):
+        curr_distances = _get_interval_distances(pitches)
 
-        if curr_interval < 0:
-            curr_interval += 12
-
-        if curr_interval < greatest_interval:
-            greatest_interval = curr_interval
-            n = i
+        for l, c in zip(least_distances, curr_distances):
+            if c < l:
+                least_distances = curr_distances
+                n = i
+                break
+            elif c > l:
+                break
 
         _shift_pitch(pitches)
 
@@ -93,6 +118,13 @@ class PitchClassSet():
 
         self.pitches = pitches
         self.name = name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __str__(self):
+        return "Pitches: {0}, Name: {1}".format(self.pitches,
+                                                self.name)
 
     @staticmethod
     def normalise(input_pitches):
@@ -152,7 +184,7 @@ class PitchClassSet():
         -------
         str
             The name of the pitch class set. 
-            If it does not exist, returns 'Not Found'.
+            If it does not exist, returns 'Not Named'.
 
         Notes
         -----
@@ -173,7 +205,7 @@ class PitchClassSet():
         except KeyError:
             pass
 
-        return "Not Found"
+        return "Not Named"
 
     @staticmethod
     def create_pitch_class_set(input_pitches):
@@ -190,7 +222,7 @@ class PitchClassSet():
         """
 
         pitches = PitchClassSet.normalise(input_pitches)
-        name = PitchClassSet.get_pitch_class_set_name(pitches)
+        name = PitchClassSet.get_pitch_class_set_name(list(pitches))
 
         return PitchClassSet(pitches, name)
 
