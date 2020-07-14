@@ -1,5 +1,6 @@
 from fourparts.music_structures.Chord import Chord
 from fourparts.music_structures.MelodicInterval import MelodicInterval
+from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 from fourparts.utils.Result import Result
 
 import pandas as pd
@@ -8,7 +9,8 @@ import pandas as pd
 class ChordProgression:
 
     def __init__(self, progression):
-        """Constructor method for ChordProgression.
+        """
+        Constructor method for ChordProgression.
 
         Attributes
         ----------
@@ -17,8 +19,26 @@ class ChordProgression:
 
         self.progression = progression
 
+    def get_pitch_class_sets(self):
+        """
+        Gets the pitch class sets of the chords.
+
+        Returns
+        -------
+        list of PitchClassSet
+        """
+
+        pitch_class_sets = []
+
+        for chord in self.progression:
+            pitch_class_set = chord.get_pitch_class_set()
+            pitch_class_sets.append(pitch_class_set)
+
+        return pitch_class_sets
+
     def check_parallels(self):
-        """Checks the entire progression for parallel fifths and octaves.
+        """
+        Checks the entire progression for parallel fifths and octaves.
         If 2 notes remain static, it is not considered parallel.
 
         Returns

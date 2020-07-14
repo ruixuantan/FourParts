@@ -10,19 +10,19 @@ First, run:
 ```console
 $ python setup.py bdist_wheel
 ```
-This produces a file: `dist/fourparts_rxtan-0.0.1-py3-none-any.whl` \
+This produces a file: `dist/fourparts-0.0.1-py3-none-any.whl` \
 Then, run:
 ```console
 $ pip install fourparts-0.0.1-py3-none-any.whl
 ```
 This package can be imported via: `import fourparts`
 ## Demo ##
-Configure driver.py to read the midi file required.
+Configure demo.py to read the midi file required.
 Then, run:
 ```console
-$ python driver.py
+$ python demo.py
 ```
-A .csv file of results will appear in the same directory as driver.py.
+Two .csv file of results will appear in the same directory as demo.py.
 
 This midi file should contain, strictly, 4 parts at all times.
 Overlaps in voices will be sorted in accordance to pitch and treated as SATB from there.
