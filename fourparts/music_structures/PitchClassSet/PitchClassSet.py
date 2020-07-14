@@ -84,7 +84,7 @@ def _minimise_interval(pitches):
     least_distances = _get_interval_distances(pitches)
     _shift_pitch(pitches)
 
-    for _ in range(1, len(pitches)):
+    for i in range(1, len(pitches)):
         curr_distances = _get_interval_distances(pitches)
 
         for l, c in zip(least_distances, curr_distances):
