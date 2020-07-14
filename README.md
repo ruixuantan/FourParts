@@ -13,7 +13,7 @@ $ python setup.py bdist_wheel
 This produces a file: `dist/fourparts_rxtan-0.0.1-py3-none-any.whl` \
 Then, run:
 ```console
-$ pip install fourparts_rxtan-0.0.1-py3-none-any.whl
+$ pip install fourparts-0.0.1-py3-none-any.whl
 ```
 This package can be imported via: `import fourparts`
 ## Demo ##
