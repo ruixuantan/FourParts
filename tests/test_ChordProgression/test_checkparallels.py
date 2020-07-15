@@ -13,36 +13,38 @@ def test_cases():
 
     """
 
+    default_status = 'No parallel 5ths or 8ths'
+
     test_cases = [
         (
             [Chord(0, 1, 2, 3), Chord(1, 2, 3, 4)],
             [{
-                'BassTenor': 'Correct',
-                'BassAlto': 'Correct',
-                'BassSoprano': 'Correct',
-                'TenorAlto': 'Correct',
-                'TenorSoprano': 'Correct',
-                'AltoSoprano': 'Correct'
+                'BassTenor': default_status,
+                'BassAlto': default_status,
+                'BassSoprano': default_status,
+                'TenorAlto': default_status,
+                'TenorSoprano': default_status,
+                'AltoSoprano': default_status
             }]
         ),
         (
             [Chord(0, 1, 2, 7), Chord(1, 2, 3, 8), Chord(3, 4, 5, 6)],
             [
                 {
-                    'BassTenor': 'Correct',
-                    'BassAlto': 'Correct',
+                    'BassTenor': default_status,
+                    'BassAlto': default_status,
                     'BassSoprano': 'Parallel Fifth',
-                    'TenorAlto': 'Correct',
-                    'TenorSoprano': 'Correct',
-                    'AltoSoprano': 'Correct'
+                    'TenorAlto': default_status,
+                    'TenorSoprano': default_status,
+                    'AltoSoprano': default_status
                 },
                 {
-                    'BassTenor': 'Correct',
-                    'BassAlto': 'Correct',
-                    'BassSoprano': 'Correct',
-                    'TenorAlto': 'Correct',
-                    'TenorSoprano': 'Correct',
-                    'AltoSoprano': 'Correct'
+                    'BassTenor': default_status,
+                    'BassAlto': default_status,
+                    'BassSoprano': default_status,
+                    'TenorAlto': default_status,
+                    'TenorSoprano': default_status,
+                    'AltoSoprano': default_status
                 }
             ]
         ),
@@ -50,12 +52,12 @@ def test_cases():
             [Chord(20, 27, 32, 36), Chord(8, 27, 32, 36)],
             [
                 {
-                    'BassTenor': 'Correct',
-                    'BassAlto': 'Correct',
-                    'BassSoprano': 'Correct',
-                    'TenorAlto': 'Correct',
-                    'TenorSoprano': 'Correct',
-                    'AltoSoprano': 'Correct'
+                    'BassTenor': default_status,
+                    'BassAlto': default_status,
+                    'BassSoprano': default_status,
+                    'TenorAlto': default_status,
+                    'TenorSoprano': default_status,
+                    'AltoSoprano': default_status
                 }
             ]
         )

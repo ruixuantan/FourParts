@@ -6,6 +6,8 @@ from fourparts.music_structures.VoicingInterval import *
 from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 
 
+INTERVALS = ('BassTenor', 'BassAlto', '')
+
 class Chord:
 
     def __init__(self, bass, tenor, alto, soprano):
@@ -52,6 +54,42 @@ class Chord:
         intervals['AltoSoprano'] = AltoSoprano.create_voicing_interval(self.alto, self.soprano)
 
         return intervals
+
+    def check_parallel_intervals(self, other):
+        """Generates a dictionary of results, indicating
+        if the specified interval is a parallel 5th or 8th.
+
+        Returns
+        -------
+        dict of str
+            Indicates only either a parallel 5th or 8th
+        """
+
+        self_intervals = self.get_intervals()
+        other_intervals = other.get_intervals()
+
+        default_status = 'No parallel 5ths or 8ths'
+
+        result = {
+            'BassTenor': default_status,
+            'BassAlto': default_status,
+            'BassSoprano': default_status,
+            'TenorAlto': default_status,
+            'TenorSoprano': default_status,
+            'AltoSoprano': default_status
+        }
+
+        for interval in result.keys():
+            self_voicing_interval = self_intervals[interval]
+            other_voicing_interval = other_intervals[interval]
+
+            if self_voicing_interval.is_parallel_octave(other_voicing_interval):
+                result[interval] = 'Parallel Octave'
+
+            elif self_voicing_interval.is_parallel_fifth(other_voicing_interval):
+                result[interval] = 'Parallel Fifth'
+
+        return result
 
     def get_pitch_class_set(self):
         """Generates the associated PitchClassSet.

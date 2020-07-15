@@ -51,6 +51,7 @@ def _get_interval_distances(pitches):
     """
 
     distances = []
+    # put the furthest interval distance in front.
     for i in range(len(pitches) - 1, 0, -1):
         distance = pitches[i] - pitches[0]
         if distance < 0:
@@ -76,24 +77,24 @@ def _minimise_interval(pitches):
     """
 
     # want to minimise `least_distances`
-    n = 0
+    number_of_shifts = 0
     least_distances = _get_interval_distances(pitches)
     _shift_pitch(pitches)
 
     for i in range(1, len(pitches)):
         curr_distances = _get_interval_distances(pitches)
 
-        for l, c in zip(least_distances, curr_distances):
+        for c, l in zip(curr_distances, least_distances):
             if c < l:
                 least_distances = curr_distances
-                n = i
+                number_of_shifts = i
                 break
             elif c > l:
                 break
 
         _shift_pitch(pitches)
 
-    return n
+    return number_of_shifts
 
 
 class PitchClassSet():
@@ -150,7 +151,6 @@ class PitchClassSet():
             raise Exception("Ensure there are more than 2 pitches.")
 
         pitches = deepcopy(input_pitches)
-        pitches.sort()
 
         # subtracts the smallest pitch value then apply modulo 12
         pitches = list(map(lambda p : (p - pitches[0]) % 12, pitches))
