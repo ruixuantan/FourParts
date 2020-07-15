@@ -9,8 +9,7 @@ import pandas as pd
 class ChordProgression:
 
     def __init__(self, progression):
-        """
-        Constructor method for ChordProgression.
+        """Constructor method for ChordProgression.
 
         Attributes
         ----------
@@ -20,8 +19,7 @@ class ChordProgression:
         self.progression = progression
 
     def get_pitch_class_sets(self):
-        """
-        Gets the pitch class sets of the chords.
+        """Gets the pitch class sets of the chords.
 
         Returns
         -------
@@ -37,8 +35,7 @@ class ChordProgression:
         return pitch_class_sets
 
     def check_parallels(self):
-        """
-        Checks the entire progression for parallel fifths and octaves.
+        """Checks the entire progression for parallel fifths and octaves.
         If 2 notes remain static, it is not considered parallel.
 
         Returns

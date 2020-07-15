@@ -97,5 +97,3 @@ class NoteContainer:
                     self.container['Tenor'],
                     self.container['Alto'],
                     self.container['Soprano'])
-
-

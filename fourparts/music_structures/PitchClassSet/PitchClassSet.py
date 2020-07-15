@@ -3,8 +3,7 @@ import json
 
 
 def _shift_pitch(pitches):
-    """
-    Removes the last element of pitches and
+    """Removes the last element of pitches and
     appends to the front. Mutable operation.
 
     Parameters
@@ -17,8 +16,7 @@ def _shift_pitch(pitches):
 
 
 def _zero(pitches):
-    """
-    Subtracts away the value of the first element from all elements.
+    """Subtracts away the value of the first element from all elements.
 
     Parameters
     ----------
@@ -40,8 +38,7 @@ def _zero(pitches):
 
 
 def _get_interval_distances(pitches):
-    """
-    Gets the interval (distance) between the 
+    """Gets the interval (distance) between the 
     first and each note.
 
     Parameters
@@ -64,8 +61,7 @@ def _get_interval_distances(pitches):
 
 
 def _minimise_interval(pitches):
-    """
-    Finds the number of pitch shifts in order to minimise
+    """Finds the number of pitch shifts in order to minimise
     the intervals. Assumes that pitch has been sorted.
 
     Parameters
@@ -103,8 +99,7 @@ def _minimise_interval(pitches):
 class PitchClassSet():
 
     def __init__(self, pitches, name):
-        """
-        A class that represents pitch class sets.
+        """A class that represents pitch class sets.
 
         Attributes
         ----------
@@ -128,8 +123,7 @@ class PitchClassSet():
 
     @staticmethod
     def normalise(input_pitches):
-        """
-        Removes duplicate pitches and returns
+        """Removes duplicate pitches and returns
         the normalised form of the set of pitches being analysed.
 
         Attributes
@@ -172,8 +166,7 @@ class PitchClassSet():
 
     @staticmethod
     def get_pitch_class_set_name(pitches):
-        """
-        Finds the pitch class set name in PitchClassSetNames.json.
+        """Finds the pitch class set name in PitchClassSetNames.json.
 
         Attributes
         ----------
@@ -209,8 +202,7 @@ class PitchClassSet():
 
     @staticmethod
     def create_pitch_class_set(input_pitches):
-        """
-        Factory method to create an instance of PitchClassSet.
+        """Factory method to create an instance of PitchClassSet.
 
         Attributes
         ----------

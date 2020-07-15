@@ -1,8 +1,7 @@
 class Voice():
 
     def __init__(self, note):
-        """
-        A class that represents the type of voice.
+        """A class that represents the type of voice.
 
         Attributes
         ----------
