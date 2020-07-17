@@ -1,5 +1,4 @@
 from fourparts.music_structures.Chord import Chord
-from fourparts.music_structures.MelodicInterval import MelodicInterval
 from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 
 import pandas as pd

@@ -9,7 +9,7 @@ class Chord:
 
     Attributes
     ----------
-    bass, tenor, alto, soprano : int
+    bass, tenor, alto, soprano : Voice
     """
 
     def __init__(self, bass, tenor, alto, soprano):
