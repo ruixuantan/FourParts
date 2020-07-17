@@ -1,10 +1,11 @@
-"""To update to include augmented/diminished intervals.
-"""
-
 from enum import Enum
 
 
 class MelodicInterval(Enum):
+    """Class to define the different Melodic Intervals.
+    """
+
+    # TODO: to include augmented and diminished intervals
     Octave = 0
     Semitone = 1
     Tone = 2

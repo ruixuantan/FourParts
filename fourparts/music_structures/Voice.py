@@ -1,10 +1,16 @@
 class Voice():
+    """A class that represents the type of voice.
+
+    Attributes
+    ----------
+    note : int
+        The note of the voice.
+    """
 
     def __init__(self, note):
-        """
-        A class that represents the type of voice.
+        """Constructor method.
 
-        Attributes
+        Parameters
         ----------
         note : int
             The note of the voice.
