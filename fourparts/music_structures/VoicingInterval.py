@@ -2,14 +2,24 @@ from fourparts.music_structures.MelodicInterval import MelodicInterval
 
 
 class VoicingInterval():
+    """Holds the interval of 2 voices, along with the melodic interval
+    between them.
+
+    Attributes
+    ----------
+    bottom_voice : Voice
+    top_voice : Voice
+    melodic_interval : MelodicInterval
+    """
 
     def __init__(self, bottom_voice, top_voice, melodic_interval):
-        """Holds the interval of 2 voices.
+        """Constructor for VoicingInterval.
 
-        Attributes
+        Parameters
         ----------
         bottom_voice : Voice
         top_voice : Voice
+        melodic_interval : MelodicInterval
         """
 
         self.bottom_voice = bottom_voice

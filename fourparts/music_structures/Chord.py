@@ -1,19 +1,21 @@
-"""A Chord is made up of 4 notes."""
-
 from fourparts.music_structures.Voice import *
 from fourparts.music_structures.MelodicInterval import MelodicInterval
 from fourparts.music_structures.VoicingInterval import *
 from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 
 
-INTERVALS = ('BassTenor', 'BassAlto', '')
-
 class Chord:
+    """A collection of 4 Voices, sorted in ascending order.
+
+    Attributes
+    ----------
+    bass, tenor, alto, soprano : int
+    """
 
     def __init__(self, bass, tenor, alto, soprano):
-        """Constructor class for chord.
+        """Constructor method for chord.
 
-        Attributes
+        Parameters
         ----------
         bass, tenor, alto, soprano : int
         """
@@ -58,6 +60,10 @@ class Chord:
     def check_parallel_intervals(self, other):
         """Generates a dictionary of results, indicating
         if the specified interval is a parallel 5th or 8th.
+
+        Parameters
+        ----------
+        other : Chord
 
         Returns
         -------

@@ -1,18 +1,22 @@
-"""A container that stores notes as a dataframe of a midi file is processed.
-At every instance when there are four notes present, a Chord is created.
-"""
-
 from fourparts import Chord
 
 
 class NoteContainer:
+    """A container that stores notes when a dataframe of a midi file is processed.
+    At every instance when there are four notes present, a Chord is created.
+
+    Attributes
+    ----------
+    container : dict of notes
+        Each value is set to None initially.
+    """
 
     def __init__(self, bass, tenor, alto, soprano):
-        """
-        Attributes
+        """Constructor method for NoteContainer
+
+        Parameters
         ----------
-        container : dict of notes
-            Each value is set to None initially.
+        bass, tenor, alto, soprano : int
         """
 
         self.container = { 

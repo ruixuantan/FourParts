@@ -6,11 +6,17 @@ import pandas as pd
 
 
 class ChordProgression:
+    """A list of Chords.
+
+    Attributes
+    ----------
+    progression : list of Chord
+    """
 
     def __init__(self, progression):
         """Constructor method for ChordProgression.
 
-        Attributes
+        Parameters
         ----------
         progression : list of Chord
         """

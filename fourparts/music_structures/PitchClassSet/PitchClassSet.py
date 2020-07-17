@@ -2,6 +2,23 @@ from copy import deepcopy
 import json
 
 
+def _shift_twelve(number):
+    """Shifts the number by 12, if it is less than 0.
+
+    Parameters
+    ----------
+    number : int
+
+    Returns
+    -------
+    int
+    """
+
+    if number < 0:
+        number += 12
+    return number
+
+
 def _shift_pitch(pitches):
     """Removes the last element of pitches and
     appends to the front. Mutable operation.
@@ -31,8 +48,7 @@ def _zero(pitches):
     first_pitch = pitches[0]
     for i in range(len(pitches)):
         pitches[i] -= first_pitch
-        if pitches[i] < 0:
-            pitches[i] += 12
+        pitches[i] = _shift_twelve(pitches[i])
 
     return pitches
 
@@ -53,9 +69,7 @@ def _get_interval_distances(pitches):
     distances = []
     # put the furthest interval distance in front.
     for i in range(len(pitches) - 1, 0, -1):
-        distance = pitches[i] - pitches[0]
-        if distance < 0:
-            distance += 12
+        distance = _shift_twelve(pitches[i] - pitches[0])
         distances.append(distance)
 
     return distances
@@ -98,17 +112,24 @@ def _minimise_interval(pitches):
 
 
 class PitchClassSet():
+    """A class that represents pitch class sets.
+
+    Attributes
+    ----------
+    pitches : tuple of int
+        The pitches of the musical fragment being analysed,
+        already in normalised form.
+    name : str
+        Name of the pitch class set.
+    """
 
     def __init__(self, pitches, name):
-        """A class that represents pitch class sets.
+        """Consturctor method.
 
-        Attributes
+        Parameters
         ----------
         pitches : tuple of int
-            The pitches of fragment being analysed,
-            already in normal form.
         name : str
-            Name of the pitch class set.
         """
 
         self.pitches = pitches
@@ -157,9 +178,9 @@ class PitchClassSet():
         # removes duplicate pitches
         pitches = list(set(pitches))
         pitches.sort()
-        n = _minimise_interval(pitches)
+        number_of_shifts = _minimise_interval(pitches)
 
-        for _ in range(n):
+        for _ in range(number_of_shifts):
             _shift_pitch(pitches)
 
         return tuple(_zero(pitches))
