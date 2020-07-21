@@ -203,7 +203,7 @@ class PitchClassSet():
 
         Notes
         -----
-        PitchClassSetName.json is structured in such a way where
+        PitchClassSetNames.py is structured in such a way where
         each pitch class set is grouped into its cardinality.
         To find the corresponding name, iterate through all the sub names.
         """
