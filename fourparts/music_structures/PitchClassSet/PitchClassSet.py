@@ -1,5 +1,6 @@
 from copy import deepcopy
-import json
+
+from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES 
 
 
 def _shift_twelve(number):
@@ -207,9 +208,7 @@ class PitchClassSet():
         To find the corresponding name, iterate through all the sub names.
         """
 
-        with open('fourparts/music_structures/PitchClassSet/PitchClassSetNames.json') as f:
-            names = json.load(f)['PitchClassSetNames']
-
+        names = PITCH_CLASS_SET_NAMES['PitchClassSetNames']
         size = len(pitches)
 
         try:

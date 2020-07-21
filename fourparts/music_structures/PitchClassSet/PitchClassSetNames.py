@@ -1,4 +1,4 @@
-{
+PITCH_CLASS_SET_NAMES = {
 	"PitchClassSetNames" : [
 		{
 			"Empty Set": []
