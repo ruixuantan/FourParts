@@ -12,6 +12,10 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ruixuantan/fourparts",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'pandas',
+        'py-midicsv'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

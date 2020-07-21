@@ -126,7 +126,7 @@ def get_chord_progression(df):
     timings.sort()
     # remove timing = 0
     if timings[0] == 0:
-        timings = timings.pop(0)
+        timings = timings[1:]
 
     first_chord_note_events = get_note_events(df_all_notes, 0)
     first_chord_notes = [event.note for event in first_chord_note_events]
