@@ -26,8 +26,8 @@ class NoteContainer:
             'Soprano': soprano
         }
 
-    @staticmethod
-    def create_container(notes):
+    @classmethod
+    def create_container(cls, notes):
         """Given a list of notes in ascending order, fills `container`.
 
         Parameters
@@ -49,7 +49,7 @@ class NoteContainer:
         if len(notes) != 4:
             raise Exception('Ensure 4 notes are passed in notes.')
 
-        return NoteContainer(notes[0], notes[1], notes[2], notes[3])
+        return cls(notes[0], notes[1], notes[2], notes[3])
 
     def update_note_on(self, note):
         """Starting from Bass, inserts `note` into 

@@ -144,8 +144,8 @@ class PitchClassSet():
         return "Pitches: {0}, Name: {1}".format(self.pitches,
                                                 self.name)
 
-    @staticmethod
-    def normalise(input_pitches):
+    @classmethod
+    def normalise(cls, input_pitches):
         """Removes duplicate pitches and returns
         the normalised form of the set of pitches being analysed.
 
@@ -240,8 +240,8 @@ class PitchClassSet():
 
         return "Not Named"
 
-    @staticmethod
-    def create_pitch_class_set(input_pitches):
+    @classmethod
+    def create_pitch_class_set(cls, input_pitches):
         """Factory method to create an instance of PitchClassSet.
 
         Attributes
@@ -256,4 +256,4 @@ class PitchClassSet():
         pitches = PitchClassSet.normalise(input_pitches)
         name = PitchClassSet.get_pitch_class_set_name(list(pitches))
 
-        return PitchClassSet(pitches, name)
+        return cls(pitches, name)
