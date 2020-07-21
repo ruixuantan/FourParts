@@ -186,11 +186,32 @@ class PitchClassSet():
 
         return tuple(_zero(pitches))
 
-    @staticmethod
-    def get_pitch_class_set_name(pitches):
+    @classmethod
+    def hash_pitch_class_set(cls, pitches):
+        """Gets the hash of the pitches.
+
+        Parameters
+        ----------
+        pitches : list of int
+
+        Returns
+        -------
+        str
+            The string of concatenated pitches.
+            This is guaranteed to be unique.
+        """
+
+        string = ''
+        for pitch in pitches:
+            string += str(pitch)
+
+        return string
+
+    @classmethod
+    def get_pitch_class_set_name(cls, pitches):
         """Finds the pitch class set name in PitchClassSetNames.json.
 
-        Attributes
+        Parameters
         ----------
         input_pitches : list of int
             This should have been normalised already.
@@ -205,16 +226,15 @@ class PitchClassSet():
         -----
         PitchClassSetNames.py is structured in such a way where
         each pitch class set is grouped into its cardinality.
-        To find the corresponding name, iterate through all the sub names.
+        Within each group is a dictionary of Pitch Class Sets.
         """
 
         names = PITCH_CLASS_SET_NAMES['PitchClassSetNames']
         size = len(pitches)
+        key = cls.hash_pitch_class_set(pitches)
 
         try:
-            for key in names[size]:
-                if names[size][key] == pitches:
-                    return key
+            return names[size][key]
         except KeyError:
             pass
 
