@@ -1,6 +1,4 @@
 import fourparts as fp
-
-import json
 import pandas as pd
 
 
@@ -17,4 +15,3 @@ pd.DataFrame(pitch_class_sets).to_csv(file_name + '_pitch_class_sets.csv')
 # check parallels
 result = chord_progression.check_parallels()
 pd.DataFrame(result).to_csv(file_name + '_parallel_results.csv')
-

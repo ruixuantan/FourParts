@@ -19,10 +19,10 @@ class NoteContainer:
         bass, tenor, alto, soprano : int
         """
 
-        self.container = { 
-            'Bass': bass, 
-            'Tenor': tenor, 
-            'Alto': alto, 
+        self.container = {
+            'Bass': bass,
+            'Tenor': tenor,
+            'Alto': alto,
             'Soprano': soprano
         }
 
@@ -52,7 +52,7 @@ class NoteContainer:
         return cls(notes[0], notes[1], notes[2], notes[3])
 
     def update_note_on(self, note):
-        """Starting from Bass, inserts `note` into 
+        """Starting from Bass, inserts `note` into
         the first empty key. If the container is full, returns a Chord.
 
         Parameters
@@ -98,6 +98,6 @@ class NoteContainer:
         """
 
         return Chord(self.container['Bass'],
-                    self.container['Tenor'],
-                    self.container['Alto'],
-                    self.container['Soprano'])
+                     self.container['Tenor'],
+                     self.container['Alto'],
+                     self.container['Soprano'])

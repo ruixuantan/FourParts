@@ -107,11 +107,11 @@ def get_chord_progression(df):
     df : pandas.DataFrame
         Index: RangeIndex
         Columns:
-            Name: Track_id, dtype: int64 
+            Name: Track_id, dtype: int64
             Name: Timings, dtype: int64
             Name: Events, dtype: str
             Name: Time_signatures, dtype: int64
-            Name: Note_values, dtype: int64 
+            Name: Note_values, dtype: int64
             Name: Velocity, dtype: int64
             Name: 6, dtype: int64 (?)
 

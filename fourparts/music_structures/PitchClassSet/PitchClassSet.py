@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES 
+from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES
 
 
 def _shift_twelve(number):
@@ -55,7 +55,7 @@ def _zero(pitches):
 
 
 def _get_interval_distances(pitches):
-    """Gets the interval (distance) between the 
+    """Gets the interval (distance) between the
     first and each note.
 
     Parameters
@@ -149,7 +149,7 @@ class PitchClassSet():
         """Removes duplicate pitches and returns
         the normalised form of the set of pitches being analysed.
 
-        Attributes
+        Parameters
         ----------
         input_pitches : list of int
 
@@ -175,7 +175,7 @@ class PitchClassSet():
         pitches = deepcopy(input_pitches)
 
         # subtracts the smallest pitch value then apply modulo 12
-        pitches = list(map(lambda p : (p - pitches[0]) % 12, pitches))
+        pitches = list(map(lambda p: (p - pitches[0]) % 12, pitches))
         # removes duplicate pitches
         pitches = list(set(pitches))
         pitches.sort()
@@ -219,7 +219,7 @@ class PitchClassSet():
         Returns
         -------
         str
-            The name of the pitch class set. 
+            The name of the pitch class set.
             If it does not exist, returns 'Not Named'.
 
         Notes
@@ -244,7 +244,7 @@ class PitchClassSet():
     def create_pitch_class_set(cls, input_pitches):
         """Factory method to create an instance of PitchClassSet.
 
-        Attributes
+        Parameters
         ----------
         input_pitches : list of int
 

@@ -1,9 +1,3 @@
-from fourparts.music_structures.Chord import Chord
-from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
-
-import pandas as pd
-
-
 class ChordProgression:
     """A list of Chords.
 
@@ -58,5 +52,4 @@ class ChordProgression:
 
             results.append(sub_result)
 
-        return results 
-            
+        return results

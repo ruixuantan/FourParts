@@ -1,4 +1,4 @@
-from fourparts import *
+from fourparts import MelodicInterval, Bass, Tenor, Alto, Soprano
 
 import pytest
 
