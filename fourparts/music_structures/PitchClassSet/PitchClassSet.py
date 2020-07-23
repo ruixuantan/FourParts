@@ -117,7 +117,7 @@ class PitchClassSet():
 
     Attributes
     ----------
-    pitches : tuple of int
+    pitches : list of int
         The pitches of the musical fragment being analysed,
         already in normalised form.
     name : str
@@ -129,7 +129,7 @@ class PitchClassSet():
 
         Parameters
         ----------
-        pitches : tuple of int
+        pitches : list of int
         name : str
         """
 
@@ -155,7 +155,7 @@ class PitchClassSet():
 
         Returns
         -------
-        tuple of int
+        list of int
             The normalised form of pitches.
 
         Notes
@@ -169,8 +169,8 @@ class PitchClassSet():
             If the size of pitches is less than 2.
         """
 
-        if len(input_pitches) < 2:
-            raise Exception("Ensure there are more than 2 pitches.")
+        if not input_pitches:
+            return []
 
         pitches = deepcopy(input_pitches)
 
@@ -183,8 +183,8 @@ class PitchClassSet():
 
         for _ in range(number_of_shifts):
             _shift_pitch(pitches)
-
-        return tuple(_zero(pitches))
+        
+        return _zero(pitches)
 
     @classmethod
     def hash_pitch_class_set(cls, pitches):
@@ -254,6 +254,6 @@ class PitchClassSet():
         """
 
         pitches = PitchClassSet.normalise(input_pitches)
-        name = PitchClassSet.get_pitch_class_set_name(list(pitches))
+        name = PitchClassSet.get_pitch_class_set_name(pitches)
 
         return cls(pitches, name)

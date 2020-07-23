@@ -6,6 +6,9 @@ import pytest
 def test_cases():
 
     test_cases = [
+        ([], "Empty Set"),
+        ([0], "Unison"),
+        ([0, 5], "Perfect 4th"),
         ([0, 4, 7], "Major"), 
         ([0, 3, 6, 9], "Diminished 7th"),
         ([0, 1, 2], "Not Named")
