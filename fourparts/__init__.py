@@ -17,6 +17,9 @@ from fourparts.processes.preprocess import (
     get_chord_progression,
 )
 
+from fourparts.midi_writer.MidiWriter import MidiWriter
+
+
 __all__ = [
     'Chord',
     'ChordProgression',
@@ -28,5 +31,6 @@ __all__ = [
     'PitchClassSet',
     'midi_to_df',
     'get_note_events',
-    'get_chord_progression'
+    'get_chord_progression',
+    'MidiWriter'
 ]
