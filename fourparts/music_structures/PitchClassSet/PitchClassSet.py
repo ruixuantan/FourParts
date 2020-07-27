@@ -15,9 +15,7 @@ def _shift_twelve(number):
     int
     """
 
-    if number < 0:
-        number += 12
-    return number
+    return number + 12 if number < 0 else number
 
 
 def _shift_pitch(pitches):
@@ -181,8 +179,7 @@ class PitchClassSet():
         pitches.sort()
         number_of_shifts = _minimise_interval(pitches)
 
-        for _ in range(number_of_shifts):
-            _shift_pitch(pitches)
+        [_shift_pitch(pitches) for _ in range(number_of_shifts)]
         
         return _zero(pitches)
 
