@@ -50,7 +50,7 @@ class VoicingInterval():
             return cls(bottom_voice, top_voice, interval)
 
     def _is_parallel(self, other):
-        """Private method to check if 2 successive VoicingIntervals are 
+        """Private method to check if 2 successive VoicingIntervals are
         parallel and not static.
 
         Parameters
@@ -60,18 +60,18 @@ class VoicingInterval():
         Returns
         -------
         boolean
-            True if the VoicingIntervals are parallel and not static. 
+            True if the VoicingIntervals are parallel and not static.
         """
 
         if self.top_voice.__class__.__name__ != other.top_voice.__class__.__name__ or \
            self.bottom_voice.__class__.__name__ != other.bottom_voice.__class__.__name__:
-           raise Exception("Top and Bottom voices must be the same")
+            raise Exception("Top and Bottom voices must be the same")
         
         return self.melodic_interval == other.melodic_interval and \
                self.top_voice != other.top_voice
 
     def is_parallel_fifth(self, other):
-        """Checks if 2 successive VoicingIntervals are 
+        """Checks if 2 successive VoicingIntervals are
         a parallel 5th apart.
 
         Parameters
@@ -90,7 +90,7 @@ class VoicingInterval():
         return False
 
     def is_parallel_octave(self, other):
-        """Checks if 2 successive VoicingIntervals are 
+        """Checks if 2 successive VoicingIntervals are
         a parallel octave apart.
 
         Parameters
@@ -107,6 +107,7 @@ class VoicingInterval():
             return self._is_parallel(other)
 
         return False
+
 
 class BassTenor(VoicingInterval):
 
@@ -142,4 +143,3 @@ class AltoSoprano(VoicingInterval):
 
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
-            

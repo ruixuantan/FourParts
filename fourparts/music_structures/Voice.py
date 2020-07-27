@@ -47,8 +47,3 @@ class Bass(Voice):
 
     def __init__(self, note):
         super().__init__(note)
-
-
-
-    
-            

@@ -1,4 +1,4 @@
-from fourparts import *
+from fourparts import Chord
 
 import pytest
 

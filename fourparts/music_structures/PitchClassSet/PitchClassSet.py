@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES 
+from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES
 
 
 def _shift_twelve(number):
@@ -15,9 +15,7 @@ def _shift_twelve(number):
     int
     """
 
-    if number < 0:
-        number += 12
-    return number
+    return number + 12 if number < 0 else number
 
 
 def _shift_pitch(pitches):
@@ -55,7 +53,7 @@ def _zero(pitches):
 
 
 def _get_interval_distances(pitches):
-    """Gets the interval (distance) between the 
+    """Gets the interval (distance) between the
     first and each note.
 
     Parameters
@@ -117,7 +115,7 @@ class PitchClassSet():
 
     Attributes
     ----------
-    pitches : tuple of int
+    pitches : list of int
         The pitches of the musical fragment being analysed,
         already in normalised form.
     name : str
@@ -129,7 +127,7 @@ class PitchClassSet():
 
         Parameters
         ----------
-        pitches : tuple of int
+        pitches : list of int
         name : str
         """
 
@@ -144,18 +142,18 @@ class PitchClassSet():
         return "Pitches: {0}, Name: {1}".format(self.pitches,
                                                 self.name)
 
-    @staticmethod
-    def normalise(input_pitches):
+    @classmethod
+    def normalise(cls, input_pitches):
         """Removes duplicate pitches and returns
         the normalised form of the set of pitches being analysed.
 
-        Attributes
+        Parameters
         ----------
         input_pitches : list of int
 
         Returns
         -------
-        tuple of int
+        list of int
             The normalised form of pitches.
 
         Notes
@@ -169,28 +167,48 @@ class PitchClassSet():
             If the size of pitches is less than 2.
         """
 
-        if len(input_pitches) < 2:
-            raise Exception("Ensure there are more than 2 pitches.")
+        if not input_pitches:
+            return []
 
         pitches = deepcopy(input_pitches)
 
         # subtracts the smallest pitch value then apply modulo 12
-        pitches = list(map(lambda p : (p - pitches[0]) % 12, pitches))
+        pitches = list(map(lambda p: (p - pitches[0]) % 12, pitches))
         # removes duplicate pitches
         pitches = list(set(pitches))
         pitches.sort()
         number_of_shifts = _minimise_interval(pitches)
 
-        for _ in range(number_of_shifts):
-            _shift_pitch(pitches)
+        [_shift_pitch(pitches) for _ in range(number_of_shifts)]
+        
+        return _zero(pitches)
 
-        return tuple(_zero(pitches))
+    @classmethod
+    def hash_pitch_class_set(cls, pitches):
+        """Gets the hash of the pitches.
 
-    @staticmethod
-    def get_pitch_class_set_name(pitches):
+        Parameters
+        ----------
+        pitches : list of int
+
+        Returns
+        -------
+        str
+            The string of concatenated pitches.
+            This is guaranteed to be unique.
+        """
+
+        string = ''
+        for pitch in pitches:
+            string += str(pitch)
+
+        return string
+
+    @classmethod
+    def get_pitch_class_set_name(cls, pitches):
         """Finds the pitch class set name in PitchClassSetNames.json.
 
-        Attributes
+        Parameters
         ----------
         input_pitches : list of int
             This should have been normalised already.
@@ -198,33 +216,32 @@ class PitchClassSet():
         Returns
         -------
         str
-            The name of the pitch class set. 
+            The name of the pitch class set.
             If it does not exist, returns 'Not Named'.
 
         Notes
         -----
         PitchClassSetNames.py is structured in such a way where
         each pitch class set is grouped into its cardinality.
-        To find the corresponding name, iterate through all the sub names.
+        Within each group is a dictionary of Pitch Class Sets.
         """
 
         names = PITCH_CLASS_SET_NAMES['PitchClassSetNames']
         size = len(pitches)
+        key = cls.hash_pitch_class_set(pitches)
 
         try:
-            for key in names[size]:
-                if names[size][key] == pitches:
-                    return key
+            return names[size][key]
         except KeyError:
             pass
 
         return "Not Named"
 
-    @staticmethod
-    def create_pitch_class_set(input_pitches):
+    @classmethod
+    def create_pitch_class_set(cls, input_pitches):
         """Factory method to create an instance of PitchClassSet.
 
-        Attributes
+        Parameters
         ----------
         input_pitches : list of int
 
@@ -234,6 +251,6 @@ class PitchClassSet():
         """
 
         pitches = PitchClassSet.normalise(input_pitches)
-        name = PitchClassSet.get_pitch_class_set_name(list(pitches))
+        name = PitchClassSet.get_pitch_class_set_name(pitches)
 
-        return PitchClassSet(pitches, name)
+        return cls(pitches, name)

@@ -1,6 +1,7 @@
-from fourparts.music_structures.Voice import *
-from fourparts.music_structures.MelodicInterval import MelodicInterval
-from fourparts.music_structures.VoicingInterval import *
+from fourparts.music_structures.Voice import Bass, Tenor, Alto, Soprano
+from fourparts.music_structures.VoicingInterval import (
+    BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
+)
 from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 
 
@@ -27,12 +28,12 @@ class Chord:
 
     def __str__(self):
         return 'Bass: {0}, Tenor: {1}, Alto: {2}, Soprano: {3}' \
-                .format(self.bass, self.tenor, self.alto, self.soprano)
+            .format(self.bass, self.tenor, self.alto, self.soprano)
 
     def __eq__(self, other):
         if not isinstance(other, Chord):
             return False
-        
+
         return self.bass == other.bass and \
                self.tenor == other.tenor and \
                self.alto == other.alto and \
