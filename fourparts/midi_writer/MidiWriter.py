@@ -32,6 +32,7 @@ class MidiWriter:
         track : int
             The track where the note is to be inserted into.
         pitches : list of int
+            The pitches that are to be added to the midi file.
         time : int
             The time when the first note event is to occur.
             Measured in beats
