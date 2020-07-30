@@ -1,5 +1,5 @@
 from fourparts import get_note_events
-from fourparts.utils.NoteEvent import NoteEvent
+from fourparts.processes.NoteEvent import NoteEvent
 
 import pandas as pd
 import pytest
