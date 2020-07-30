@@ -72,11 +72,16 @@ class VoicingInterval():
         -------
         boolean
             True if the VoicingIntervals are parallel and not static.
+
+        Raises
+        ------
+        TypeError
+            If the top voice and bottom voice are of different types (different voices).
         """
 
         if self.top_voice.__class__.__name__ != other.top_voice.__class__.__name__ or \
            self.bottom_voice.__class__.__name__ != other.bottom_voice.__class__.__name__:
-            raise Exception("Top and Bottom voices must be the same")
+            raise TypeError("Top and Bottom voices must be of the same type.")
         
         return self.melodic_interval == other.melodic_interval and \
                self.top_voice != other.top_voice

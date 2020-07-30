@@ -30,12 +30,12 @@ def midi_to_df(midi_file, save=False):
 
     Raises
     ------
-    Exception
+    ValueError
         If `midi_file` is not pointing towards a .mid file.
     """
 
     if midi_file[-4:] != '.mid':
-        raise Exception("Pass in a .mid file!")
+        raise ValueError("Pass in a .mid file!")
 
     csv_string = py_midicsv.midi_to_csv(midi_file)
     df = pd.DataFrame([ls.strip().split(',') for ls in csv_string])

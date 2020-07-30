@@ -133,12 +133,12 @@ class MidiWriter:
 
         Raises
         ------
-        Exception
+        ValueError
             If `filename` does not end with '.mid'.
         """
 
         if filename[-4:] != '.mid':
-            raise Exception("{} does not end with '.mid'.".format(filename))
+            raise ValueError("{} does not end with '.mid'.".format(filename))
 
         with open(filename, "wb") as output_file:
             self.midi.writeFile(output_file)

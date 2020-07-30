@@ -35,12 +35,12 @@ class DyadContainer(NoteContainer):
 
         Raises
         ------
-        Exception
+        IndexError
             If `notes` does not have exactly 2 elements.
         """
 
         if len(notes) != 2:
-            raise Exception('Ensure 2 notes are passed in.')
+            raise IndexError('Ensure 2 notes are passed in.')
 
         return cls(notes[0], notes[1])
 

@@ -27,7 +27,7 @@ class NoteContainer(ABC):
 
         Raises
         ------
-        Exception
+        IndexError
             If notes does not have exactly n elements.
         """
         pass

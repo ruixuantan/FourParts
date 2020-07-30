@@ -42,12 +42,12 @@ class ChordContainer(NoteContainer):
 
         Raises
         ------
-        Exception
+        IndexError
             If `notes` does not have exactly 4 elements.
         """
 
         if len(notes) != 4:
-            raise Exception('Ensure 4 notes are passed in notes.')
+            raise IndexError('Ensure 4 notes are passed in notes.')
 
         return cls(notes[0], notes[1], notes[2], notes[3])
 
