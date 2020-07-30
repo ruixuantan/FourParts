@@ -2,9 +2,9 @@ import fourparts as fp
 import pandas as pd
 
 
-file_name = 'chorale_F'
+file_name = '01AusmeinesHerz'
 
-df = fp.midi_to_df('samples/' + file_name + '.mid')
+df = fp.midi_to_df('samples/' + file_name + '.mid', save=True)
 chords = fp.PreProcessor(4).get_progression(df)
 chord_progression = fp.ChordProgression(chords)
 

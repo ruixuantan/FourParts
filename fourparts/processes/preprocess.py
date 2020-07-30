@@ -153,11 +153,10 @@ class PreProcessor:
         df_all_notes = df[df['Events'] == 'Note_on_c']
         timings = df_all_notes['Timings'].unique()
         timings.sort()
-        # remove timing = 0
-        if timings[0] == 0:
-            timings = timings[1:]
+        first_timing = timings[0]
+        timings = timings[1:]
 
-        first_note_events = get_note_events(df_all_notes, 0)
+        first_note_events = get_note_events(df_all_notes, first_timing)
         first_container_notes = [event.note for event in first_note_events]
 
         container = self.container.create_container(first_container_notes)
