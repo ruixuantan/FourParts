@@ -49,6 +49,17 @@ class VoicingInterval():
             interval = MelodicInterval.get_melodic_interval(bottom_note, top_note)
             return cls(bottom_voice, top_voice, interval)
 
+    def __str__(self):
+        return "Bottom Voice: {0}, Top Voice: {1}, Interval: {2}".format(self.bottom_voice,
+                                                                         self.top_voice,
+                                                                         self.melodic_interval)
+
+    def __eq__(self, other):
+        return isinstance(other, VoicingInterval) and \
+               self.bottom_voice == other.bottom_voice and \
+               self.top_voice == other.top_voice and \
+               self.melodic_interval == other.melodic_interval
+
     def _is_parallel(self, other):
         """Private method to check if 2 successive VoicingIntervals are
         parallel and not static.
