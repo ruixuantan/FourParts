@@ -1,8 +1,9 @@
 from midiutil import MIDIFile
+from fourparts.music_structures import ChordProgression, DyadProgression
 
 
 class MidiWriter:
-    """A class to write fourpart chords.
+    """A class to convert progressions to midi files.
 
     Attributes
     ----------
@@ -51,8 +52,35 @@ class MidiWriter:
                               MidiWriter.VOLUME)
         return self
 
-    def add_chords(self, chord_progression):
-        """Turn a chord progression into a midifile.
+    def add_chords(self, dyad_progression):
+        """Turn a dyad progression into a midifile.
+
+        Parameters
+        ----------
+        dyad_progression : DyadProgression
+
+        Returns
+        -------
+        self
+        """
+
+        if not isinstance(dyad_progression, DyadProgression):
+            raise TypeError("Progression passed in is not a DyadProgression.")
+
+        bass_pitches = []
+        soprano_pitches = []
+
+        for dyad in dyad_progression.progression:
+            bass_pitches.append(dyad.bass.note)
+            soprano_pitches.append(dyad.soprano.note)
+
+        self.add_pitches(1, bass_pitches, 0)
+        self.add_pitches(0, soprano_pitches, 0)
+
+        return self
+
+    def add_dyads(self, dyad_progression):
+        """Turn a dyad progression into a midifile.
 
         Parameters
         ----------
@@ -63,23 +91,8 @@ class MidiWriter:
         self
         """
 
-        bass_pitches = []
-        tenor_pitches = []
-        alto_pitches = []
-        soprano_pitches = []
-
-        for chord in chord_progression.progression:
-            bass_pitches.append(chord.bass.note)
-            tenor_pitches.append(chord.tenor.note)
-            alto_pitches.append(chord.alto.note)
-            soprano_pitches.append(chord.soprano.note)
-
-        self.add_pitches(1, bass_pitches, 0)
-        self.add_pitches(1, tenor_pitches, 0)
-        self.add_pitches(0, alto_pitches, 0)
-        self.add_pitches(0, soprano_pitches, 0)
-
-        return self
+        if not isinstance(chord_progression, ChordProgression):
+            raise TypeError("Progression passed in is not a ChordProgression.")
 
     def save_midi(self, filename="midifile.mid"):
         """Converts midi object to actual midi file.

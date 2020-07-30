@@ -148,3 +148,54 @@ def get_chord_progression(df):
                 container.update_note_off(event.note)
 
     return progression
+
+
+def get_dyad_progression(df):
+    """Creates a list of dyad progression based on the input notes.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Index: RangeIndex
+        Columns:
+            Name: Track_id, dtype: int64
+            Name: Timings, dtype: int64
+            Name: Events, dtype: str
+            Name: Time_signatures, dtype: int64
+            Name: Note_values, dtype: int64
+            Name: Velocity, dtype: int64
+            Name: 6, dtype: int64 (?)
+
+    Returns
+    -------
+    list of VoicingInterval (BassSoprano)
+        A list of the Dyads.
+    """
+
+    df_all_notes = df[df['Events'] == 'Note_on_c']
+    timings = df_all_notes['Timings'].unique()
+    timings.sort()
+    # remove timing = 0
+    if timings[0] == 0:
+        timings = timings[1:]
+
+    first_dyad_note_events = get_note_events(df_all_notes, 0)
+    first_dyad_notes = [event.note for event in first_dyad_note_events]
+
+    # container = NoteContainer.create_container(first_chord_notes)
+    # first_chord = container.create_chord()
+
+    # progression = [first_chord]
+
+    # for time in timings:
+    #     note_events = get_note_events(df_all_notes, time)
+
+    #     for event in note_events:
+    #         if event.on:
+    #             chord = container.update_note_on(event.note)
+    #             if isinstance(chord, Chord):
+    #                 progression.append(chord)
+    #         else:
+    #             container.update_note_off(event.note)
+
+    # return progression
