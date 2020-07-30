@@ -16,6 +16,7 @@ from fourparts.processes.preprocess import (
     midi_to_df,
     get_note_events,
     get_chord_progression,
+    get_dyad_progression
 )
 
 from fourparts.midi_writer.MidiWriter import MidiWriter
@@ -34,5 +35,6 @@ __all__ = [
     'midi_to_df',
     'get_note_events',
     'get_chord_progression',
+    'get_dyad_progression',
     'MidiWriter'
 ]

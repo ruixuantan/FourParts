@@ -7,7 +7,6 @@ class DyadProgression:
     Attributes
     ----------
     progression : list of VoicingInterval
-        Use the BassSoprano Voicing Interval.
     """
 
     def __init__(self, progression):
@@ -15,7 +14,7 @@ class DyadProgression:
 
         Parameters
         ----------
-        progression : list of VoicingInterval (BassSoprano)
+        progression : list of VoicingInterval
         """
 
         self.progression = progression

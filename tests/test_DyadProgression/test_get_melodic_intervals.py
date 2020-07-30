@@ -1,4 +1,4 @@
-from fourparts import DyadProgression, BassSoprano, MelodicInterval
+from fourparts import DyadProgression, VoicingInterval, MelodicInterval
 
 import pytest
 
@@ -6,13 +6,13 @@ import pytest
 def test_cases():
     test_cases = [
         (
-            [BassSoprano(60, 65, MelodicInterval.PerfectFourth)],
+            [VoicingInterval(60, 65, MelodicInterval.PerfectFourth)],
             [MelodicInterval.PerfectFourth]
         ),
         (
             [
-                BassSoprano(60, 65, MelodicInterval.PerfectFourth),
-                BassSoprano(62, 65, MelodicInterval.MinorThird)
+                VoicingInterval(60, 65, MelodicInterval.PerfectFourth),
+                VoicingInterval(62, 65, MelodicInterval.MinorThird)
             ],
             [
                 MelodicInterval.PerfectFourth,
@@ -21,9 +21,9 @@ def test_cases():
         ),
         (
             [
-                BassSoprano(10, 20, MelodicInterval.MinorSeventh),
-                BassSoprano(17, 18, MelodicInterval.Semitone),
-                BassSoprano(15, 23, MelodicInterval.MinorSixth)
+                VoicingInterval(10, 20, MelodicInterval.MinorSeventh),
+                VoicingInterval(17, 18, MelodicInterval.Semitone),
+                VoicingInterval(15, 23, MelodicInterval.MinorSixth)
             ],
             [
                 MelodicInterval.MinorSeventh,

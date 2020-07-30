@@ -4,7 +4,8 @@ A chord change is defined to be a change in any of the 4 notes.
 For example, a chord progression of Csus4 to C is considered 2 chords.
 """
 
-from fourparts import Chord
+from fourparts import Chord, VoicingInterval
+from fourparts.utils.DyadContainer import DyadContainer
 from fourparts.utils.NoteContainer import NoteContainer
 from fourparts.utils.NoteEvent import NoteEvent
 
@@ -182,20 +183,20 @@ def get_dyad_progression(df):
     first_dyad_note_events = get_note_events(df_all_notes, 0)
     first_dyad_notes = [event.note for event in first_dyad_note_events]
 
-    # container = NoteContainer.create_container(first_chord_notes)
-    # first_chord = container.create_chord()
+    container = DyadContainer.create_container(first_dyad_notes)
+    first_dyad = container.create_dyad()
 
-    # progression = [first_chord]
+    progression = [first_dyad]
 
-    # for time in timings:
-    #     note_events = get_note_events(df_all_notes, time)
+    for time in timings:
+        note_events = get_note_events(df_all_notes, time)
 
-    #     for event in note_events:
-    #         if event.on:
-    #             chord = container.update_note_on(event.note)
-    #             if isinstance(chord, Chord):
-    #                 progression.append(chord)
-    #         else:
-    #             container.update_note_off(event.note)
+        for event in note_events:
+            if event.on:
+                dyad = container.update_note_on(event.note)
+                if isinstance(dyad, VoicingInterval):
+                    progression.append(dyad)
+            else:
+                container.update_note_off(event.note)
 
-    # return progression
+    return progression
