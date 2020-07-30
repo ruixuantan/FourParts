@@ -1,6 +1,3 @@
-from fourparts.music_structures.MelodicInterval import MelodicInterval
-
-
 class DyadProgression:
     """A class to analyse 2 part writing.
 

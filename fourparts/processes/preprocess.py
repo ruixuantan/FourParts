@@ -5,9 +5,9 @@ For example, a chord progression of Csus4 to C is considered 2 chords.
 """
 
 from fourparts import Chord, VoicingInterval
-from fourparts.utils.DyadContainer import DyadContainer
-from fourparts.utils.NoteContainer import NoteContainer
-from fourparts.utils.NoteEvent import NoteEvent
+from fourparts.processes.DyadContainer import DyadContainer
+from fourparts.processes.ChordContainer import ChordContainer
+from fourparts.processes.NoteEvent import NoteEvent
 
 import pandas as pd
 import py_midicsv
@@ -132,8 +132,8 @@ def get_chord_progression(df):
     first_chord_note_events = get_note_events(df_all_notes, 0)
     first_chord_notes = [event.note for event in first_chord_note_events]
 
-    container = NoteContainer.create_container(first_chord_notes)
-    first_chord = container.create_chord()
+    container = ChordContainer.create_container(first_chord_notes)
+    first_chord = container.create_music_structure()
 
     progression = [first_chord]
 
@@ -184,7 +184,7 @@ def get_dyad_progression(df):
     first_dyad_notes = [event.note for event in first_dyad_note_events]
 
     container = DyadContainer.create_container(first_dyad_notes)
-    first_dyad = container.create_dyad()
+    first_dyad = container.create_music_structure()
 
     progression = [first_dyad]
 
