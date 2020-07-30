@@ -3,8 +3,6 @@ Extracts the chords from the provided midi file.
 A chord change is defined to be a change in any of the 4 notes.
 For example, a chord progression of Csus4 to C is considered 2 chords.
 """
-
-from fourparts import Chord, VoicingInterval
 from fourparts.processes.DyadContainer import DyadContainer
 from fourparts.processes.ChordContainer import ChordContainer
 from fourparts.processes.NoteEvent import NoteEvent
@@ -100,103 +98,82 @@ def get_note_events(df, time):
     return events
 
 
-def get_chord_progression(df):
-    """Creates a list of chord progression based on the input notes.
+class PreProcessor:
+    """A class that converts a midi converted DataFrame
+    to a list of music structures: either Chord or VoicingInterval.
 
-    Parameters
+    Attributes
     ----------
-    df : pandas.DataFrame
-        Index: RangeIndex
-        Columns:
-            Name: Track_id, dtype: int64
-            Name: Timings, dtype: int64
-            Name: Events, dtype: str
-            Name: Time_signatures, dtype: int64
-            Name: Note_values, dtype: int64
-            Name: Velocity, dtype: int64
-            Name: 6, dtype: int64 (?)
+    container : Dyad or Chord Container
+        """
 
-    Returns
-    -------
-    list of Chord
-        A list of the chords.
-    """
+    def __init__(self, n):
+        """Constructor method for PreProcessor.
+        
+        Parameters
+        ----------
+        n : int
+            2 for DyadContainer
+            4 for ChordContainer
 
-    df_all_notes = df[df['Events'] == 'Note_on_c']
-    timings = df_all_notes['Timings'].unique()
-    timings.sort()
-    # remove timing = 0
-    if timings[0] == 0:
-        timings = timings[1:]
+        Raises
+        ------
+        ValueError
+            When n passed in has not been implemented.
+        """
+        if n == 2:
+            self.container = DyadContainer
+        elif n == 4:
+            self.container = ChordContainer
+        else:
+            raise ValueError("Only Dyads and Chords are implemented.")
 
-    first_chord_note_events = get_note_events(df_all_notes, 0)
-    first_chord_notes = [event.note for event in first_chord_note_events]
+    def get_progression(self, df):
+        """Creates a progression based on the input notes.
 
-    container = ChordContainer.create_container(first_chord_notes)
-    first_chord = container.create_music_structure()
+        Parameters
+        ----------
+        df : pandas.DataFrame
+            Index: RangeIndex
+            Columns:
+                Name: Track_id, dtype: int64
+                Name: Timings, dtype: int64
+                Name: Events, dtype: str
+                Name: Time_signatures, dtype: int64
+                Name: Note_values, dtype: int64
+                Name: Velocity, dtype: int64
+                Name: 6, dtype: int64 (?)
 
-    progression = [first_chord]
+        Returns
+        -------
+        list of music structure
+            Currently, either list of Chords or VoicingIntervals.
+        """
 
-    for time in timings:
-        note_events = get_note_events(df_all_notes, time)
+        df_all_notes = df[df['Events'] == 'Note_on_c']
+        timings = df_all_notes['Timings'].unique()
+        timings.sort()
+        # remove timing = 0
+        if timings[0] == 0:
+            timings = timings[1:]
 
-        for event in note_events:
-            if event.on:
-                chord = container.update_note_on(event.note)
-                if isinstance(chord, Chord):
-                    progression.append(chord)
-            else:
-                container.update_note_off(event.note)
+        first_note_events = get_note_events(df_all_notes, 0)
+        first_container_notes = [event.note for event in first_note_events]
 
-    return progression
+        container = self.container.create_container(first_container_notes)
+        first_filled_container = container.create_music_structure()
 
+        progression = [first_filled_container]
 
-def get_dyad_progression(df):
-    """Creates a list of dyad progression based on the input notes.
+        for time in timings:
+            note_events = get_note_events(df_all_notes, time)
 
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        Index: RangeIndex
-        Columns:
-            Name: Track_id, dtype: int64
-            Name: Timings, dtype: int64
-            Name: Events, dtype: str
-            Name: Time_signatures, dtype: int64
-            Name: Note_values, dtype: int64
-            Name: Velocity, dtype: int64
-            Name: 6, dtype: int64 (?)
+            for event in note_events:
+                if event.on:
+                    filled_container = container.update_note_on(event.note)
+                    if filled_container is not None:
+                        progression.append(filled_container)
+                else:
+                    container.update_note_off(event.note)
 
-    Returns
-    -------
-    list of VoicingInterval (BassSoprano)
-        A list of the Dyads.
-    """
-
-    df_all_notes = df[df['Events'] == 'Note_on_c']
-    timings = df_all_notes['Timings'].unique()
-    timings.sort()
-    # remove timing = 0
-    if timings[0] == 0:
-        timings = timings[1:]
-
-    first_dyad_note_events = get_note_events(df_all_notes, 0)
-    first_dyad_notes = [event.note for event in first_dyad_note_events]
-
-    container = DyadContainer.create_container(first_dyad_notes)
-    first_dyad = container.create_music_structure()
-
-    progression = [first_dyad]
-
-    for time in timings:
-        note_events = get_note_events(df_all_notes, time)
-
-        for event in note_events:
-            if event.on:
-                dyad = container.update_note_on(event.note)
-                if isinstance(dyad, VoicingInterval):
-                    progression.append(dyad)
-            else:
-                container.update_note_off(event.note)
-
-    return progression
+        return progression

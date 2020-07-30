@@ -1,5 +1,4 @@
-from fourparts import Chord, get_chord_progression
-
+from fourparts import Chord, PreProcessor
 import pandas as pd
 import pytest
 
@@ -37,7 +36,7 @@ def test_cases():
 
 @pytest.mark.parametrize("df, expected", test_cases())
 def test_eval(df, expected):
-    assert get_chord_progression(df) == expected
+    assert PreProcessor(4).get_progression(df) == expected
 
 
 def exception_cases():
@@ -69,4 +68,4 @@ def exception_cases():
 @pytest.mark.parametrize("df, exception", exception_cases())
 def test_eval(df, exception):
     with exception:
-        assert get_chord_progression(df) is not None
+        assert PreProcessor(4).get_progression(df) is not None
