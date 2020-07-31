@@ -2,7 +2,7 @@ import fourparts as fp
 import pandas as pd
 
 
-file_name = '01AusmeinesHerz'
+file_name = 'chorale_F'
 
 df = fp.midi_to_df('samples/' + file_name + '.mid', save=True)
 chords = fp.PreProcessor(4).get_progression(df)
@@ -20,7 +20,7 @@ pd.DataFrame(result).to_csv(file_name + '_parallel_results.csv')
 # demonstration for 2 parts
 file_name = 'chorale_G_2parts'
 
-df = fp.midi_to_df('samples/' + file_name + '.mid')
+df = fp.midi_to_df('samples/' + file_name + '.mid', save=True)
 dyads = fp.PreProcessor(2).get_progression(df)
 dyad_progression = fp.DyadProgression(dyads)
 

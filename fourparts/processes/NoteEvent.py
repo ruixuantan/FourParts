@@ -18,3 +18,6 @@ class NoteEvent:
 
         self.note = note
         self.on = on
+
+    def __repr__(self):
+        return "Note: {0}, On: {1}".format(self.note, self.on)

@@ -47,6 +47,10 @@ def midi_to_df(midi_file, save=False):
     df[4] = df[4].str.strip().fillna(0).replace('"major"', 0).astype(int)
     df[5] = df[5].fillna(0).astype(int)
 
+    # convert note velocity of 0 to 'Note_off_c' events
+    # Key assumption that note velocity of 0 equals to a note off event
+    df[2].loc[(df[5] == 0) & (df[2] == 'Note_on_c')] = 'Note_off_c'
+    
     # rename df columns
     df = df.rename(columns={0: 'Track_id',
                             1: 'Timings',
@@ -55,15 +59,13 @@ def midi_to_df(midi_file, save=False):
                             4: 'Note_values',
                             5: 'Velocity'})
 
-    if save:
-        df.to_csv(midi_file[:-4] + '.csv')
-
+    df.to_csv(midi_file[:-4] + '.csv') if save else None
     return df
 
 
 def get_note_events(df, time):
     """Gets a list of note events, sorted in ascending order,
-    based on the given time.
+    based on the given time. Note events of 'off' are placed in front.
 
     Parameters
     ----------
@@ -72,30 +74,33 @@ def get_note_events(df, time):
         Columns:
             Name: Timings, dtype: int64
             Name: Note_values, dtype: int64
-            NameL Velocity, dtype: int64
+            Name: Events, dtype: str
     time : int
         The timing selected.
 
     Returns
     -------
     list of NoteEvent
-
-    Notes
-    -----
-    Key assumption that velocity associated with a note-on event is > 0
-    and velocity of note-off event = 0.
     """
+
     df_chord_notes = df[df['Timings'] == time]
     chord_notes = df_chord_notes['Note_values'].to_list()
     chord_notes.sort()
-    
-    events = []
+
+    on_events = []
+    off_events = []
 
     for note in chord_notes:
-        on = df_chord_notes[df_chord_notes['Note_values'] == note]['Velocity'].iloc[0] > 0
-        events.append(NoteEvent(note, on))
+        idx = df_chord_notes[df_chord_notes['Note_values'] == note]['Events'].index[0]
+        on = df_chord_notes['Events'].loc[idx] == 'Note_on_c'
+        df_chord_notes = df_chord_notes.drop(idx)
 
-    return events
+        if on:
+            on_events.append(NoteEvent(note, True))
+        else:
+            off_events.append(NoteEvent(note, False))
+
+    return off_events + on_events
 
 
 class PreProcessor:
@@ -150,7 +155,7 @@ class PreProcessor:
             Currently, either list of Chords or VoicingIntervals.
         """
 
-        df_all_notes = df[df['Events'] == 'Note_on_c']
+        df_all_notes = df[(df['Events'] == 'Note_off_c') | (df['Events'] == 'Note_on_c')]
         timings = df_all_notes['Timings'].unique()
         timings.sort()
         first_timing = timings[0]

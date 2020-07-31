@@ -6,6 +6,7 @@ import pytest
 def test_cases():
     test_cases = [
         (Tenor(9), Soprano(10), MelodicInterval.Semitone, 'TenorSoprano'),
+        (Alto(20), Soprano(20), MelodicInterval.Octave, 'AltoSoprano'),
         (Bass(30), Soprano(50), MelodicInterval.MinorSixth, 'BassSoprano')
     ]
 

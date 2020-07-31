@@ -32,6 +32,9 @@ class NoteContainer(ABC):
         """
         pass
 
+    def __repr__(self):
+        return str(self.container)
+
     @abstractmethod
     def update_note_on(self, note):
         """Starting from the lowest voice, inserts `note` into the first empty key.
