@@ -35,6 +35,14 @@ class NoteContainer(ABC):
     def __repr__(self):
         return str(self.container)
 
+    def _sort_notes(self):
+        """Sort notes in `container` to ascending order.
+        """
+        notes = list(self.container.values())
+        notes.sort()
+        for i, key in enumerate(self.container):
+            self.container[key] = notes[i]
+
     @abstractmethod
     def update_note_on(self, note):
         """Starting from the lowest voice, inserts `note` into the first empty key.
@@ -56,6 +64,7 @@ class NoteContainer(ABC):
                 break
 
         if all(self.container.values()):
+            self._sort_notes()
             music_structure = self.create_music_structure()
             return music_structure
 

@@ -28,6 +28,11 @@ def test_cases():
              Chord(45, 57, 62, 64),
              Chord(45, 55, 61, 64),
              Chord(38, 53, 57, 62)]
+        ),
+        (
+            pd.read_csv('samples/unison.csv'),
+            [Chord(47, 62, 67, 67),
+             Chord(45, 60, 67, 69)]
         )
     ]
 
@@ -66,6 +71,6 @@ def exception_cases():
 
 
 @pytest.mark.parametrize("df, exception", exception_cases())
-def test_eval(df, exception):
+def test_exception(df, exception):
     with exception:
         assert PreProcessor(4).get_progression(df) is not None
