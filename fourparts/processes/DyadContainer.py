@@ -1,4 +1,4 @@
-from fourparts import Bass, Soprano, VoicingInterval
+from fourparts import Voice, VoicingInterval
 from fourparts.processes.NoteContainer import NoteContainer
 
 
@@ -58,5 +58,5 @@ class DyadContainer(NoteContainer):
         VoicingInterval
         """
 
-        return VoicingInterval.create_voicing_interval(Bass(self.container['Bass']),
-                                                       Soprano(self.container['Soprano']))
+        return VoicingInterval.create_voicing_interval(Voice(self.container['Bass']),
+                                                       Voice(self.container['Soprano']))

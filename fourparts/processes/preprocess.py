@@ -133,6 +133,28 @@ class PreProcessor:
         else:
             raise ValueError("Only Dyads and Chords are implemented.")
 
+    @classmethod
+    def get_event_timings(cls, df):
+        """Gets the timings of the note events in `df`.
+
+        Parameters
+        ----------
+        df : pandas.DataFrame
+            Index: RangeIndex
+            Columns:
+                Name: Timings, dtype: int64
+
+        Returns
+        -------
+        list of int
+            The list of timings, in ascending order.
+        """
+
+        timings = list(df['Timings'].unique())
+        timings.sort()
+
+        return timings
+
     def get_progression(self, df):
         """Creates a progression based on the input notes.
 
@@ -156,11 +178,9 @@ class PreProcessor:
         """
 
         df_all_notes = df[(df['Events'] == 'Note_off_c') | (df['Events'] == 'Note_on_c')]
-        timings = df_all_notes['Timings'].unique()
-        timings.sort()
-        first_timing = timings[0]
-        timings = timings[1:]
+        timings = PreProcessor.get_event_timings(df_all_notes)
 
+        first_timing = timings.pop(0)
         first_note_events = get_note_events(df_all_notes, first_timing)
         first_container_notes = [event.note for event in first_note_events]
 

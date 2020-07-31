@@ -30,6 +30,7 @@ class NoteContainer(ABC):
         IndexError
             If notes does not have exactly n elements.
         """
+
         pass
 
     def __repr__(self):
@@ -38,6 +39,7 @@ class NoteContainer(ABC):
     def _sort_notes(self):
         """Sort notes in `container` to ascending order.
         """
+
         notes = list(self.container.values())
         notes.sort()
         for i, key in enumerate(self.container):

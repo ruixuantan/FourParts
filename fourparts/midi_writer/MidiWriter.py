@@ -13,16 +13,16 @@ class MidiWriter:
 
     TRACKS = 2
     CHANNEL = 0
-    # bpm
-    TEMPO = 60
+    TEMPO = 60  # bpm
     VOLUME = 100
-    # number of beats for a note
-    DURATION = 1
+    DURATION = 1  # number of beats for a note
 
     def __init__(self):
         """Initialises the number of tracks, initial time and tempo.
         """
+
         self.midi = MIDIFile(MidiWriter.TRACKS)
+
         # arguments are track, time, tempo
         self.midi.addTempo(0, 0, MidiWriter.TEMPO)
 

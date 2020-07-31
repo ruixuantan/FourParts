@@ -64,6 +64,7 @@ class ChordContainer(NoteContainer):
         -------
         Chord
         """
+
         return Chord(self.container['Bass'],
                      self.container['Tenor'],
                      self.container['Alto'],

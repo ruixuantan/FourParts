@@ -1,9 +1,11 @@
-from fourparts import Bass, Soprano, MelodicInterval, VoicingInterval, PreProcessor
+from fourparts import Bass, Soprano, MelodicInterval, Voice, VoicingInterval, PreProcessor
 import pandas as pd
 import pytest
 
 
 def test_cases():
+    # VoicingIntervals should be able to be instantiated with 
+    # Voice and its subtypes.
     test_cases = [
         (
             pd.read_csv('samples/chorale_G_2parts.csv'),
@@ -23,8 +25,8 @@ def test_cases():
                 VoicingInterval(Bass(52),
                                 Soprano(71),
                                 MelodicInterval.PerfectFifth),
-                VoicingInterval(Bass(42),
-                                Soprano(71),
+                VoicingInterval(Voice(42),
+                                Voice(71),
                                 MelodicInterval.PerfectFourth),
                 VoicingInterval(Bass(42),
                                 Soprano(69),
