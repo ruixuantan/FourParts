@@ -19,6 +19,7 @@ from fourparts.processes.preprocess import (
     PreProcessor
 )
 
+from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.midi_writer.MidiWriter import MidiWriter
 
 
@@ -36,5 +37,6 @@ __all__ = [
     'midi_to_df',
     'get_note_events',
     'PreProcessor',
+    'NoteFrequencies',
     'MidiWriter'
 ]

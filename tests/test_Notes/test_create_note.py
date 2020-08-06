@@ -4,10 +4,10 @@ import pytest
 
 def test_cases():
     test_cases = [
-       (0, Notes('C')),
-       (3, Notes('D#/Eb')),
-       (60, Notes('C')),
-       (68, Notes('G#/Ab'))
+       (0, 'C'),
+       (3, 'D#/Eb'),
+       (60, 'C'),
+       (68, 'G#/Ab')
     ]
 
     return test_cases

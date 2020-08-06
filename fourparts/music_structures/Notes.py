@@ -1,9 +1,5 @@
 class Notes:
     """A class to defined notes, based on the midi input.
-
-    Attributes
-    ----------
-    note : str
     """
 
     NOTES = (
@@ -21,17 +17,6 @@ class Notes:
         'B'  # 11
     )
 
-    def __init__(self, note):
-        """Constructor method for Note.
-
-        Parameters
-        ----------
-        note : str
-            A string as specified in NOTES.
-        """
-
-        self.note = note
-
     @classmethod
     def create_note(cls, note_int):
         """Factory method to construct a note.
@@ -43,7 +28,8 @@ class Notes:
 
         Returns
         -------
-        Note
+        str
+            The note as defined from NOTES.
         
         Raises
         ------
@@ -55,10 +41,16 @@ class Notes:
             raise ValueError('Ensure note value is greater than 0.')
 
         actual_note_int = note_int % 12
-        return cls(Notes.NOTES[actual_note_int])
+        return Notes.NOTES[actual_note_int]
 
-    def __str__(self):
-        return self.note
+    @classmethod
+    def get_note_names(cls):
+        """Gets the notes defined in this class.
 
-    def __eq__(self, other):
-        return self.note == other.note
+        Returns
+        -------
+        tuple of str
+            NOTES
+        """
+
+        return Notes.NOTES
