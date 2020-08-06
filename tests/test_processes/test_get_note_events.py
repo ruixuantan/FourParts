@@ -1,5 +1,5 @@
 from fourparts import get_note_events
-from fourparts.utils.NoteEvent import NoteEvent
+from fourparts.processes.NoteEvent import NoteEvent
 
 import pandas as pd
 import pytest
@@ -8,19 +8,22 @@ import pytest
 def test_cases():
     test_cases = [
         (
-            pd.DataFrame({'Timings': [1], 'Note_values': [4], 'Velocity': [2]}), 
+            pd.DataFrame({'Timings': [1], 'Note_values': [4], 'Events': ['Note_on_c']}), 
             1, [NoteEvent(4, True)]
         ),
         (
-            pd.DataFrame({'Timings': [1, 1], 'Note_values': [4, 6], 'Velocity': [20, 0]}), 
-            1, [NoteEvent(4, True), NoteEvent(6, False)]
+            pd.DataFrame({'Timings': [1, 1], 'Note_values': [4, 6], 
+                          'Events': ['Note_on_c', 'Note_off_c']}), 
+            1, [NoteEvent(6, False), NoteEvent(4, True)]
         ),
         (
-            pd.DataFrame({'Timings': [0, 3], 'Note_values': [4, 6], 'Velocity': [0, 0]}), 
+            pd.DataFrame({'Timings': [0, 3], 'Note_values': [4, 6],
+                          'Events': ['Note_off_c', 'Note_off_c']}), 
             0, [NoteEvent(4, False)]
         ),
         (
-            pd.DataFrame({'Timings': [1, 1, 3], 'Note_values': [11, 1, 11], 'Velocity': [2, 0, 912]}), 
+            pd.DataFrame({'Timings': [1, 1, 3], 'Note_values': [11, 1, 11], 
+                          'Events': ['Note_on_c', 'Note_off_c', 'Note_on_c']}), 
             1, [NoteEvent(1, True), NoteEvent(11, False)]
         )
     ]

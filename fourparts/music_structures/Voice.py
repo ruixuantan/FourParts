@@ -15,6 +15,7 @@ class Voice():
         note : int
             The note of the voice.
         """
+
         self.note = note
 
     def __eq__(self, other):

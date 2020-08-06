@@ -4,6 +4,7 @@ A python package to analyse 4 part writing. \
 Currently, it can only check for:
 * parallel fifths and octaves.
 * Pitch Class Set.
+* Melodic Intervals between 2 part writing.
 
 ## Build Package ##
 First, run:
@@ -22,11 +23,12 @@ Then, run:
 ```console
 $ python demo.py
 ```
-Two .csv file of results will appear in the same directory as demo.py.
+Three .csv files of results will appear in the same directory as demo.py.
+One of which is an analysis of a 2 part writing.
 
-This midi file should contain, strictly, 4 parts at all times.
+The midi files input should contain, strictly, either 2 or 4 parts at all times.
 Overlaps in voices will be sorted in accordance to pitch and treated as SATB from there.
 
 ## How it works ##
 The midi file is converted to a csv file initially, using the py-midicsv library.
-Then, the csv file will be parsed to generate a ChordProgression. Each chord is formed whenever four notes are triggered. This progression will then be checked for parallel fifths and octaves. If any 2 notes are static, it will not be parallel.
+Then, the csv file will be parsed to generate a progression of chords or Dyads. A chord or dyad is formed whenever the corresponding number of notes are triggered. This progression will then be analysed: checked for parallel fifths and octaves, pitch class set, etc. If any 2 notes are static, it will not be parallel.

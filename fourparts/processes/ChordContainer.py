@@ -1,7 +1,8 @@
 from fourparts import Chord
+from fourparts.processes.NoteContainer import NoteContainer
 
 
-class NoteContainer:
+class ChordContainer(NoteContainer):
     """A container that stores notes when a dataframe of a midi file is processed.
     At every instance when there are four notes present, a Chord is created.
 
@@ -12,7 +13,7 @@ class NoteContainer:
     """
 
     def __init__(self, bass, tenor, alto, soprano):
-        """Constructor method for NoteContainer
+        """Constructor method for ChordContainer
 
         Parameters
         ----------
@@ -34,62 +35,29 @@ class NoteContainer:
         ----------
         notes : list of notes
             Must strictly be a list of 4 notes sorted in ascending order.
-            Exception will be thrown in Chord.
 
         Returns
         -------
-        NoteContainer
+        ChordContainer
 
         Raises
         ------
-        Exception
-            If notes does not have exactly 4 elements.
+        IndexError
+            If `notes` does not have exactly 4 elements.
         """
 
         if len(notes) != 4:
-            raise Exception('Ensure 4 notes are passed in notes.')
+            raise IndexError('Ensure 4 notes are passed in notes.')
 
         return cls(notes[0], notes[1], notes[2], notes[3])
 
     def update_note_on(self, note):
-        """Starting from Bass, inserts `note` into
-        the first empty key. If the container is full, returns a Chord.
-
-        Parameters
-        ----------
-        note : int
-
-        Returns
-        -------
-        Chord
-            Only returns when all values of container are not None.
-        """
-
-        for key in self.container.keys():
-            if self.container[key] is None:
-                self.container[key] = note
-                break
-
-        if all(self.container.values()):
-            chord = self.create_chord()
-            return chord
-
-        return None
+        return super().update_note_on(note)
 
     def update_note_off(self, note):
-        """Starting from Bass, checks if `note` equals
-        any of its values. If equal, it changes the value to None.
+        return super().update_note_off(note)
 
-        Parameters
-        ----------
-        note : int
-        """
-
-        for key in self.container.keys():
-            if self.container[key] == note:
-                self.container[key] = None
-
-    def create_chord(self):
+    def create_music_structure(self):
         """Creates a chord when container is filled.
 
         Returns

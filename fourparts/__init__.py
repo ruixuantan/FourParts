@@ -9,12 +9,13 @@ from fourparts.music_structures.VoicingInterval import (
     VoicingInterval, BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
 )
 
+from fourparts.music_structures.DyadProgression import DyadProgression
 from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
 
 from fourparts.processes.preprocess import (
     midi_to_df,
     get_note_events,
-    get_chord_progression,
+    PreProcessor
 )
 
 from fourparts.midi_writer.MidiWriter import MidiWriter
@@ -28,9 +29,10 @@ __all__ = [
     'Bass', 'Tenor', 'Alto', 'Soprano',
     'VoicingInterval',
     'BassTenor', 'BassAlto', 'BassSoprano', 'TenorAlto', 'TenorSoprano', 'AltoSoprano',
+    'DyadProgression',
     'PitchClassSet',
     'midi_to_df',
     'get_note_events',
-    'get_chord_progression',
+    'PreProcessor',
     'MidiWriter'
 ]

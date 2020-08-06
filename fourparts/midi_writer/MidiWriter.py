@@ -1,8 +1,10 @@
 from midiutil import MIDIFile
+from fourparts.music_structures.ChordProgression import ChordProgression
+from fourparts.music_structures.DyadProgression import DyadProgression
 
 
 class MidiWriter:
-    """A class to write fourpart chords.
+    """A class to convert progressions to midi files.
 
     Attributes
     ----------
@@ -11,16 +13,16 @@ class MidiWriter:
 
     TRACKS = 2
     CHANNEL = 0
-    # bpm
-    TEMPO = 60
+    TEMPO = 60  # bpm
     VOLUME = 100
-    # number of beats for a note
-    DURATION = 1
+    DURATION = 1  # number of beats for a note
 
     def __init__(self):
         """Initialises the number of tracks, initial time and tempo.
         """
+
         self.midi = MIDIFile(MidiWriter.TRACKS)
+
         # arguments are track, time, tempo
         self.midi.addTempo(0, 0, MidiWriter.TEMPO)
 
@@ -51,9 +53,40 @@ class MidiWriter:
                               MidiWriter.VOLUME)
         return self
 
+    def add_dyads(self, dyad_progression):
+        """Turn a dyad progression into a midifile.
+
+        Parameters
+        ----------
+        dyad_progression : DyadProgression
+
+        Returns
+        -------
+        self
+
+        Raises
+        ------
+        TypeError
+            If dyad_progression passed in is not of type DyadProgression.
+        """
+        
+        if not isinstance(dyad_progression, DyadProgression):
+            raise TypeError("Progression passed in is not a DyadProgression.")
+
+        bass_pitches = []
+        soprano_pitches = []
+
+        for dyad in dyad_progression.progression:
+            bass_pitches.append(dyad.bottom_voice.note)
+            soprano_pitches.append(dyad.top_voice.note)
+
+        self.add_pitches(1, bass_pitches, 0)
+        self.add_pitches(0, soprano_pitches, 0)
+
+        return self
+
     def add_chords(self, chord_progression):
         """Turn a chord progression into a midifile.
-
         Parameters
         ----------
         chord_progression : ChordProgression
@@ -61,7 +94,15 @@ class MidiWriter:
         Returns
         -------
         self
+
+        Raises
+        ------
+        TypeError
+            If chord_progression passed in is not of type ChordProgression.
         """
+
+        if not isinstance(chord_progression, ChordProgression):
+            raise TypeError("Progression passed in is not a ChordProgression.")
 
         bass_pitches = []
         tenor_pitches = []
@@ -92,12 +133,12 @@ class MidiWriter:
 
         Raises
         ------
-        Exception
+        ValueError
             If `filename` does not end with '.mid'.
         """
 
         if filename[-4:] != '.mid':
-            raise Exception("{} does not end with '.mid'.".format(filename))
+            raise ValueError("{} does not end with '.mid'.".format(filename))
 
         with open(filename, "wb") as output_file:
             self.midi.writeFile(output_file)

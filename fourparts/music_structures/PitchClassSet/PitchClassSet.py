@@ -160,11 +160,6 @@ class PitchClassSet():
         -----
         Uses the algorithm of checking all cyclic permutations
         of pitches and determining which has the smallest interval.
-
-        Raises
-        ------
-        Exception
-            If the size of pitches is less than 2.
         """
 
         if not input_pitches:
