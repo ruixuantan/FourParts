@@ -14,7 +14,8 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'pandas',
-        'py-midicsv'
+        'py-midicsv',
+        'MIDIUtil'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
