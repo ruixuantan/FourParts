@@ -22,4 +22,4 @@ def test_cases():
 
 @pytest.mark.parametrize("df, expected", test_cases())
 def test_eval(df, expected):
-    assert NoteFrequencies().count(df).note_count == expected
+    assert NoteFrequencies.create_note_frequencies().count(df) == expected
