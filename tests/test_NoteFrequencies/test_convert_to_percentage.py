@@ -24,3 +24,21 @@ def test_cases():
 @pytest.mark.parametrize("count, expected", test_cases())
 def test_eval(count, expected):
     assert NoteFrequencies(count).convert_to_percentage() == expected
+
+
+def exception_cases():
+    exception_cases = [
+       (
+           {'C':3, 'C#/Db':0, 'D':0, 'D#/Eb':0, 'E':0, 'F':3, 'F#/Gb':0, 'G':0, 'G#/Ab':0, 'A':0, 'A#/Bb':0, 'B': 0},
+           -1,
+           pytest.raises(ValueError)
+       ) 
+    ]
+
+    return exception_cases
+
+
+@pytest.mark.parametrize("count, dp, exception", exception_cases())
+def test_exception(count, dp, exception):
+    with exception:
+        assert NoteFrequencies(count).convert_to_percentage(dp=dp) is not None
