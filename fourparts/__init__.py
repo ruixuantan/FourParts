@@ -1,3 +1,4 @@
+from fourparts.music_structures.Notes import Notes
 from fourparts.music_structures.Chord import Chord
 from fourparts.music_structures.ChordProgression import ChordProgression
 from fourparts.music_structures.MelodicInterval import MelodicInterval
@@ -18,10 +19,12 @@ from fourparts.processes.preprocess import (
     PreProcessor
 )
 
+from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.midi_writer.MidiWriter import MidiWriter
 
 
 __all__ = [
+    'Notes',
     'Chord',
     'ChordProgression',
     'MelodicInterval',
@@ -34,5 +37,6 @@ __all__ = [
     'midi_to_df',
     'get_note_events',
     'PreProcessor',
+    'NoteFrequencies',
     'MidiWriter'
 ]

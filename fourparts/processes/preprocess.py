@@ -11,6 +11,24 @@ import pandas as pd
 import py_midicsv
 
 
+def _convert_to_off(df):
+    """Creates 'Note_off_c' events where needed.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Index: RangeIndex
+        Columns:
+            Name: 2, dtype: str
+            Name: 5, dtype: int64
+    """
+
+    if df[5] == 0 and df[2] == 'Note_on_c':
+        return 'Note_off_c'
+    else:
+        return df[2]
+
+
 def midi_to_df(midi_file, save=False):
     """Converts a midi file to a list of csv then to a pandas df.
 
@@ -44,12 +62,19 @@ def midi_to_df(midi_file, save=False):
     df[0] = df[0].fillna(0).astype(int)
     df[1] = df[1].fillna(0).astype(int)
     df[2] = df[2].str.strip()
-    df[4] = df[4].str.strip().fillna(0).replace('"major"', 0).astype(int)
+    df[4] = df[4].str.strip().fillna(0)
+
+    if '"major"' in df[4].values:
+        scale = '"major"'
+    elif '"minor"' in df[4].values:
+        scale = '"minor"'
+
+    df[4] = df[4].replace(scale, 0).astype(int)
     df[5] = df[5].fillna(0).astype(int)
 
     # convert note velocity of 0 to 'Note_off_c' events
     # Key assumption that note velocity of 0 equals to a note off event
-    df[2].loc[(df[5] == 0) & (df[2] == 'Note_on_c')] = 'Note_off_c'
+    df[2] = df.apply(_convert_to_off, axis=1)
     
     # rename df columns
     df = df.rename(columns={0: 'Track_id',
