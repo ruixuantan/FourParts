@@ -76,11 +76,11 @@ class KeyClassifier:
         """
 
         self.model = classifier_model
-        self.train = False
+        self.trained = False
 
     def _fit(self, x_train, y_train):
         """Training of neural network.
-        Sets self.train to True.
+        Sets self.trained to True.
 
         Parameters
         ----------
@@ -89,7 +89,7 @@ class KeyClassifier:
         """
 
         self.model.fit(x_train, y_train)
-        self.train = True
+        self.trained = True
 
     def train(self, data):
         """Actual training of the neural network.
@@ -179,7 +179,7 @@ class KeyClassifier:
         list of Key
         """
 
-        if not self.train:
+        if not self.trained:
             raise AttributeError("KeyClassifier has not been trained.")
         return self.model.predict(pd.DataFrame(data))
 
