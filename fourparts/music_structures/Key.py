@@ -4,6 +4,15 @@ from fourparts.music_structures.Scales import Scales
 
 class Key:
     """Class to define all 24 keys.
+
+    Attributes
+    ----------
+    key : str
+        As represented in KEYS
+    pitchcenter : str
+        One of the 12 notes in Notes.NOTES.
+    scale : Scales
+        Either Scales.Major or Scales.Minor
     """
 
     KEYS = {
@@ -57,30 +66,57 @@ class Key:
         }
     }
 
-    def __init__(self, key):
+    def __init__(self, pitchcenter, scale):
         """Constructor method of Key.
 
         Parameters
         ----------
-        key : str
-            One of the 24 keys in KEYS.
+        pitchcenter : str
+            One of the 12 notes in Notes.NOTES.
+        scale : Scales
+            Either Scales.Major or Scales.Minor
         """
 
-        self.key = key
+        self.key = Key.KEYS[pitchcenter][scale]
+        self.pitchcenter = pitchcenter
+        self.scale = scale
 
     def __str__(self):
         return self.key
 
+    def __eq__(self, other):
+        return self.key == other.key
+
+    def get_key_index(self):
+        """Maps the key to its associated index.
+
+        Returns
+        -------
+        int
+            An int from 0 to 23s.
+        """
+
+        index = Notes.get_note_index(self.pitchcenter) * 2
+        index += Scales.get_scale_index(self.scale)
+        return index
+
     @classmethod
-    def create_scale(cls, pitchcenter, scale):
-        """Factory method of Scale.
+    def get_key_from_index(cls, index):
+        """Maps the index back to a Key object.
 
         Parameters
         ----------
-        pitchcenter : str
-            A note as represented in Notes.NOTES.
-        key : Scales
-            Either Scales.Major or Scales.Minor.
+        index : int
+            An int from 0 to 23.
+
+        Returns
+        -------
+        Key
         """
 
-        return cls(Key.KEYS[pitchcenter][scale])
+        scale_index = index % 2
+        # perform an int division
+        pitchcenter_index = (index - scale_index) // 2
+
+        return cls(Notes.create_note(pitchcenter_index),
+                   Scales.create_scale_from_index(scale_index))

@@ -15,7 +15,8 @@ setuptools.setup(
     install_requires=[
         'pandas',
         'py-midicsv',
-        'MIDIUtil'
+        'MIDIUtil',
+        'scikit-learn'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

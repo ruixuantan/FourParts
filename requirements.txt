@@ -20,7 +20,6 @@ pytz==2020.1
 scikit-learn==0.23.2
 scipy==1.5.2
 six==1.15.0
-sklearn==0.0
 threadpoolctl==2.1.0
 toml==0.10.1
 wcwidth==0.2.4

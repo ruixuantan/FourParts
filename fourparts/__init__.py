@@ -1,4 +1,6 @@
 from fourparts.music_structures.Notes import Notes
+from fourparts.music_structures.Scales import Scales
+from fourparts.music_structures.Key import Key
 from fourparts.music_structures.Chord import Chord
 from fourparts.music_structures.ChordProgression import ChordProgression
 from fourparts.music_structures.MelodicInterval import MelodicInterval
@@ -22,9 +24,13 @@ from fourparts.processes.preprocess import (
 from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.midi_writer.MidiWriter import MidiWriter
 
+from fourparts.analyser.key_classifier.KeyClassifier import KeyClassifier
+
 
 __all__ = [
     'Notes',
+    'Scales',
+    'Key',
     'Chord',
     'ChordProgression',
     'MelodicInterval',
@@ -38,5 +44,6 @@ __all__ = [
     'get_note_events',
     'PreProcessor',
     'NoteFrequencies',
-    'MidiWriter'
+    'MidiWriter',
+    'KeyClassifier'
 ]
