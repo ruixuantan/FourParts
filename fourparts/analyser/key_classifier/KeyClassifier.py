@@ -109,7 +109,7 @@ class KeyClassifier:
 
         return self
 
-    def test_train(self, data, test_size=0.2):
+    def test_train(self, data, test_size=0.2, dp=4):
         """Testing of the neural network.
 
         Parameters
@@ -119,6 +119,9 @@ class KeyClassifier:
         test_size : float
             Between 0.0 and 1.0. Determines the ratio of test_samples to use.
             Default is 0.2.
+        dp : int
+            The number of decimal places to be rounded off to.
+            Default is 4.
 
         Returns
         -------
@@ -140,7 +143,7 @@ class KeyClassifier:
             if predict[i] == y_test.values[i]:
                 count += 1
         
-        accuracy = round(count / total * 100, 2)
+        accuracy = round(count / total * 100, dp)
 
         return {
             "Correct_Predictions": count,
