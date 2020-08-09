@@ -63,6 +63,8 @@ class KeyClassifier:
     Attributes
     ----------
     model : sklearn classifier model object
+    trained : bool
+        True if the model has been trained.
     """
 
     def __init__(self, classifier_model):
@@ -74,9 +76,11 @@ class KeyClassifier:
         """
 
         self.model = classifier_model
+        self.train = False
 
     def _fit(self, x_train, y_train):
         """Training of neural network.
+        Sets self.train to True.
 
         Parameters
         ----------
@@ -85,6 +89,7 @@ class KeyClassifier:
         """
 
         self.model.fit(x_train, y_train)
+        self.train = True
 
     def train(self, data):
         """Actual training of the neural network.
@@ -171,6 +176,8 @@ class KeyClassifier:
         list of Key
         """
 
+        if not self.train:
+            raise AttributeError("KeyClassifier has not been trained.")
         return self.model.predict(pd.DataFrame(data))
 
     def predict_midi(self, midi_file):
@@ -218,21 +225,3 @@ class KeyClassifier:
             key_list.append(key)
 
         return key_list
-
-
-if __name__ == '__main__':
-    from sklearn.neural_network import MLPClassifier
-
-    data_input = "Insert path to training data here"
-    data = pd.read_csv(data_input)
-    model = MLPClassifier(solver='sgd', alpha=1e-5,
-                          hidden_layer_sizes=(15,), random_state=1)
-
-    kc = KeyClassifier(model)
-    res = kc.test_train(data)
-    print(res)
-
-    predict = "insert path to prediction sample here"
-    idx_list = kc.predict_midi("idx_list")
-    key_list = KeyClassifier.convert_to_key(idx_list)
-    print(key_list[0])
