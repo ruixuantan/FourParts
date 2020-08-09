@@ -125,7 +125,7 @@ class KeyClassifier:
 
         Returns
         -------
-        dict of int 
+        dict of int
             Results of the training set.
         """
 

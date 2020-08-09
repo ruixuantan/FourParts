@@ -65,11 +65,11 @@ def midi_to_df(midi_file, save=False):
     df[4] = df[4].str.strip().fillna(0)
 
     if '"major"' in df[4].values:
-        scale = '"major"'
+        df[4] = df[4].replace('"major"', 0)
     elif '"minor"' in df[4].values:
-        scale = '"minor"'
+        df[4] = df[4].replace('"minor"', 0)
 
-    df[4] = df[4].replace(scale, 0).astype(int)
+    df[4] = df[4].astype(int)
     df[5] = df[5].fillna(0).astype(int)
 
     # convert note velocity of 0 to 'Note_off_c' events
