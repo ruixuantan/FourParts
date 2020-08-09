@@ -122,7 +122,7 @@ class KeyClassifier:
 
         Returns
         -------
-        str
+        dict of int 
             Results of the training set.
         """
 
@@ -142,11 +142,11 @@ class KeyClassifier:
         
         accuracy = round(count / total * 100, 2)
 
-        return '''
-               Correct predictions: {0}
-               Total predictions: {1}
-               Percentage accuracy: {2}
-               '''.format(count, total, accuracy)
+        return {
+            "Correct_Predictions": count,
+            "Total_Predictions": total,
+            "Accuracy": accuracy
+        }
 
     def predict(self, data):
         """Predicts the actual key of data.
