@@ -58,19 +58,14 @@ def midi_to_df(midi_file, save=False):
     csv_string = py_midicsv.midi_to_csv(midi_file)
     df = pd.DataFrame([ls.strip().split(',') for ls in csv_string])
 
-    # convert values to int
-    df[0] = df[0].fillna(0).astype(int)
-    df[1] = df[1].fillna(0).astype(int)
+    # strip all whitespaces
     df[2] = df[2].str.strip()
-    df[4] = df[4].str.strip().fillna(0)
+    df[4] = df[4].str.strip()
 
-    if '"major"' in df[4].values:
-        df[4] = df[4].replace('"major"', 0)
-    elif '"minor"' in df[4].values:
-        df[4] = df[4].replace('"minor"', 0)
-
-    df[4] = df[4].astype(int)
-    df[5] = df[5].fillna(0).astype(int)
+    # convert values to int
+    for col in [0, 1, 4, 5]:
+        df[col] = df[col].apply(pd.to_numeric, errors='coerce')
+        df[col] = df[col].fillna(0).astype(int)
 
     # convert note velocity of 0 to 'Note_off_c' events
     # Key assumption that note velocity of 0 equals to a note off event
