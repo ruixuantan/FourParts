@@ -138,17 +138,26 @@ class KeyClassifier:
         count = 0
         predict = self.model.predict(x_test)
         total = len(predict)
+        results = {
+            'Expected': [],
+            'Predicted': []
+        }
 
         for i in range(total):
             if predict[i] == y_test.values[i]:
                 count += 1
+            ex = Key.get_key_from_index(y_test.values[i])
+            res = Key.get_key_from_index(predict[i])
+            results['Expected'].append(ex)
+            results['Predicted'].append(res)
         
         accuracy = round(count / total * 100, dp)
 
         return {
             "Correct_Predictions": count,
             "Total_Predictions": total,
-            "Accuracy": accuracy
+            "Accuracy": accuracy,
+            "Results": pd.DataFrame(results)
         }
 
     def predict(self, data):
