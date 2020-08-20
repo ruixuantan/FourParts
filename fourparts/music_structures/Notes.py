@@ -54,3 +54,27 @@ class Notes:
         """
 
         return Notes.NOTES
+
+    @classmethod
+    def get_note_index(cls, note):
+        """Gets the index of the note in NOTES.
+
+        Parameters
+        ----------
+        note : str
+
+        Returns
+        -------
+        int
+            Ranges from 0 to 11.
+
+        Raises
+        ------
+        KeyError
+            If `note` does not exist in NOTES.
+        """
+
+        if note in Notes.NOTES:
+            return Notes.NOTES.index(note)
+        else:
+            raise KeyError("Given note does not exist.")
