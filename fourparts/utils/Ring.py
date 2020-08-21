@@ -40,8 +40,8 @@ class Ring:
 
         return self.ring[self.index]
 
-    def _shift_right(self):
-        """Shifts the index to the right by 1 unit.
+    def _shift_clockwise(self):
+        """Shifts the index clockwise by 1 unit.
         
         Returns
         -------
@@ -52,8 +52,8 @@ class Ring:
         if self.index == len(self.ring):
             self.index = 0
 
-    def _shift_left(self):
-        """Shifts the index to the left by 1 unit.
+    def _shift_counter_clockwise(self):
+        """Shifts the index counter clockwise by 1 unit.
 
         Returns
         -------
@@ -70,8 +70,8 @@ class Ring:
         Parameters
         ----------
         n : int
-            If n > 0, it is shifted to the right.
-            If n < 0, it is shifted to the left.
+            If n > 0, it is shifted clockwise.
+            If n < 0, it is shifted counterclockwise.
         
         Returns
         -------
@@ -82,7 +82,7 @@ class Ring:
         actual_shifts = n % len(self.ring)
 
         for _ in range(actual_shifts):
-            self._shift_right()
+            self._shift_clockwise()
 
         return self.curr_elem()
 
@@ -97,3 +97,21 @@ class Ring:
 
         self.index = 0
         return self.curr_elem()
+    
+    def freeze(self):
+        """Gets a list of the Ring, with the starting element
+        being the element the current index is pointing to.
+        
+        Returns
+        -------
+        list of object
+        """
+
+        output = []
+        for i in range(self.index, len(self.ring)):
+            output.append(self.ring[i])
+
+        for i in range(self.index):
+            output.append(self.ring[i])
+
+        return output
