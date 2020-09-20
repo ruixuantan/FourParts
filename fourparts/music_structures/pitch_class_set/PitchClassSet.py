@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES
+from fourparts.music_structures.pitch_class_set.PitchClassSetNames import PITCH_CLASS_SET_NAMES
 from fourparts.utils.Orbit import Orbit
 
 

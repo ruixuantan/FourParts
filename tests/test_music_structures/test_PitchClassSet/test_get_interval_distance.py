@@ -1,4 +1,4 @@
-from fourparts.music_structures.PitchClassSet.PitchClassSet import get_interval_distances
+from fourparts.music_structures.pitch_class_set.PitchClassSet import get_interval_distances
 from fourparts.utils.Orbit import Orbit
 
 import pytest

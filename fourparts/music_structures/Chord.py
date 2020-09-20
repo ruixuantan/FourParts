@@ -2,7 +2,7 @@ from fourparts.music_structures.Voice import Bass, Tenor, Alto, Soprano
 from fourparts.music_structures.VoicingInterval import (
     BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
 )
-from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
+from fourparts.music_structures.pitch_class_set.PitchClassSet import PitchClassSet
 
 
 class Chord:
