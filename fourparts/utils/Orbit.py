@@ -3,10 +3,14 @@ class Orbit:
 
     Attributes
     ----------
-    index : int
-        The index of the current pointer to the Orbit.
     orbit : tuple of object
         The tuple of objects that are contained in the Orbit.
+    index : int
+        The index of the current pointer to the Orbit.
+    current : int
+        To allow Orbit to be iterable.
+    high : int
+        To allow Orbit to be iterable. It is also the order/length of the orbit.
     """
 
     def __init__(self, orbit, index=0):
@@ -146,3 +150,22 @@ class Orbit:
             output.append(self.orbit[i])
 
         return output
+
+    def map(self, func):
+        """Applies func to all elements in the orbit.
+        This is a mutable operation.
+
+        Parameters
+        ----------
+        func : function
+            The function to be applied on the elements. The function should be a unary operator.
+
+        """
+
+        new_orbit = []
+
+        for i in range(self.high):
+            transformed = func(self.orbit[i])
+            new_orbit.append(transformed)
+
+        self.orbit = new_orbit

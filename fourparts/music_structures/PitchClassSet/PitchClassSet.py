@@ -32,25 +32,22 @@ def _shift_pitch(pitches):
     pitches.insert(0, last_pitch)
 
 
-def _zero(pitches):
-    """Subtracts away the value of the first element from all elements.
+def _zero(pitch_orbit):
+    """Subtracts away the value of the first element from all elements in the orbit.
 
     Parameters
     ----------
-    pitches : list of int
+    pitch_orbit : Orbit of int
 
     Returns
     -------
-    list of int
+    Orbit
         The transformed pitches.
     """
 
-    first_pitch = pitches[0]
-    for i in range(len(pitches)):
-        pitches[i] -= first_pitch
-        pitches[i] = _shift_twelve(pitches[i])
-
-    return pitches
+    first_pitch = pitch_orbit.curr_elem()
+    pitch_orbit.map(lambda p: _shift_twelve(p - first_pitch))
+    return pitch_orbit
 
 
 def get_interval_distances(pitch_orbit):
@@ -76,13 +73,13 @@ def get_interval_distances(pitch_orbit):
     return distances
 
 
-def _minimise_interval(pitches):
+def _minimise_interval(pitch_orbit):
     """Finds the number of pitch shifts in order to minimise
-    the intervals. Assumes that pitch has been sorted.
+    the intervals. Assumes that pitches has been sorted.
 
     Parameters
     ----------
-    pitches : list of int
+    pitch_orbit : Orbit of int
         Should have been pre-sorted.
 
     Returns
@@ -91,13 +88,14 @@ def _minimise_interval(pitches):
         The number of shifts required.
     """
 
-    # want to minimise `least_distances`
     number_of_shifts = 0
-    least_distances = get_interval_distances(pitches)
-    _shift_pitch(pitches)
 
-    for i in range(1, len(pitches)):
-        curr_distances = get_interval_distances(pitches)
+    # want to minimise `least_distances`    
+    least_distances = get_interval_distances(pitch_orbit)
+    pitch_orbit.shift_n(-1)
+
+    for i in range(1, pitch_orbit.length()):
+        curr_distances = get_interval_distances(pitch_orbit)
 
         for c, l in zip(curr_distances, least_distances):
             if c < l:
@@ -107,7 +105,7 @@ def _minimise_interval(pitches):
             elif c > l:
                 break
 
-        _shift_pitch(pitches)
+        pitch_orbit.shift_n(-1)
 
     return number_of_shifts
 
@@ -174,12 +172,16 @@ class PitchClassSet():
         # removes duplicate pitches
         pitches = list(set(pitches))
         pitches.sort()
-        number_of_shifts = _minimise_interval(pitches)
 
-        [_shift_pitch(pitches) for _ in range(number_of_shifts)]
+        pitch_orbit = Orbit(pitches)
+        number_of_shifts = _minimise_interval(pitch_orbit)
+
+        pitch_orbit.shift_n(-1 * number_of_shifts)
+
+        _zero(pitch_orbit)
+
+        return pitch_orbit.freeze()
         
-        return _zero(pitches)
-
     @classmethod
     def hash_pitch_class_set(cls, pitches):
         """Gets the hash of the pitches.
