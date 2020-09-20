@@ -228,9 +228,7 @@ class PitchClassSet():
         try:
             return names[size][key]
         except KeyError:
-            pass
-
-        return "Not Named"
+            return "Not Named"
 
     @classmethod
     def create_pitch_class_set(cls, input_pitches):
