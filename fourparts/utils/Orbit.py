@@ -22,13 +22,21 @@ class Orbit:
 
         if index >= len(orbit):
             raise IndexError("Ensure index is contained within the length of the orbit.")
-
-        self.index = index
+        
         self.orbit = tuple(orbit)
+        self.index = index
+        self.current = -1
+        self.high = len(orbit)
 
     def __str__(self):
         return "Index: {0}, Orbit: {1}".format(self.index, self.orbit.__str__())
+
+    def __iter__(self):
+        return self
         
+    def length(self):
+        return self.high
+
     def curr_elem(self):
         """Method to get the current element of the Orbit.
 
@@ -38,6 +46,30 @@ class Orbit:
         """
 
         return self.orbit[self.index]
+
+    def get_index(self, index):
+        """Gets the element of the specified index.
+
+        Parameters
+        ----------
+        index : int
+
+        Returns
+        -------
+        object
+        """
+
+        total = self.index + index
+        actual_index = total if total < self.high else total - self.high
+        return self.orbit[actual_index]
+
+    def __next__(self):
+        self.current += 1
+
+        if self.current < self.high:
+            return self.get_index(self.current)
+
+        raise StopIteration
 
     def _shift_clockwise(self):
         """Shifts the index clockwise by 1 unit.

@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 from fourparts.music_structures.PitchClassSet.PitchClassSetNames import PITCH_CLASS_SET_NAMES
+from fourparts.utils.Orbit import Orbit
 
 
 def _shift_twelve(number):
@@ -52,13 +53,14 @@ def _zero(pitches):
     return pitches
 
 
-def _get_interval_distances(pitches):
-    """Gets the interval (distance) between the
-    first and each note.
+def get_interval_distances(pitch_orbit):
+    """Gets the interval (distance) between the first and each note.
+    Place the distance of the note with the largest index in front.
+    For example, pitches of [0, 4, 7] will yield [7, 4].
 
     Parameters
     ----------
-    pitches : list of int
+    pitch_orbit : Orbit of int
 
     Returns
     -------
@@ -66,9 +68,9 @@ def _get_interval_distances(pitches):
     """
 
     distances = []
-    # put the furthest interval distance in front.
-    for i in range(len(pitches) - 1, 0, -1):
-        distance = _shift_twelve(pitches[i] - pitches[0])
+    first_elem = pitch_orbit.curr_elem()
+    for i in range(pitch_orbit.length() - 1, 0, -1):
+        distance = _shift_twelve(pitch_orbit.get_index(i) - first_elem)
         distances.append(distance)
 
     return distances
@@ -91,11 +93,11 @@ def _minimise_interval(pitches):
 
     # want to minimise `least_distances`
     number_of_shifts = 0
-    least_distances = _get_interval_distances(pitches)
+    least_distances = get_interval_distances(pitches)
     _shift_pitch(pitches)
 
     for i in range(1, len(pitches)):
-        curr_distances = _get_interval_distances(pitches)
+        curr_distances = get_interval_distances(pitches)
 
         for c, l in zip(curr_distances, least_distances):
             if c < l:
