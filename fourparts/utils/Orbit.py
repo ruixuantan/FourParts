@@ -1,44 +1,43 @@
-class Ring:
-    """A class to represent a circular, repeating structure,
-    such as the circle of 5ths.
+class Orbit:
+    """A class to represent a mathematical Orbit structure.
 
     Attributes
     ----------
     index : int
-        The index of the current pointer to the ring.
-    ring : tuple of object
-        The tuple of objects that are contained in the ring.
+        The index of the current pointer to the Orbit.
+    orbit : tuple of object
+        The tuple of objects that are contained in the Orbit.
     """
 
-    def __init__(self, ring, index=0):
-        """Constructor method of Ring.
+    def __init__(self, orbit, index=0):
+        """Constructor method of Orbit.
         
         Parameters
         ----------
-        ring: iterable
-            The actual ring.
+        orbit: iterable
+            The actual orbit.
         index : int
-            The pointer towards the element in the ring referred to.
+            The pointer towards the element in the orbit referred to.
         """
 
-        if index >= len(ring):
-            raise IndexError("Ensure index is contained within the length of the ring.")
+        if index >= len(orbit):
+            raise IndexError("Ensure index is contained within the length of the orbit.")
 
         self.index = index
-        self.ring = tuple(ring)
+        self.orbit = tuple(orbit)
 
     def __str__(self):
-        return "Index: {0}, Ring: {1}".format(self.index, self.ring.__str__())
+        return "Index: {0}, Orbit: {1}".format(self.index, self.orbit.__str__())
         
     def curr_elem(self):
-        """Method to get the current element of the Ring.
+        """Method to get the current element of the Orbit.
 
         Returns
         -------
         object
         """
 
-        return self.ring[self.index]
+        return self.orbit[self.index]
 
     def _shift_clockwise(self):
         """Shifts the index clockwise by 1 unit.
@@ -49,7 +48,7 @@ class Ring:
         """
 
         self.index += 1
-        if self.index == len(self.ring):
+        if self.index == len(self.orbit):
             self.index = 0
 
     def _shift_counter_clockwise(self):
@@ -62,7 +61,7 @@ class Ring:
 
         self.index -= 1
         if self.index == -1:
-            self.index = len(self.ring) - 1
+            self.index = len(self.orbit) - 1
 
     def shift_n(self, n):
         """Shifts the index by n steps.
@@ -76,10 +75,10 @@ class Ring:
         Returns
         -------
         object
-            The element in the Ring shifted into.
+            The element in the Orbit shifted into.
         """
 
-        actual_shifts = n % len(self.ring)
+        actual_shifts = n % len(self.orbit)
 
         for _ in range(actual_shifts):
             self._shift_clockwise()
@@ -87,19 +86,19 @@ class Ring:
         return self.curr_elem()
 
     def set_to_zero(self):
-        """Set the index of the ring to 0.
+        """Set the index of the orbit to 0.
 
         Returns
         -------
         object
-            The first element of the Ring.
+            The first element of the Orbit.
         """
 
         self.index = 0
         return self.curr_elem()
     
     def freeze(self):
-        """Gets a list of the Ring, with the starting element
+        """Gets a list of the Orbit, with the starting element
         being the element the current index is pointing to.
         
         Returns
@@ -108,10 +107,10 @@ class Ring:
         """
 
         output = []
-        for i in range(self.index, len(self.ring)):
-            output.append(self.ring[i])
+        for i in range(self.index, len(self.orbit)):
+            output.append(self.orbit[i])
 
         for i in range(self.index):
-            output.append(self.ring[i])
+            output.append(self.orbit[i])
 
         return output
