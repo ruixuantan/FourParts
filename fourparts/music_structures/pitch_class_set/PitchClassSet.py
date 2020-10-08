@@ -19,19 +19,6 @@ def _shift_twelve(number):
     return number + 12 if number < 0 else number
 
 
-def _shift_pitch(pitches):
-    """Removes the last element of pitches and
-    appends to the front. Mutable operation.
-
-    Parameters
-    ----------
-    pitches : list of int
-    """
-
-    last_pitch = pitches.pop()
-    pitches.insert(0, last_pitch)
-
-
 def _zero(pitch_orbit):
     """Subtracts away the value of the first element from all elements in the orbit.
 
@@ -90,7 +77,7 @@ def _minimise_interval(pitch_orbit):
 
     number_of_shifts = 0
 
-    # want to minimise `least_distances`    
+    # want to minimise `least_distances`
     least_distances = get_interval_distances(pitch_orbit)
     pitch_orbit.shift_n(-1)
 
