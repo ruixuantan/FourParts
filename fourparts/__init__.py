@@ -13,9 +13,9 @@ from fourparts.music_structures.VoicingInterval import (
 )
 
 from fourparts.music_structures.DyadProgression import DyadProgression
-from fourparts.music_structures.PitchClassSet.PitchClassSet import PitchClassSet
+from fourparts.music_structures.pitch_class_set.PitchClassSet import PitchClassSet
 
-from fourparts.processes.preprocess import (
+from fourparts.processes.PreProcessor import (
     midi_to_df,
     get_note_events,
     PreProcessor
@@ -25,25 +25,3 @@ from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.midi_writer.MidiWriter import MidiWriter
 
 from fourparts.analyser.key_classifier.KeyClassifier import KeyClassifier
-
-
-__all__ = [
-    'Notes',
-    'Scales',
-    'Key',
-    'Chord',
-    'ChordProgression',
-    'MelodicInterval',
-    'Voice',
-    'Bass', 'Tenor', 'Alto', 'Soprano',
-    'VoicingInterval',
-    'BassTenor', 'BassAlto', 'BassSoprano', 'TenorAlto', 'TenorSoprano', 'AltoSoprano',
-    'DyadProgression',
-    'PitchClassSet',
-    'midi_to_df',
-    'get_note_events',
-    'PreProcessor',
-    'NoteFrequencies',
-    'MidiWriter',
-    'KeyClassifier'
-]
