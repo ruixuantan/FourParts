@@ -1,5 +1,8 @@
 # FourParts
 
+[![Build Status](https://travis-ci.com/ruixuantan/FourParts.svg?branch=master)](https://travis-ci.com/ruixuantan/FourParts)
+
+
 A python package to analyse 4 part writing. \
 Currently, it can only check for:
 * Parallel fifths and octaves.
