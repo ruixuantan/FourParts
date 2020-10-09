@@ -14,7 +14,7 @@ class Chord:
     """
 
     def __init__(self, bass, tenor, alto, soprano):
-        """Constructor method for chord.
+        """Constructor method.
 
         Parameters
         ----------

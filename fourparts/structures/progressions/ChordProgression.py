@@ -1,5 +1,5 @@
 class ChordProgression:
-    """A list of Chords.
+    """Re[resents a list of Chords.
 
     Attributes
     ----------
@@ -7,7 +7,7 @@ class ChordProgression:
     """
 
     def __init__(self, progression):
-        """Constructor method for ChordProgression.
+        """Constructor method.
 
         Parameters
         ----------

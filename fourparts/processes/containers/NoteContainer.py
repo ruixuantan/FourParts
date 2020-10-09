@@ -14,7 +14,7 @@ class NoteContainer(ABC):
 
     @classmethod
     def create_container(cls, notes):
-        """Given a list of notes in ascending order, fills `container`.
+        """Fills `container` given a list of notes in ascending order.
 
         Parameters
         ----------

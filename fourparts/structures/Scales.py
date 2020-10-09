@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class Scales(Enum):
-    """Class to represent different scales.
+    """Represents different scales.
     Currently, only major or minor scales are implemented.
     """
 

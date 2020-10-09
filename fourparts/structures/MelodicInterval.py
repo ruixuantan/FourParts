@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class MelodicInterval(Enum):
-    """Class to define the different Melodic Intervals.
+    """Represents different Melodic Intervals.
     """
 
     # TODO: to include augmented and diminished intervals

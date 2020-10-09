@@ -79,8 +79,8 @@ def midi_to_df(midi_file, save=False):
 
 
 def get_note_events(df, time):
-    """Gets a list of note events, sorted in ascending order,
-    based on the given time. Note events of 'off' are placed in front.
+    """Gets a list of note events, sorted in ascending order, based on the given time.
+    Note events of 'off' are placed in front.
 
     Parameters
     ----------
@@ -125,10 +125,10 @@ class PreProcessor:
     Attributes
     ----------
     container : Dyad or Chord Container
-        """
+    """
 
     def __init__(self, n):
-        """Constructor method for PreProcessor.
+        """Constructor method.
         
         Parameters
         ----------

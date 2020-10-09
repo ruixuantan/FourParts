@@ -61,8 +61,8 @@ def get_interval_distances(pitch_orbit):
 
 
 def _minimise_interval(pitch_orbit):
-    """Finds the number of pitch shifts in order to minimise
-    the intervals. Assumes that pitches has been sorted.
+    """Finds the number of pitch shifts in order to minimise the intervals.
+    Assumes that pitches has been sorted.
 
     Parameters
     ----------
@@ -79,7 +79,7 @@ def _minimise_interval(pitch_orbit):
 
     # want to minimise `least_distances`
     least_distances = get_interval_distances(pitch_orbit)
-    pitch_orbit.shift_n(-1)
+    pitch_orbit.shift(-1)
 
     for i in range(1, pitch_orbit.length()):
         curr_distances = get_interval_distances(pitch_orbit)
@@ -92,13 +92,13 @@ def _minimise_interval(pitch_orbit):
             elif c > l:
                 break
 
-        pitch_orbit.shift_n(-1)
+        pitch_orbit.shift(-1)
 
     return number_of_shifts
 
 
 class PitchClassSet():
-    """A class that represents pitch class sets.
+    """Represents pitch class sets.
 
     Attributes
     ----------
@@ -163,11 +163,11 @@ class PitchClassSet():
         pitch_orbit = Orbit(pitches)
         number_of_shifts = _minimise_interval(pitch_orbit)
 
-        pitch_orbit.shift_n(-1 * number_of_shifts)
+        pitch_orbit.shift(-1 * number_of_shifts)
 
         _zero(pitch_orbit)
 
-        return pitch_orbit.freeze()
+        return pitch_orbit.get_curr_orbit()
         
     @classmethod
     def hash_pitch_class_set(cls, pitches):

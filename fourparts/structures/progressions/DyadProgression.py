@@ -7,7 +7,7 @@ class DyadProgression:
     """
 
     def __init__(self, progression):
-        """Constructor method for VoicingProgression.
+        """Constructor method.
 
         Parameters
         ----------

@@ -1,5 +1,5 @@
 class Orbit:
-    """A class to represent a mathematical Orbit structure.
+    """Represent a mathematical Orbit structure.
 
     Attributes
     ----------
@@ -14,7 +14,7 @@ class Orbit:
     """
 
     def __init__(self, orbit, index=0):
-        """Constructor method of Orbit.
+        """Constructor method.
         
         Parameters
         ----------
@@ -42,7 +42,7 @@ class Orbit:
         return self.high
 
     def curr_elem(self):
-        """Method to get the current element of the Orbit.
+        """Gets the current element of the Orbit.
 
         Returns
         -------
@@ -99,7 +99,7 @@ class Orbit:
         if self.index == -1:
             self.index = len(self.orbit) - 1
 
-    def shift_n(self, n):
+    def shift(self, n):
         """Shifts the index by n steps.
         
         Parameters
@@ -120,20 +120,8 @@ class Orbit:
             self._shift_clockwise()
 
         return self.curr_elem()
-
-    def set_to_zero(self):
-        """Set the index of the orbit to 0.
-
-        Returns
-        -------
-        object
-            The first element of the Orbit.
-        """
-
-        self.index = 0
-        return self.curr_elem()
     
-    def freeze(self):
+    def get_curr_orbit(self):
         """Gets a list of the Orbit, with the starting element
         being the element the current index is pointing to.
         

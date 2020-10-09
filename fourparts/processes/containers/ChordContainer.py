@@ -13,7 +13,7 @@ class ChordContainer(NoteContainer):
     """
 
     def __init__(self, bass, tenor, alto, soprano):
-        """Constructor method for ChordContainer
+        """Constructor method.
 
         Parameters
         ----------
@@ -29,7 +29,7 @@ class ChordContainer(NoteContainer):
 
     @classmethod
     def create_container(cls, notes):
-        """Given a list of notes in ascending order, fills `container`.
+        """Fills `container` given a list of notes in ascending order.
 
         Parameters
         ----------

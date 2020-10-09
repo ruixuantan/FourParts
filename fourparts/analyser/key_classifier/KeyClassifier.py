@@ -1,7 +1,7 @@
-from fourparts.structures.Key import Key
-from fourparts.structures.Scales import Scales
 from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.processes.PreProcessor import midi_to_df
+from fourparts.structures.Key import Key
+from fourparts.structures.Scales import Scales
 
 from sklearn.model_selection import train_test_split
 import pandas as pd
@@ -68,7 +68,7 @@ class KeyClassifier:
     """
 
     def __init__(self, classifier_model):
-        """Constructor method to initialise the MLPClassifier
+        """Constructor method.
 
         Parameters
         ----------
@@ -79,7 +79,7 @@ class KeyClassifier:
         self.trained = False
 
     def _fit(self, x_train, y_train):
-        """Training of neural network.
+        """Trains neural network.
         Sets self.trained to True.
 
         Parameters
@@ -92,7 +92,7 @@ class KeyClassifier:
         self.trained = True
 
     def train(self, data):
-        """Actual training of the neural network.
+        """Trains the actual neural network.
 
         Parameters
         ----------
@@ -110,7 +110,7 @@ class KeyClassifier:
         return self
 
     def test_train(self, data, test_size=0.2, dp=4):
-        """Testing of the neural network.
+        """Tests the neural network.
 
         Parameters
         ----------
@@ -219,7 +219,7 @@ class KeyClassifier:
 
     @classmethod
     def convert_to_key(cls, index_list):
-        """Given a list of key indexes, convert into a list of keys.
+        """Converts a list of key indexes into a list of keys.
 
         Parameters
         ----------

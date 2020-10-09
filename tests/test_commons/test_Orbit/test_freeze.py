@@ -17,4 +17,4 @@ def test_cases():
 
 @pytest.mark.parametrize("orbit, index, expected", test_cases())
 def test_eval(orbit, index, expected):
-    assert Orbit(orbit, index).freeze() == expected
+    assert Orbit(orbit, index).get_curr_orbit() == expected

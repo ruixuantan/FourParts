@@ -21,4 +21,4 @@ def test_cases():
 
 @pytest.mark.parametrize("orbit, n, expected", test_cases())
 def test_eval(orbit, n, expected):
-    assert orbit.shift_n(n) == expected
+    assert orbit.shift(n) == expected

@@ -3,7 +3,7 @@ from fourparts.structures.Scales import Scales
 
 
 class Key:
-    """Class to define all 24 keys.
+    """Represents all 24 keys.
 
     Attributes
     ----------

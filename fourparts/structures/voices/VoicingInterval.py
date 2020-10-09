@@ -13,7 +13,7 @@ class VoicingInterval():
     """
 
     def __init__(self, bottom_voice, top_voice, melodic_interval):
-        """Constructor for VoicingInterval.
+        """Constructor method.
 
         Parameters
         ----------
@@ -61,7 +61,7 @@ class VoicingInterval():
                self.melodic_interval == other.melodic_interval
 
     def _is_parallel(self, other):
-        """Private method to check if 2 successive VoicingIntervals are
+        """Checks if 2 successive VoicingIntervals are
         parallel and not static.
 
         Parameters
