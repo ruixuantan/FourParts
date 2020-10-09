@@ -1,5 +1,5 @@
 class ChordProgression:
-    """Re[resents a list of Chords.
+    """Represents a list of Chords.
 
     Attributes
     ----------
@@ -11,7 +11,7 @@ class ChordProgression:
 
         Parameters
         ----------
-        progression : list of Chord
+        progression : list of Chords
         """
 
         self.progression = progression

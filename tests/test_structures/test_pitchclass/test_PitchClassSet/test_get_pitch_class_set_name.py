@@ -19,4 +19,4 @@ def test_cases():
 
 @pytest.mark.parametrize("pitches, name", test_cases())
 def test_eval(pitches, name):
-    assert name == PitchClassSet.get_pitch_class_set_name(pitches)
+    assert name == PitchClassSet.get_pitch_class_set_name(*pitches)

@@ -110,7 +110,7 @@ class PitchClassSet():
     """
 
     def __init__(self, pitches, name):
-        """Consturctor method.
+        """Constructor method.
 
         Parameters
         ----------
@@ -191,12 +191,12 @@ class PitchClassSet():
         return string
 
     @classmethod
-    def get_pitch_class_set_name(cls, pitches):
+    def get_pitch_class_set_name(cls, *pitches):
         """Finds the pitch class set name in PitchClassSetNames.json.
 
         Parameters
         ----------
-        input_pitches : list of int
+        pitches : list of int
             This should have been normalised already.
 
         Returns
@@ -222,8 +222,8 @@ class PitchClassSet():
             return "Not Named"
 
     @classmethod
-    def create_pitch_class_set(cls, input_pitches):
-        """Factory method to create an instance of PitchClassSet.
+    def create_pitch_class_set(cls, *input_pitches):
+        """Creates an instance of PitchClassSet.
 
         Parameters
         ----------

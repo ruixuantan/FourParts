@@ -30,6 +30,17 @@ def test_cases():
             }
         ),
         (
+            Chord(5, 10, 16, 22), Chord(6, 11, 17, 23),
+            {
+                'BassTenor': default_status,
+                'BassAlto': default_status,
+                'BassSoprano': default_status,
+                'TenorAlto': default_status,
+                'TenorSoprano': 'Parallel Octave',
+                'AltoSoprano': default_status
+            }
+        ),
+        (
             Chord(20, 27, 32, 36), Chord(8, 27, 32, 36),
             {
                 'BassTenor': default_status,
