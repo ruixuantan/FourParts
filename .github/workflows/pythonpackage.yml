@@ -31,5 +31,10 @@ jobs:
       - name: Test with pytest and check that demo.py works
         run: |
           pip install pytest
-          pytest
+          pip install coverage
+          coverage run -m pytest
           python demo.py
+
+      - name: Generate codecov report
+        run: |
+          coverage run -m pytest
