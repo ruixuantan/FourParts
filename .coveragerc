@@ -3,6 +3,8 @@ branch = True
 omit=
     env/*
     tests/*
+    */virtualenv/*
+    *__init.py__*
 
 
 [report]

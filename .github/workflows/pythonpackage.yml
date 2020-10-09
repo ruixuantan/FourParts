@@ -27,13 +27,16 @@ jobs:
           pip install flake8
           flake8
 
-      - name: Test with pytest and check that demo.py works
+      - name: Test with coverage and check that demo.py works
         run: |
           pip install pytest
-          pip install coverage
           coverage run -m pytest
           python demo.py
-
-      - name: Generate codecov report
+        
+      - name: Build and check with Gradle
         run: |
-          coverage run -m pytest
+          coverage report -m
+
+        - uses: codecov/codecov-action@v1
+          with:
+            file: ${{ github.workspace }}/.coverage
