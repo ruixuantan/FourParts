@@ -1,6 +1,6 @@
 # FourParts
 
-[![Build Status](https://travis-ci.com/ruixuantan/FourParts.svg?branch=master)](https://travis-ci.com/ruixuantan/FourParts)
+[![Actions Status](https://github.com/ruixuantan/FourParts/workflows/Python%20Package%20CI/badge.svg)](https://github.com/ruixuantan/FourParts/actions)
 [![codecov](https://codecov.io/gh/ruixuantan/FourParts/branch/master/graph/badge.svg)](https://codecov.io/gh/ruixuantan/FourParts)
 
 A python package to analyse 4 part writing. \
