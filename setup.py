@@ -15,7 +15,6 @@ setuptools.setup(
     install_requires=[
         'pandas',
         'py-midicsv',
-        'MIDIUtil',
         'scikit-learn'
     ],
     classifiers=[

@@ -3,7 +3,6 @@ flake8==3.8.3
 iniconfig==1.0.1
 joblib==0.16.0
 mccabe==0.6.1
-MIDIUtil==1.2.1
 more-itertools==8.4.0
 numpy==1.18.5
 packaging==20.4
