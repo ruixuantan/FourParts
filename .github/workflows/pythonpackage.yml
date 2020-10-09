@@ -37,6 +37,6 @@ jobs:
         run: |
           coverage report -m
 
-        - uses: codecov/codecov-action@v1
-          with:
-            file: ${{ github.workspace }}/.coverage
+      - uses: codecov/codecov-action@v1
+        with:
+          file: ${{ github.workspace }}/.coverage
