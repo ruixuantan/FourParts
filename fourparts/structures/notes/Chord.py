@@ -106,10 +106,10 @@ class Chord:
         PitchClassSet
         """
 
-        pitch_class_set = PitchClassSet.create_pitch_class_set([
+        pitch_class_set = PitchClassSet.create_pitch_class_set(
             self.bass.note,
             self.tenor.note,
             self.alto.note,
-            self.soprano.note])
+            self.soprano.note)
 
         return pitch_class_set

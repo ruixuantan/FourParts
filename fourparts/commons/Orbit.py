@@ -87,18 +87,6 @@ class Orbit:
         if self.index == len(self.orbit):
             self.index = 0
 
-    def _shift_counter_clockwise(self):
-        """Shifts the index counter clockwise by 1 unit.
-
-        Returns
-        -------
-        None
-        """
-
-        self.index -= 1
-        if self.index == -1:
-            self.index = len(self.orbit) - 1
-
     def shift(self, n):
         """Shifts the index by n steps.
         
