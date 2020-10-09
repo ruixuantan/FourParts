@@ -1,4 +1,4 @@
-from fourparts.utils.Orbit import Orbit
+from fourparts.commons.Orbit import Orbit
 import pytest
 
 

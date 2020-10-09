@@ -1,10 +1,5 @@
-"""
-Extracts the chords from the provided midi file.
-A chord change is defined to be a change in any of the 4 notes.
-For example, a chord progression of Csus4 to C is considered 2 chords.
-"""
-from fourparts.processes.DyadContainer import DyadContainer
-from fourparts.processes.ChordContainer import ChordContainer
+from fourparts.processes.containers.DyadContainer import DyadContainer
+from fourparts.processes.containers.ChordContainer import ChordContainer
 from fourparts.processes.NoteEvent import NoteEvent
 
 import pandas as pd

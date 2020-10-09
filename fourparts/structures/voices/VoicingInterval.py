@@ -1,4 +1,4 @@
-from fourparts.music_structures.MelodicInterval import MelodicInterval
+from fourparts.structures.MelodicInterval import MelodicInterval
 
 
 class VoicingInterval():

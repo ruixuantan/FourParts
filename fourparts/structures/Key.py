@@ -1,5 +1,5 @@
-from fourparts.music_structures.Notes import Notes
-from fourparts.music_structures.Scales import Scales
+from fourparts.structures.notes.Notes import Notes
+from fourparts.structures.Scales import Scales
 
 
 class Key:

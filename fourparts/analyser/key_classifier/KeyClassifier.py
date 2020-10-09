@@ -1,5 +1,5 @@
-from fourparts.music_structures.Key import Key
-from fourparts.music_structures.Scales import Scales
+from fourparts.structures.Key import Key
+from fourparts.structures.Scales import Scales
 from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.processes.PreProcessor import midi_to_df
 

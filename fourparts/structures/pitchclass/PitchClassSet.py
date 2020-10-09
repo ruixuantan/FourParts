@@ -1,7 +1,7 @@
 from copy import deepcopy
 
-from fourparts.music_structures.pitch_class_set.PitchClassSetNames import PITCH_CLASS_SET_NAMES
-from fourparts.utils.Orbit import Orbit
+from fourparts.structures.pitchclass.PitchClassSetNames import PITCH_CLASS_SET_NAMES
+from fourparts.commons.Orbit import Orbit
 
 
 def _shift_twelve(number):

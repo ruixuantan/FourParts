@@ -1,4 +1,4 @@
-from fourparts.music_structures.Notes import Notes
+from fourparts.structures.notes.Notes import Notes
 
 
 class NoteFrequencies:

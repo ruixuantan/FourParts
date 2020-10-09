@@ -1,5 +1,5 @@
 from fourparts import Voice, VoicingInterval
-from fourparts.processes.NoteContainer import NoteContainer
+from fourparts.processes.containers.NoteContainer import NoteContainer
 
 
 class DyadContainer(NoteContainer):
