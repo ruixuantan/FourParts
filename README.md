@@ -1,4 +1,4 @@
-# FourParts #
+# FourParts
 
 A python package to analyse 4 part writing. \
 Currently, it can only check for:
@@ -7,7 +7,7 @@ Currently, it can only check for:
 * Melodic Intervals between 2 part writing.
 * A KeyClassifier object that is able to identify the key of a midifile.
 
-## Build Package ##
+## Build Package
 First, run:
 ```console
 $ python setup.py bdist_wheel
@@ -18,7 +18,7 @@ Then, run:
 $ pip install fourparts-0.0.1-py3-none-any.whl
 ```
 This package can be imported via: `import fourparts`
-## Demo ##
+## Demo
 Configure demo.py to read the midi file required.
 Then, run:
 ```console
@@ -32,8 +32,8 @@ Overlaps in voices will be sorted in accordance to pitch and treated as SATB fro
 
 Configure `KeyClassifier_demo.py` to read in the training data and midifile input. Running `python KeyClassifier_demo.py` will print out the key of the midifile.
 
-## How it works ##
+## How it works
 
-### Chord/Dyad progression analyser ###
+### Chord/Dyad progression analyser
 The midi file is converted to a csv file initially, using the py-midicsv library.
 Then, the csv file will be parsed to generate a progression of chords or Dyads. A chord or dyad is formed whenever the corresponding number of notes are triggered. This progression will then be analysed: checked for parallel fifths and octaves, pitch class set, etc. If any 2 notes are static, it will not be parallel.
