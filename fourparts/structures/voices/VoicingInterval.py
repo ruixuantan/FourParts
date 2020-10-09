@@ -1,7 +1,7 @@
 from fourparts.structures.MelodicInterval import MelodicInterval
 
 
-class VoicingInterval():
+class VoicingInterval:
     """Holds the interval of 2 voices, along with the melodic interval
     between them.
 

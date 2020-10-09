@@ -1,4 +1,4 @@
-class Voice():
+class Voice:
     """A class that represents the type of voice.
 
     Attributes
