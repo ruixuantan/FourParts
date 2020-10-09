@@ -3,8 +3,8 @@ class Orbit:
 
     Attributes
     ----------
-    orbit : tuple of object
-        The tuple of objects that are contained in the Orbit.
+    orbit : list of object
+        The list of objects that are contained in the Orbit.
     index : int
         The index of the current pointer to the Orbit.
     current : int
@@ -27,7 +27,7 @@ class Orbit:
         if index >= len(orbit):
             raise IndexError("Ensure index is contained within the length of the orbit.")
         
-        self.orbit = tuple(orbit)
+        self.orbit = list(orbit)
         self.index = index
         self.current = -1
         self.high = len(orbit)

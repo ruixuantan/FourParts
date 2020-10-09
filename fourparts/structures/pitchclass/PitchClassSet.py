@@ -1,6 +1,4 @@
-from copy import deepcopy
-
-from fourparts.structures.pitchclass.PitchClassSetNames import PITCH_CLASS_SET_NAMES
+from fourparts.structures.pitchclass.PitchClassSetMap import PITCH_CLASS_SET_MAP, NOT_NAMED
 from fourparts.commons.Orbit import Orbit
 
 
@@ -97,14 +95,13 @@ def _minimise_interval(pitch_orbit):
     return number_of_shifts
 
 
-class PitchClassSet():
+class PitchClassSet:
     """Represents pitch class sets.
 
     Attributes
     ----------
     pitches : list of int
-        The pitches of the musical fragment being analysed,
-        already in normalised form.
+        The pitches of the musical fragment being analysed, already in normalised form.
     name : str
         Name of the pitch class set.
     """
@@ -130,13 +127,13 @@ class PitchClassSet():
                                                 self.name)
 
     @classmethod
-    def normalise(cls, input_pitches):
+    def normalise(cls, *input_pitches):
         """Removes duplicate pitches and returns
         the normalised form of the set of pitches being analysed.
 
         Parameters
         ----------
-        input_pitches : list of int
+        input_pitches : tuple of int
 
         Returns
         -------
@@ -152,7 +149,7 @@ class PitchClassSet():
         if not input_pitches:
             return []
 
-        pitches = deepcopy(input_pitches)
+        pitches = list(input_pitches)
 
         # subtracts the smallest pitch value then apply modulo 12
         pitches = list(map(lambda p: (p - pitches[0]) % 12, pitches))
@@ -170,71 +167,48 @@ class PitchClassSet():
         return pitch_orbit.get_curr_orbit()
         
     @classmethod
-    def hash_pitch_class_set(cls, pitches):
-        """Gets the hash of the pitches.
-
-        Parameters
-        ----------
-        pitches : list of int
-
-        Returns
-        -------
-        str
-            The string of concatenated pitches.
-            This is guaranteed to be unique.
-        """
-
-        string = ''
-        for pitch in pitches:
-            string += str(pitch)
-
-        return string
-
-    @classmethod
     def get_pitch_class_set_name(cls, *pitches):
-        """Finds the pitch class set name in PitchClassSetNames.json.
+        """Finds the pitch class set name in PitchClassSetNames.py.
 
         Parameters
         ----------
-        pitches : list of int
+        pitches : tuple of int
             This should have been normalised already.
 
         Returns
         -------
         str
             The name of the pitch class set.
-            If it does not exist, returns 'Not Named'.
+            If it does not exist, returns `NOT_NAMED`.
 
         Notes
         -----
-        PitchClassSetNames.py is structured in such a way where
+        PitchClassSetMap.py is structured in such a way where
         each pitch class set is grouped into its cardinality.
-        Within each group is a dictionary of Pitch Class Sets.
+        Within each group is a dictionary of pitch class sets.
         """
 
-        names = PITCH_CLASS_SET_NAMES['PitchClassSetNames']
         size = len(pitches)
-        key = cls.hash_pitch_class_set(pitches)
 
         try:
-            return names[size][key]
+            return PITCH_CLASS_SET_MAP[size][pitches]
         except KeyError:
-            return "Not Named"
+            return NOT_NAMED
 
     @classmethod
     def create_pitch_class_set(cls, *input_pitches):
-        """Creates an instance of PitchClassSet.
+        """Creates an instance of `PitchClassSet`.
 
         Parameters
         ----------
-        input_pitches : list of int
+        input_pitches : tuple of int
 
         Returns
         -------
         PitchClassSet
         """
 
-        pitches = PitchClassSet.normalise(input_pitches)
-        name = PitchClassSet.get_pitch_class_set_name(pitches)
+        pitches = PitchClassSet.normalise(*input_pitches)
+        name = PitchClassSet.get_pitch_class_set_name(tuple(pitches))
 
         return cls(pitches, name)
