@@ -35,7 +35,7 @@ jobs:
         
       - name: Build and check with Gradle
         run: |
-          coverage xml report -m
+          coverage xml
 
       - uses: codecov/codecov-action@v1
         with:
