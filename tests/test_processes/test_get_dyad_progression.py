@@ -4,9 +4,9 @@ import pytest
 
 
 def test_cases():
-    # VoicingIntervals should be able to be instantiated with 
+    # VoicingIntervals should be able to be instantiated with
     # Voice and its subtypes.
-    test_cases = [
+    return [
         (
             pd.read_csv('samples/chorale_G_2parts.csv'),
             [
@@ -52,8 +52,6 @@ def test_cases():
             ]
         )
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("df, expected", test_cases())

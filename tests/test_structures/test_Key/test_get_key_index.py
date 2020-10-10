@@ -3,7 +3,7 @@ import pytest
 
 
 def test_cases():
-    test_cases = [
+    return [
         ('C', Scales.Major, 0),
         ('C', Scales.Minor, 1),
         ("C#/Db", Scales.Major, 2),
@@ -29,8 +29,6 @@ def test_cases():
         ('B', Scales.Major, 22),
         ('B', Scales.Minor, 23)
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("pitchcenter, scale, expected", test_cases())

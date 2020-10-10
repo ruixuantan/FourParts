@@ -14,10 +14,9 @@ def test_cases():
     5. Tests an already normalised set.
     6. Tests a transposition.
     7-10. Test inversions.
-
     """
 
-    test_cases = [
+    return [
         ((), []),
         ((0, 1), [0, 1]),
         ((0, 1, 3), [0, 1, 3]),
@@ -28,8 +27,6 @@ def test_cases():
         ((0, 4, 7, 10), [0, 3, 6, 8]),
         ((2, 10, 0), [0, 2, 4])
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("pitches, results", test_cases())

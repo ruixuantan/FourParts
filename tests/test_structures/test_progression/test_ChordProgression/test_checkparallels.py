@@ -1,5 +1,5 @@
 from fourparts import Chord, ChordProgression
-from fourparts.structures.notes.Chord import(
+from fourparts.structures.notes.Chord import (
     BASS_TENOR,
     BASS_ALTO,
     BASS_SOPRANO,

@@ -6,14 +6,12 @@ def test_cases():
     orbit_1 = [1, 2, 3]
     orbit_2 = ('X', 'Y', 'Z', 'T')
 
-    test_cases = [
+    return [
         ([1], 0, [1]),
         (orbit_1, 0, [1, 2, 3]),
         (orbit_1, 1, [2, 3, 1]),
         (orbit_2, 3, ['T', 'X', 'Y', 'Z'])
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("orbit, index, expected", test_cases())

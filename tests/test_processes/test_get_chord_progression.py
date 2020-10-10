@@ -4,7 +4,7 @@ import pytest
 
 
 def test_cases():
-    test_cases = [
+    return [
         (
             pd.read_csv('samples/perfect_cadence.csv'),
             [Chord(50, 57, 60, 65),
@@ -36,8 +36,6 @@ def test_cases():
         )
     ]
 
-    return test_cases
-
 
 @pytest.mark.parametrize("df, expected", test_cases())
 def test_eval(df, expected):
@@ -45,29 +43,27 @@ def test_eval(df, expected):
 
 
 def exception_cases():
-    exception_cases = [
+    return [
         (
-            pd.DataFrame({'events': ['Note_on_c', 'Note_on_c', 'Note_on_c', 'Note_on_c'], 
+            pd.DataFrame({'events': ['Note_on_c', 'Note_on_c', 'Note_on_c', 'Note_on_c'],
                           'Timings': [0, 0, 0, 0],
                           'Note_values': [3, 4, 5, 6],
-                          'Velocity': [80, 80, 80, 80]}), 
+                          'Velocity': [80, 80, 80, 80]}),
             pytest.raises(KeyError)
         ),
         (
-            pd.DataFrame({'events': ['Note_on_c', 'Note_on_c', 'Note_on_c', 'Note_on_c'], 
-                          'Timings': [0, 0, 0, 0]}), 
+            pd.DataFrame({'events': ['Note_on_c', 'Note_on_c', 'Note_on_c', 'Note_on_c'],
+                          'Timings': [0, 0, 0, 0]}),
             pytest.raises(KeyError)
         ),
         (
-            pd.DataFrame({'Events': ['Note_on_c', 'Note_on_c', 'Note_on_c'], 
+            pd.DataFrame({'Events': ['Note_on_c', 'Note_on_c', 'Note_on_c'],
                           'Timings': [0, 0, 0],
                           'Note_values': [3, 4, 5],
-                          'Velocity': [80, 80, 80]}), 
+                          'Velocity': [80, 80, 80]}),
             pytest.raises(Exception)
         ),
     ]
-
-    return exception_cases
 
 
 @pytest.mark.parametrize("df, exception", exception_cases())

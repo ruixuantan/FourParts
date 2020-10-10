@@ -1,5 +1,5 @@
 from fourparts import (
-    Chord, MelodicInterval, 
+    Chord, MelodicInterval,
     BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
 )
 

@@ -3,12 +3,10 @@ import pytest
 
 
 def test_cases():
-    test_cases = [
-       (1, Scales.Minor),
-       (0, Scales.Major)
+    return [
+        (1, Scales.Minor),
+        (0, Scales.Major)
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("index, expected", test_cases())
@@ -17,11 +15,9 @@ def test_eval(index, expected):
 
 
 def exception_cases():
-    exception_cases = [
+    return [
         (2, pytest.raises(ValueError))
     ]
-
-    return exception_cases
 
 
 @pytest.mark.parametrize("index, exception", exception_cases())

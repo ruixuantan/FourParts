@@ -14,14 +14,12 @@ def test_unison():
 
 def test_cases():
 
-    test_cases = [
+    return [
         ((0, 5), PITCH_CLASS_SET_MAP[2][(0, 5)]),
         ((0, 4, 7), PITCH_CLASS_SET_MAP[3][(0, 4, 7)]),
         ((0, 3, 6, 9), PITCH_CLASS_SET_MAP[4][(0, 3, 6, 9)]),
         ((0, 1, 2), NOT_NAMED)
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("pitches, name", test_cases())

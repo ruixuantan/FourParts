@@ -4,7 +4,7 @@ import pytest
 
 
 def test_cases():
-    test_cases = [
+    return [
         (
             [VoicingInterval(60, 65, MelodicInterval.PerfectFourth)],
             [MelodicInterval.PerfectFourth]
@@ -32,8 +32,6 @@ def test_cases():
             ]
         )
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("dyad_progression, results", test_cases())
