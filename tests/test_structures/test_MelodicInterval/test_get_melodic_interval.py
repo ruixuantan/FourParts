@@ -1,5 +1,5 @@
 from fourparts import MelodicInterval
-from fourparts.exceptions.WrongOrderException import WrongOrderException
+from fourparts.exceptions.NoteOrderException import NoteOrderException
 
 import pytest
 
@@ -23,7 +23,7 @@ def test_eval(note_top, note_bottom, expected):
 def exception_cases():
 
     return [
-        (10, 3, pytest.raises(WrongOrderException))
+        (10, 3, pytest.raises(NoteOrderException))
     ]
 
 

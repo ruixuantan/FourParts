@@ -38,8 +38,8 @@ def test_cases():
                 MelodicInterval.Octave
             ),
             VoicingInterval(
-                Bass(10),
-                Soprano(22),
+                Bass(11),
+                Soprano(23),
                 MelodicInterval.Octave
             ),
             True

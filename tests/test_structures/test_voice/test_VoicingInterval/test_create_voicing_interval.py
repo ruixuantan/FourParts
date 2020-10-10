@@ -1,27 +1,29 @@
-from fourparts import MelodicInterval, Bass, Tenor, Alto, Soprano, VoicingInterval
+from fourparts import (
+    MelodicInterval, Bass, Tenor, Alto, Soprano,
+    VoicingInterval, TenorSoprano, AltoSoprano, BassSoprano
+)
+from fourparts.exceptions.NoteOrderException import NoteOrderException
 
 import pytest
 
 
 def test_cases():
     return [
-        (Tenor(9), Soprano(10), MelodicInterval.Semitone, 'TenorSoprano'),
-        (Alto(20), Soprano(20), MelodicInterval.Octave, 'AltoSoprano'),
-        (Bass(30), Soprano(50), MelodicInterval.MinorSixth, 'BassSoprano')
+        (Tenor(9), Soprano(10), MelodicInterval.Semitone),
+        (Alto(20), Soprano(20), MelodicInterval.Octave),
+        (Bass(30), Soprano(50), MelodicInterval.MinorSixth)
     ]
 
 
-@pytest.mark.parametrize("top_voice, bottom_voice, interval, actual_voicing_interval", test_cases())
-def test_eval(bottom_voice, top_voice, interval, actual_voicing_interval):
+@pytest.mark.parametrize("bottom_voice, top_voice, interval", test_cases())
+def test_eval(bottom_voice, top_voice, interval):
     voicing_interval = VoicingInterval.create_voicing_interval(bottom_voice, top_voice)
-
-    assert voicing_interval.melodic_interval == interval and \
-           voicing_interval.__class__.__name__ == actual_voicing_interval
+    assert voicing_interval.melodic_interval == interval
 
 
 def exception_cases():
     return [
-        (Tenor(9), Soprano(1), pytest.raises(Exception))
+        (Tenor(9), Soprano(1), pytest.raises(NoteOrderException))
     ]
 
 

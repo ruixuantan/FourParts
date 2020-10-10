@@ -1,16 +1,10 @@
 from fourparts.structures.voices.Voice import Bass, Tenor, Alto, Soprano
 from fourparts.structures.voices.VoicingInterval import (
-    BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
+    BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano,
+    BASS_TENOR, BASS_ALTO, BASS_SOPRANO, TENOR_ALTO, TENOR_SOPRANO, ALTO_SOPRANO
 )
 from fourparts.structures.pitchclass.PitchClassSet import PitchClassSet
 
-
-BASS_TENOR = 'BassTenor'
-BASS_ALTO = 'BassAlto'
-BASS_SOPRANO = 'BassSoprano'
-TENOR_ALTO = 'TenorAlto'
-TENOR_SOPRANO = 'TenorSoprano'
-ALTO_SOPRANO = 'AltoSoprano'
 
 PARALLEL_DEFAULT = "No Parallels"
 PARALLEL_FIFTH = "Parallel Fifth"

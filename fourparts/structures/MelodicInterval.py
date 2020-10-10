@@ -1,4 +1,4 @@
-from fourparts.exceptions.WrongOrderException import WrongOrderException
+from fourparts.exceptions.NoteOrderException import NoteOrderException
 
 from enum import Enum
 
@@ -46,4 +46,4 @@ class MelodicInterval(Enum):
             return cls(interval)
 
         else:
-            raise WrongOrderException("Top note must be greater or equal to Bottom note.")
+            raise NoteOrderException("Top note must be greater or equal to Bottom note.")
