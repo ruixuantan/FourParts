@@ -25,5 +25,5 @@ dyads = fp.PreProcessor(2).get_progression(df)
 dyad_progression = fp.DyadProgression(dyads)
 
 # gets intervals between each dyad
-dyad_intervals = dyad_progression.get_melodic_intervals()
+dyad_intervals = dyad_progression.get_harmonic_intervals()
 pd.DataFrame(dyad_intervals).to_csv(file_name + '_dyad_intervals.csv')

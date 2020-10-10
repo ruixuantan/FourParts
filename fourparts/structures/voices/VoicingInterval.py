@@ -80,8 +80,8 @@ class VoicingInterval:
             If the top voice and bottom voice are of different types (different voices).
         """
 
-        if self.top_voice.__class__.__name__ != other.top_voice.__class__.__name__ or \
-                self.bottom_voice.__class__.__name__ != other.bottom_voice.__class__.__name__:
+        if self.top_voice.get_voice_name() != other.top_voice.get_voice_name() or \
+                self.bottom_voice.get_voice_name() != other.bottom_voice.get_voice_name():
             raise TypeError("Top and Bottom voices must be of the same type.")
 
         return self.melodic_interval == other.melodic_interval and \

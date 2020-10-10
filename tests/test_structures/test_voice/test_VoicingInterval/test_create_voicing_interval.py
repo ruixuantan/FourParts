@@ -1,7 +1,4 @@
-from fourparts import (
-    MelodicInterval, Bass, Tenor, Alto, Soprano,
-    VoicingInterval, TenorSoprano, AltoSoprano, BassSoprano
-)
+from fourparts import MelodicInterval, Bass, Tenor, Alto, Soprano, VoicingInterval
 from fourparts.exceptions.NoteOrderException import NoteOrderException
 
 import pytest

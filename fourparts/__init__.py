@@ -4,6 +4,7 @@ from fourparts.structures.MelodicInterval import MelodicInterval
 from fourparts.structures.Scales import Scales
 
 from fourparts.structures.notes.Chord import Chord
+from fourparts.structures.notes.Dyad import Dyad
 from fourparts.structures.notes.Notes import Notes
 
 from fourparts.structures.pitchclass.PitchClassSet import PitchClassSet

@@ -3,7 +3,7 @@ class DyadProgression:
 
     Attributes
     ----------
-    progression : list of VoicingInterval
+    progression : list of Dyads
     """
 
     def __init__(self, progression):
@@ -11,17 +11,17 @@ class DyadProgression:
 
         Parameters
         ----------
-        progression : list of VoicingInterval
+        progression : list of Dyads
         """
 
         self.progression = progression
 
-    def get_melodic_intervals(self):
-        """Gets the melodic intervals of the dyads.
+    def get_harmonic_intervals(self):
+        """Gets the melodic intervals of the `Dyads`.
 
         Returns
         -------
         list of MelodicInterval
         """
 
-        return [dyad.melodic_interval for dyad in self.progression]
+        return [dyad.get_interval() for dyad in self.progression]

@@ -1,3 +1,4 @@
+from fourparts.exceptions.NoteOrderException import NoteOrderException
 from fourparts.structures.voices.Voice import Bass, Tenor, Alto, Soprano
 from fourparts.structures.voices.VoicingInterval import (
     BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano,
@@ -25,7 +26,15 @@ class Chord:
         Parameters
         ----------
         bass, tenor, alto, soprano : int
+
+        Raises
+        ------
+        NoteOrderException
+            If order of notes input is wrong.
         """
+
+        if not bass <= tenor <= alto <= soprano:
+            raise NoteOrderException("Notes are out of order.")
 
         self.bass = Bass(bass)
         self.tenor = Tenor(tenor)
