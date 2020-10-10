@@ -1,7 +1,6 @@
 from fourparts import KeyClassifier, Key, Scales
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-import numpy
 import pytest
 
 
@@ -19,7 +18,7 @@ def key_classifier():
 
 def test_train(key_classifier, training_data):
     key_classifier.train(training_data)
-    assert key_classifier.trained == True
+    assert key_classifier.trained
 
 
 def test_test_train(key_classifier, training_data):
@@ -28,8 +27,8 @@ def test_test_train(key_classifier, training_data):
     assert isinstance(res['Total_Predictions'], int)
     assert isinstance(res['Accuracy'], float)
     assert isinstance(res['Results'], pd.DataFrame)
-    assert key_classifier.trained == True
-    
+    assert key_classifier.trained
+
 
 def test_predict(key_classifier, training_data):
     key_classifier.train(training_data)
@@ -52,9 +51,9 @@ def test_predict(key_classifier, training_data):
 
 
 def test_predict_midi(key_classifier, training_data):
-   key_classifier.train(training_data)
-   predicted = key_classifier.predict_midi("samples/chorale_F.mid")
-   assert predicted is not None
+    key_classifier.train(training_data)
+    predicted = key_classifier.predict_midi("samples/chorale_F.mid")
+    assert predicted is not None
 
 
 def test_convert_to_key():
@@ -66,8 +65,7 @@ def test_convert_to_key():
     expected = [
         [Key('C', Scales.Major), Key('C', Scales.Minor)],
         [Key('B', Scales.Minor)]
-    ] 
+    ]
 
     for case, ex in zip(test_cases, expected):
         assert KeyClassifier.convert_to_key(case) == ex
-        

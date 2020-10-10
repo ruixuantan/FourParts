@@ -1,20 +1,25 @@
 from fourparts import PitchClassSet
+from fourparts.structures.pitchclass.PitchClassSetMap import PITCH_CLASS_SET_MAP, NOT_NAMED
 
 import pytest
 
 
+def test_empty_set():
+    assert PITCH_CLASS_SET_MAP[0][()] == PitchClassSet.get_pitch_class_set_name()
+
+
+def test_unison():
+    assert PITCH_CLASS_SET_MAP[1][(0,)] == PitchClassSet.get_pitch_class_set_name(0)
+
+
 def test_cases():
 
-    test_cases = [
-        ([], "Empty Set"),
-        ([0], "Unison"),
-        ([0, 5], "Perfect 4th"),
-        ([0, 4, 7], "Major"), 
-        ([0, 3, 6, 9], "Diminished 7th"),
-        ([0, 1, 2], "Not Named")
+    return [
+        ((0, 5), PITCH_CLASS_SET_MAP[2][(0, 5)]),
+        ((0, 4, 7), PITCH_CLASS_SET_MAP[3][(0, 4, 7)]),
+        ((0, 3, 6, 9), PITCH_CLASS_SET_MAP[4][(0, 3, 6, 9)]),
+        ((0, 1, 2), NOT_NAMED)
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("pitches, name", test_cases())

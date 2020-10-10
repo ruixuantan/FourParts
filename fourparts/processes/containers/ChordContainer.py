@@ -1,4 +1,5 @@
 from fourparts import Chord
+from fourparts.structures.voices.Voice import BASS, TENOR, ALTO, SOPRANO
 from fourparts.processes.containers.NoteContainer import NoteContainer
 
 
@@ -21,10 +22,10 @@ class ChordContainer(NoteContainer):
         """
 
         self.container = {
-            'Bass': bass,
-            'Tenor': tenor,
-            'Alto': alto,
-            'Soprano': soprano
+            BASS: bass,
+            TENOR: tenor,
+            ALTO: alto,
+            SOPRANO: soprano
         }
 
     @classmethod
@@ -65,7 +66,7 @@ class ChordContainer(NoteContainer):
         Chord
         """
 
-        return Chord(self.container['Bass'],
-                     self.container['Tenor'],
-                     self.container['Alto'],
-                     self.container['Soprano'])
+        return Chord(self.container[BASS],
+                     self.container[TENOR],
+                     self.container[ALTO],
+                     self.container[SOPRANO])

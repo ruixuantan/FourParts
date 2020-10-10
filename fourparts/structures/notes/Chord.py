@@ -1,8 +1,15 @@
+from fourparts.exceptions.NoteOrderException import NoteOrderException
 from fourparts.structures.voices.Voice import Bass, Tenor, Alto, Soprano
 from fourparts.structures.voices.VoicingInterval import (
-    BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
+    BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano,
+    BASS_TENOR, BASS_ALTO, BASS_SOPRANO, TENOR_ALTO, TENOR_SOPRANO, ALTO_SOPRANO
 )
 from fourparts.structures.pitchclass.PitchClassSet import PitchClassSet
+
+
+PARALLEL_DEFAULT = "No Parallels"
+PARALLEL_FIFTH = "Parallel Fifth"
+PARALLEL_OCTAVE = "Parallel Octave"
 
 
 class Chord:
@@ -19,7 +26,15 @@ class Chord:
         Parameters
         ----------
         bass, tenor, alto, soprano : int
+
+        Raises
+        ------
+        NoteOrderException
+            If order of notes input is wrong.
         """
+
+        if not bass <= tenor <= alto <= soprano:
+            raise NoteOrderException("Notes are out of order.")
 
         self.bass = Bass(bass)
         self.tenor = Tenor(tenor)
@@ -35,9 +50,9 @@ class Chord:
             return False
 
         return self.bass == other.bass and \
-               self.tenor == other.tenor and \
-               self.alto == other.alto and \
-               self.soprano == other.soprano
+            self.tenor == other.tenor and \
+            self.alto == other.alto and \
+            self.soprano == other.soprano
 
     def get_intervals(self):
         """Generates a dictionary of intervals of the chord.
@@ -47,16 +62,14 @@ class Chord:
         dict of VoicingInterval
         """
 
-        intervals = {}
-
-        intervals['BassTenor'] = BassTenor.create_voicing_interval(self.bass, self.tenor)
-        intervals['BassAlto'] = BassAlto.create_voicing_interval(self.bass, self.alto)
-        intervals['BassSoprano'] = BassSoprano.create_voicing_interval(self.bass, self.soprano)
-        intervals['TenorAlto'] = TenorAlto.create_voicing_interval(self.tenor, self.alto)
-        intervals['TenorSoprano'] = TenorSoprano.create_voicing_interval(self.tenor, self.soprano)
-        intervals['AltoSoprano'] = AltoSoprano.create_voicing_interval(self.alto, self.soprano)
-
-        return intervals
+        return {
+            BASS_TENOR: BassTenor.create_voicing_interval(self.bass, self.tenor),
+            BASS_ALTO: BassAlto.create_voicing_interval(self.bass, self.alto),
+            BASS_SOPRANO: BassSoprano.create_voicing_interval(self.bass, self.soprano),
+            TENOR_ALTO: TenorAlto.create_voicing_interval(self.tenor, self.alto),
+            TENOR_SOPRANO: TenorSoprano.create_voicing_interval(self.tenor, self.soprano),
+            ALTO_SOPRANO: AltoSoprano.create_voicing_interval(self.alto, self.soprano)
+        }
 
     def check_parallel_intervals(self, other):
         """Generates a dictionary of results, indicating
@@ -75,15 +88,13 @@ class Chord:
         self_intervals = self.get_intervals()
         other_intervals = other.get_intervals()
 
-        default_status = 'No parallel 5ths or 8ths'
-
         result = {
-            'BassTenor': default_status,
-            'BassAlto': default_status,
-            'BassSoprano': default_status,
-            'TenorAlto': default_status,
-            'TenorSoprano': default_status,
-            'AltoSoprano': default_status
+            BASS_TENOR: PARALLEL_DEFAULT,
+            BASS_ALTO: PARALLEL_DEFAULT,
+            BASS_SOPRANO: PARALLEL_DEFAULT,
+            TENOR_ALTO: PARALLEL_DEFAULT,
+            TENOR_SOPRANO: PARALLEL_DEFAULT,
+            ALTO_SOPRANO: PARALLEL_DEFAULT
         }
 
         for interval in result.keys():
@@ -91,10 +102,10 @@ class Chord:
             other_voicing_interval = other_intervals[interval]
 
             if self_voicing_interval.is_parallel_octave(other_voicing_interval):
-                result[interval] = 'Parallel Octave'
+                result[interval] = PARALLEL_OCTAVE
 
             elif self_voicing_interval.is_parallel_fifth(other_voicing_interval):
-                result[interval] = 'Parallel Fifth'
+                result[interval] = PARALLEL_FIFTH
 
         return result
 

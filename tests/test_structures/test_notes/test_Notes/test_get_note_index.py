@@ -3,7 +3,7 @@ import pytest
 
 
 def test_cases():
-    test_cases = [
+    return [
         ("C", 0),
         ("C#/Db", 1),
         ("D", 2),
@@ -18,8 +18,6 @@ def test_cases():
         ('B', 11)
     ]
 
-    return test_cases
-
 
 @pytest.mark.parametrize("note, expected", test_cases())
 def test_eval(note, expected):
@@ -27,11 +25,9 @@ def test_eval(note, expected):
 
 
 def exception_cases():
-    exception_cases = [
+    return [
         ('not a note', pytest.raises(KeyError))
     ]
-
-    return exception_cases
 
 
 @pytest.mark.parametrize("note, exception", exception_cases())

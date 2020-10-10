@@ -1,5 +1,11 @@
+BASS = "Bass"
+TENOR = "Tenor"
+ALTO = "Alto"
+SOPRANO = "Soprano"
+
+
 class Voice:
-    """A class that represents the type of voice.
+    """Represents the type of voice.
 
     Attributes
     ----------
@@ -25,11 +31,23 @@ class Voice:
     def __str__(self):
         return str(self.note)
 
+    def get_voice_name(self):
+        """Gets the name of the class.
+
+        Returns
+        -------
+        """
+
+        pass
+
 
 class Soprano(Voice):
 
     def __init__(self, note):
         super().__init__(note)
+
+    def get_voice_name(self):
+        return SOPRANO
 
 
 class Alto(Voice):
@@ -37,14 +55,23 @@ class Alto(Voice):
     def __init__(self, note):
         super().__init__(note)
 
+    def get_voice_name(self):
+        return ALTO
+
 
 class Tenor(Voice):
 
     def __init__(self, note):
         super().__init__(note)
 
+    def get_voice_name(self):
+        return TENOR
+
 
 class Bass(Voice):
 
     def __init__(self, note):
         super().__init__(note)
+
+    def get_voice_name(self):
+        return BASS

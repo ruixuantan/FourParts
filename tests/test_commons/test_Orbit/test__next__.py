@@ -7,12 +7,10 @@ def test_cases():
     orbit_2 = Orbit(('X', 'Y', 'Z', 'T'), 1)
 
     # note that testing is mutable
-    test_cases = [
+    return [
         (orbit_1, [1, 2, 3]),
         (orbit_2, ['Y', 'Z', 'T', 'X'])
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("orbit, expected", test_cases())

@@ -3,20 +3,18 @@ import pytest
 
 
 def test_cases():
-    orbit_1 = Orbit((1, 2, 3)) 
+    orbit_1 = Orbit((1, 2, 3))
     orbit_2 = Orbit(('X', 'Y', 'Z', 'T'))
 
     # note that testing is mutable
-    test_cases = [
-       (orbit_1, -2, 2),
-       (orbit_1, 3, 2),
-       (orbit_1, 0, 2),
-       (orbit_2, 0, 'X'),
-       (orbit_2, 7, 'T'),
-       (orbit_2, -8, 'T')
+    return [
+        (orbit_1, -2, 2),
+        (orbit_1, 3, 2),
+        (orbit_1, 0, 2),
+        (orbit_2, 0, 'X'),
+        (orbit_2, 7, 'T'),
+        (orbit_2, -8, 'T')
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("orbit, n, expected", test_cases())

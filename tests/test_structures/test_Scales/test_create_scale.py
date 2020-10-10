@@ -3,12 +3,10 @@ import pytest
 
 
 def test_cases():
-    test_cases = [
-       ('mInOr', Scales.Minor),
-       ('major', Scales.Major)
+    return [
+        ('mInOr', Scales.Minor),
+        ('major', Scales.Major)
     ]
-
-    return test_cases
 
 
 @pytest.mark.parametrize("scale, expected", test_cases())
@@ -17,11 +15,9 @@ def test_eval(scale, expected):
 
 
 def exception_cases():
-    exception_cases = [
+    return [
         ('not a scale', pytest.raises(ValueError))
     ]
-
-    return exception_cases
 
 
 @pytest.mark.parametrize("scale, exception", exception_cases())

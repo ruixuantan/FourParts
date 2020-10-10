@@ -1,5 +1,5 @@
 class Notes:
-    """A class to defined notes, based on the midi input.
+    """A class to define notes, based on the midi input.
     """
 
     NOTES = (
