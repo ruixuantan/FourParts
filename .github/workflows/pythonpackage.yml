@@ -33,7 +33,7 @@ jobs:
           coverage run -m pytest
           python demo.py
         
-      - name: Build and check with Gradle
+      - name: Build and check with coverage
         run: |
           coverage xml
 
