@@ -17,6 +17,20 @@ class Notes:
         'B'  # 11
     )
 
+    def __init__(self, note_int):
+        """Constructor method.
+
+        Parameters
+        ----------
+        note_int : int
+            Expected to be less than 12.
+        """
+
+        self.note_int = note_int
+
+    def __eq__(self, other):
+        return self.note_int == other.note_int
+
     @classmethod
     def create_note(cls, note_int):
         """Factory method to construct a note.
@@ -41,7 +55,18 @@ class Notes:
             raise ValueError('Ensure note value is greater than 0.')
 
         actual_note_int = note_int % 12
-        return Notes.NOTES[actual_note_int]
+        return Notes(actual_note_int)
+
+    def get_note_name(self):
+        """Gets the name of the note.
+
+        Parameters
+        ----------
+        str
+            Name of the note.
+        """
+
+        return Notes.NOTES[self.note_int]
 
     @classmethod
     def get_note_names(cls):

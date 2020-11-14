@@ -65,7 +65,7 @@ class NoteFrequencies:
 
         for _, row in count_df.iterrows():
             curr_note = Notes.create_note(row['Note_values'])
-            self.note_count[curr_note] += 1
+            self.note_count[curr_note.get_note_name()] += 1
 
         return self.note_count
 

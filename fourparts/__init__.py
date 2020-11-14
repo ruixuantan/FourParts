@@ -22,7 +22,3 @@ from fourparts.structures.voices.VoicingInterval import (
 # processes
 from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.processes.PreProcessor import midi_to_df, get_note_events, PreProcessor
-
-
-# analyser
-from fourparts.analyser.key_classifier.KeyClassifier import KeyClassifier
