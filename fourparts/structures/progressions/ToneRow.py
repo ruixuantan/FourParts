@@ -21,6 +21,7 @@ class ToneRow:
         ----------
         tone_row : NoteProgression
         """
+
         if not ToneRow.is_valid_tone_row(tone_row):
             raise ToneRowException
 
@@ -41,6 +42,9 @@ class ToneRow:
             return self.progression[self.current]
 
         raise StopIteration
+
+    def __eq__(self, other):
+        return self.tone_row == other.tone_row
 
     @classmethod
     def is_valid_tone_row(cls, tone_row):
@@ -65,6 +69,26 @@ class ToneRow:
 
         return set(pitch_list) == set(valid_tone_row)
 
+    def get_retrograde(self):
+        """Gets the retrograde of the tone row.
+
+        Returns
+        -------
+        ToneRow
+        """
+
+        retrograde_note_progression = self.tone_row.reverse()
+        return ToneRow(retrograde_note_progression)
+
+    def get_inverse(self):
+        """Gets the inverse of the tone row.
+
+        Returns
+        -------
+        ToneRow
+        """
+
+        pass
 
 class ToneRowException(Exception):
     """Exception raised when ToneRow is not valid.

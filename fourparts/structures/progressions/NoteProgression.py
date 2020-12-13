@@ -25,6 +25,9 @@ class NoteProgression:
         self.current = -1
         self.high = len(progression)
 
+    def __eq__(self, other):
+        return self.progression == other.progression
+
     def __iter__(self):
         return self
 
@@ -54,3 +57,13 @@ class NoteProgression:
             interval_list.append(melodic_interval)
 
         return interval_list
+
+    def reverse(self):
+        """Reverses the NoteProgression.
+
+        Returns
+        -------
+        NoteProgression
+        """
+
+        return NoteProgression(self.progression[::-1])
