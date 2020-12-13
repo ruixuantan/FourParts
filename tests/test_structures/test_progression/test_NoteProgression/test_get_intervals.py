@@ -2,6 +2,7 @@ from fourparts import Notes, NoteProgression, MelodicInterval
 
 import pytest
 
+
 def test_cases():
     return [
         (

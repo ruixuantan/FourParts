@@ -7,6 +7,10 @@ class NoteProgression:
     Attributes
     ----------
     progression : list of Notes
+    current : int
+        To allow NoteProgression to be iterable.
+    high : int
+        To allow NoteProgression to be iterable.
     """
 
     def __init__(self, progression):
@@ -18,6 +22,22 @@ class NoteProgression:
         """
 
         self.progression = progression
+        self.current = -1
+        self.high = len(progression)
+
+    def __iter__(self):
+        return self
+
+    def __len__(self):
+        return self.high
+
+    def __next__(self):
+        self.current += 1
+
+        if self.current < self.high:
+            return self.progression[self.current]
+
+        raise StopIteration
 
     def get_intervals(self):
         """Gets the melodic intervals between Notes in the progression.

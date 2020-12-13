@@ -1,5 +1,3 @@
-from fourparts.exceptions.NoteOrderException import NoteOrderException
-
 from enum import Enum
 
 
