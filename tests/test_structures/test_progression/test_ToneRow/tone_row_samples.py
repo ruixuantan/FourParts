@@ -2,61 +2,61 @@ from fourparts import Notes, NoteProgression, ToneRow
 
 
 TONEROW_IN_OCTAVE = ToneRow(NoteProgression([
-    Notes.create_note(9),
-    Notes.create_note(2),
-    Notes.create_note(11),
-    Notes.create_note(4),
-    Notes.create_note(5),
-    Notes.create_note(7),
-    Notes.create_note(6),
-    Notes.create_note(8),
-    Notes.create_note(1),
-    Notes.create_note(10),
-    Notes.create_note(3),
-    Notes.create_note(0)
+    Notes(9),
+    Notes(2),
+    Notes(11),
+    Notes(4),
+    Notes(5),
+    Notes(7),
+    Notes(6),
+    Notes(8),
+    Notes(1),
+    Notes(10),
+    Notes(3),
+    Notes(0)
 ]))
 
 TONEROW_IN_OCTAVE_RETROGRADE = ToneRow(NoteProgression([
-    Notes.create_note(0),
-    Notes.create_note(3),
-    Notes.create_note(10),
-    Notes.create_note(1),
-    Notes.create_note(8),
-    Notes.create_note(6),
-    Notes.create_note(7),
-    Notes.create_note(5),
-    Notes.create_note(4),
-    Notes.create_note(11),
-    Notes.create_note(2),
-    Notes.create_note(9)
+    Notes(0),
+    Notes(3),
+    Notes(10),
+    Notes(1),
+    Notes(8),
+    Notes(6),
+    Notes(7),
+    Notes(5),
+    Notes(4),
+    Notes(11),
+    Notes(2),
+    Notes(9)
 ]))
 
 TONEROW_STANDARD = ToneRow(NoteProgression([
-    Notes.create_note(21),
-    Notes.create_note(2),
-    Notes.create_note(11),
-    Notes.create_note(40),
-    Notes.create_note(5),
-    Notes.create_note(0),
-    Notes.create_note(19),
-    Notes.create_note(6),
-    Notes.create_note(8),
-    Notes.create_note(25),
-    Notes.create_note(34),
-    Notes.create_note(3)
+    Notes(21),
+    Notes(2),
+    Notes(11),
+    Notes(40),
+    Notes(5),
+    Notes(0),
+    Notes(19),
+    Notes(6),
+    Notes(8),
+    Notes(25),
+    Notes(34),
+    Notes(3)
 ]))
 
 TONEROW_STANDARD_RETROGRADE = ToneRow(NoteProgression([
-    Notes.create_note(3),
-    Notes.create_note(34),
-    Notes.create_note(25),
-    Notes.create_note(8),
-    Notes.create_note(6),
-    Notes.create_note(19),
-    Notes.create_note(0),
-    Notes.create_note(5),
-    Notes.create_note(40),
-    Notes.create_note(11),
-    Notes.create_note(2),
-    Notes.create_note(21)
+    Notes(3),
+    Notes(34),
+    Notes(25),
+    Notes(8),
+    Notes(6),
+    Notes(19),
+    Notes(0),
+    Notes(5),
+    Notes(40),
+    Notes(11),
+    Notes(2),
+    Notes(21)
 ]))

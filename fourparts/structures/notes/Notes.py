@@ -24,38 +24,20 @@ class Notes:
         ----------
         note_int : int
             Expected to be less than 12.
-        """
 
-        self.note_int = note_int
-
-    def __eq__(self, other):
-        return self.note_int == other.note_int
-
-    @classmethod
-    def create_note(cls, note_int):
-        """Factory method to construct a note.
-        
-        Parameters
-        ----------
-        note_int : int
-            The input integer to be converted into a Note.
-
-        Returns
-        -------
-        str
-            The note as defined from NOTES.
-        
         Raises
         ------
         ValueError
-            If `note_int` is less than 0.
+            If note_int is lesser than 0.
         """
 
         if note_int < 0:
             raise ValueError('Ensure note value is greater than 0.')
 
-        actual_note_int = note_int % 12
-        return Notes(actual_note_int)
+        self.note_int = note_int
+
+    def __eq__(self, other):
+        return self.note_int == other.note_int
 
     def get_note_name(self):
         """Gets the name of the note.
@@ -103,3 +85,23 @@ class Notes:
             return Notes.NOTES.index(note)
         else:
             raise KeyError("Given note does not exist.")
+
+    def create_note_with_melodic_interval(self, melodic_interval, is_ascending):
+        """Creates note based on the MelodicInterval and if it is ascending or descending.
+
+        Parameters
+        ----------
+        melodic_interval : MelodicInterval
+        is_ascending : boolean
+
+        Returns
+        -------
+        Notes
+        """
+
+        if is_ascending:
+            new_note_int = self.note_int + melodic_interval.value
+        else:
+            new_note_int = self.note_int - melodic_interval.value
+
+        return Notes(new_note_int)

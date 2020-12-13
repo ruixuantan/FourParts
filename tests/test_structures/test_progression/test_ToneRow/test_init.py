@@ -18,7 +18,7 @@ def test_cases():
 def test_eval(note_ints):
     progression = []
     for note_int in note_ints:
-        progression.append(Notes.create_note(note_int))
+        progression.append(Notes(note_int))
     note_progression = NoteProgression(progression)
 
     assert ToneRow(note_progression).tone_row == note_progression
@@ -35,7 +35,7 @@ def exception_cases():
 def test_exceptions(note_ints, exception):
     progression = []
     for note_int in note_ints:
-        progression.append(Notes.create_note(note_int))
+        progression.append(Notes(note_int))
     note_progression = NoteProgression(progression)
 
     with exception:
