@@ -1,4 +1,4 @@
-from fourparts import Notes, NoteProgression, ToneRow, ToneRowException
+from fourparts import Notes, NoteProgression, ToneRow, InvalidToneRowException
 
 import pytest
 
@@ -8,9 +8,6 @@ def test_cases():
         (
             [9, 2, 11, 4, 5, 7, 6, 8, 1, 10, 3, 0]
         ),
-        (
-            [21, 2, 11, 40, 5, 0, 19, 6, 8, 25, 34, 3]
-        )
     ]
 
 
@@ -26,8 +23,7 @@ def test_eval(note_ints):
 
 def exception_cases():
     return [
-        ([1, 3, 5], pytest.raises(ToneRowException)),
-        ([21, 2, 14, 40, 5, 0, 19, 6, 8, 25, 34, 3], pytest.raises(ToneRowException))
+        ([1, 3, 5], pytest.raises(InvalidToneRowException)),
     ]
 
 

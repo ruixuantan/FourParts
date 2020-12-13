@@ -42,6 +42,12 @@ class NoteProgression:
 
         raise StopIteration
 
+    def __getitem__(self, index):
+        return self.progression[index]
+
+    def __repr__(self):
+        return str(self.progression)
+
     def get_intervals(self):
         """Gets the melodic intervals between Notes in the progression.
 

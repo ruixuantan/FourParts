@@ -5,7 +5,8 @@ import pytest
 def test_cases():
     return [
         (Notes(0), MelodicInterval.PerfectFifth, True, Notes(7)),
-        (Notes(13), MelodicInterval.Tritone, False, Notes(7))
+        (Notes(13), MelodicInterval.Tritone, False, Notes(7)),
+        (Notes(0), MelodicInterval.Semitone, False, Notes(11)),
     ]
 
 

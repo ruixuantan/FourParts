@@ -1,3 +1,8 @@
+from fourparts.structures.notes.Notes import Notes
+from fourparts.structures.MelodicInterval import MelodicInterval
+from fourparts.structures.progressions.NoteProgression import NoteProgression
+
+
 TONEROW_LENGTH = 12
 
 
@@ -20,10 +25,11 @@ class ToneRow:
         Parameters
         ----------
         tone_row : NoteProgression
+            NoteProgression must contain notes with `note_int` of 0 to 11 inclusive.
         """
 
         if not ToneRow.is_valid_tone_row(tone_row):
-            raise ToneRowException
+            raise InvalidToneRowException
 
         self.tone_row = tone_row
         self.current = -1
@@ -46,6 +52,9 @@ class ToneRow:
     def __eq__(self, other):
         return self.tone_row == other.tone_row
 
+    def __repr__(self):
+        return str(self.tone_row)
+
     @classmethod
     def is_valid_tone_row(cls, tone_row):
         """Checks if given tone_row is valid.
@@ -65,7 +74,7 @@ class ToneRow:
         valid_tone_row = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
         pitch_list = []
         for note in tone_row:
-            pitch_list.append(note.note_int % 12)
+            pitch_list.append(note.note_int)
 
         return set(pitch_list) == set(valid_tone_row)
 
@@ -88,11 +97,38 @@ class ToneRow:
         ToneRow
         """
 
-        pass
+        inverse_note_progression = [self.tone_row[0]]
+        curr_inverse_note = inverse_note_progression[0]
 
-class ToneRowException(Exception):
+        for i in range(TONEROW_LENGTH - 1):
+            curr_note = self.tone_row[i]
+            next_note = self.tone_row[i + 1]
+            is_ascending = not curr_note.is_next_note_higher(next_note)
+            interval = MelodicInterval.get_melodic_interval(curr_note.note_int, next_note.note_int)
+            new_note = curr_inverse_note.create_note_with_melodic_interval(interval, is_ascending)
+
+            # ====== TODO: Refactor line here ======
+            new_note = Notes(new_note.note_int % 12)
+            # ======================================
+
+            inverse_note_progression.append(new_note)
+            curr_inverse_note = new_note
+
+        return ToneRow(NoteProgression(inverse_note_progression))
+
+    def get_retrograde_inverse(self):
+        """Gets the retrograde inverse of the tone row.
+
+        Returns
+        -------
+        ToneRow
+        """
+
+        return self.get_inverse().get_retrograde()
+
+
+class InvalidToneRowException(Exception):
     """Exception raised when ToneRow is not valid.
     """
 
     pass
-

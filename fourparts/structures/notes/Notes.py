@@ -39,6 +39,9 @@ class Notes:
     def __eq__(self, other):
         return self.note_int == other.note_int
 
+    def __repr__(self):
+        return str(self.note_int)
+
     def get_note_name(self):
         """Gets the name of the note.
 
@@ -86,6 +89,23 @@ class Notes:
         else:
             raise KeyError("Given note does not exist.")
 
+    def is_next_note_higher(self, other):
+        """Checks if the other note is higher or lower than the current note.
+
+        Parameters
+        ----------
+        other : Notes
+
+        Returns
+        -------
+        boolean
+        """
+
+        # TODO: Create new class that represents an ascending or descending interval
+        difference = other.note_int - self.note_int
+        assert difference != 0
+        return difference > 0
+
     def create_note_with_melodic_interval(self, melodic_interval, is_ascending):
         """Creates note based on the MelodicInterval and if it is ascending or descending.
 
@@ -103,5 +123,8 @@ class Notes:
             new_note_int = self.note_int + melodic_interval.value
         else:
             new_note_int = self.note_int - melodic_interval.value
+
+        while new_note_int < 0:
+            new_note_int += 12
 
         return Notes(new_note_int)

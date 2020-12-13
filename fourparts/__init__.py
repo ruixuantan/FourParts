@@ -12,7 +12,7 @@ from fourparts.structures.pitchclass.PitchClassSet import PitchClassSet
 from fourparts.structures.progressions.NoteProgression import NoteProgression
 from fourparts.structures.progressions.DyadProgression import DyadProgression
 from fourparts.structures.progressions.ChordProgression import ChordProgression
-from fourparts.structures.progressions.ToneRow import ToneRow, ToneRowException
+from fourparts.structures.progressions.ToneRow import ToneRow, InvalidToneRowException
 
 from fourparts.structures.voices.Voice import Voice, Bass, Tenor, Alto, Soprano
 from fourparts.structures.voices.VoicingInterval import (
