@@ -1,5 +1,4 @@
 from fourparts import MelodicInterval
-from fourparts.exceptions.NoteOrderException import NoteOrderException
 
 import pytest
 
@@ -11,23 +10,11 @@ def test_cases():
         (1, 2, MelodicInterval.Semitone),
         (9, 11, MelodicInterval.Tone),
         (28, 34, MelodicInterval.Tritone),
-        (30, 49, MelodicInterval.PerfectFifth)
+        (30, 49, MelodicInterval.PerfectFifth),
+        (10, 3, MelodicInterval.PerfectFifth)
     ]
 
 
 @pytest.mark.parametrize("note_top, note_bottom, expected", test_cases())
 def test_eval(note_top, note_bottom, expected):
     assert MelodicInterval.get_melodic_interval(note_top, note_bottom) == expected
-
-
-def exception_cases():
-
-    return [
-        (10, 3, pytest.raises(NoteOrderException))
-    ]
-
-
-@pytest.mark.parametrize("note_top, note_bottom, exception", exception_cases())
-def test_exception(note_top, note_bottom, exception):
-    with exception:
-        assert MelodicInterval.get_melodic_interval(note_top, note_bottom) is not None

@@ -1,5 +1,5 @@
 class DyadProgression:
-    """A class to analyse 2 part writing.
+    """Represents 2 part writing.
 
     Attributes
     ----------

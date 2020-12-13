@@ -29,21 +29,15 @@ class MelodicInterval(Enum):
         ----------
         bottom_note : int
         top_note : int
-            `top_note` must be of a greater int value than `bottom_note`.
 
         Returns
         -------
         MelodicInterval
-
-        Raises
-        ------
-        WrongOrderException
-            If `top_note` < `bottom_note`.
         """
 
-        if top_note >= bottom_note:
-            interval = (top_note - bottom_note) % 12
-            return cls(interval)
+        interval = top_note - bottom_note
 
-        else:
-            raise NoteOrderException("Top note must be greater or equal to Bottom note.")
+        if top_note < bottom_note:
+            interval *= -1
+
+        return cls(interval % 12)

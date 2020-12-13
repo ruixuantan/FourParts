@@ -9,6 +9,7 @@ from fourparts.structures.notes.Notes import Notes
 
 from fourparts.structures.pitchclass.PitchClassSet import PitchClassSet
 
+from fourparts.structures.progressions.NoteProgression import NoteProgression
 from fourparts.structures.progressions.DyadProgression import DyadProgression
 from fourparts.structures.progressions.ChordProgression import ChordProgression
 
