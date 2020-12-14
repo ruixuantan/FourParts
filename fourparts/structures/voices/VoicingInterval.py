@@ -1,5 +1,5 @@
 from fourparts.exceptions.NoteOrderException import NoteOrderException
-from fourparts.structures.MelodicInterval import MelodicInterval
+from fourparts.structures.MelodicInterval import Interval
 
 
 class VoicingInterval:
@@ -10,7 +10,7 @@ class VoicingInterval:
     ----------
     bottom_voice : Voice
     top_voice : Voice
-    melodic_interval : MelodicInterval
+    melodic_interval : Interval
     """
 
     def __init__(self, bottom_voice, top_voice, melodic_interval):
@@ -20,7 +20,7 @@ class VoicingInterval:
         ----------
         bottom_voice : Voice
         top_voice : Voice
-        melodic_interval : MelodicInterval
+        melodic_interval : Interval
         """
 
         self.bottom_voice = bottom_voice
@@ -47,7 +47,7 @@ class VoicingInterval:
         if bottom_note > top_note:
             raise NoteOrderException("Top note must be greater or equal to bottom note.")
 
-        interval = MelodicInterval.get_melodic_interval(bottom_note, top_note)
+        interval = Interval.get_interval(bottom_note, top_note)
         return cls(bottom_voice, top_voice, interval)
 
     def __str__(self):
@@ -101,7 +101,7 @@ class VoicingInterval:
             True if the VoicingIntervals are a parallel 5th apart.
         """
 
-        if self.melodic_interval == MelodicInterval.PerfectFifth:
+        if self.melodic_interval == Interval.PerfectFifth:
             return self._is_parallel(other)
 
         return False
@@ -120,7 +120,7 @@ class VoicingInterval:
             True if the VoicingIntervals are a parallel octave apart.
         """
 
-        if self.melodic_interval == MelodicInterval.Octave:
+        if self.melodic_interval == Interval.Octave:
             return self._is_parallel(other)
 
         return False

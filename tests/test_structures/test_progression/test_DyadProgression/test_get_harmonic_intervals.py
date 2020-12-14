@@ -1,4 +1,4 @@
-from fourparts import Dyad, DyadProgression, MelodicInterval
+from fourparts import Dyad, DyadProgression, Interval
 
 import pytest
 
@@ -7,15 +7,15 @@ def test_cases():
     return [
         (
             [Dyad(60, 65)],
-            [MelodicInterval.PerfectFourth]
+            [Interval.PerfectFourth]
         ),
         (
             [Dyad(60, 65), Dyad(62, 65)],
-            [MelodicInterval.PerfectFourth, MelodicInterval.MinorThird]
+            [Interval.PerfectFourth, Interval.MinorThird]
         ),
         (
             [Dyad(10, 20), Dyad(17, 18), Dyad(15, 23)],
-            [MelodicInterval.MinorSeventh, MelodicInterval.Semitone, MelodicInterval.MinorSixth]
+            [Interval.MinorSeventh, Interval.Semitone, Interval.MinorSixth]
         )
     ]
 

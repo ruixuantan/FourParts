@@ -99,24 +99,3 @@ class Key:
         index = Notes.get_note_index(self.pitchcenter) * 2
         index += Scales.get_scale_index(self.scale)
         return index
-
-    @classmethod
-    def get_key_from_index(cls, index):
-        """Maps the index back to a Key object.
-
-        Parameters
-        ----------
-        index : int
-            An int from 0 to 23.
-
-        Returns
-        -------
-        Key
-        """
-
-        scale_index = index % 2
-        # perform an int division
-        pitchcenter_index = (index - scale_index) // 2
-
-        return cls(Notes.create_note(pitchcenter_index),
-                   Scales.create_scale_from_index(scale_index))

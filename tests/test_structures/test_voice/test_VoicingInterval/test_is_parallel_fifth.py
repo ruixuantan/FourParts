@@ -1,4 +1,4 @@
-from fourparts import MelodicInterval, VoicingInterval, Bass, Tenor, Soprano
+from fourparts import Interval, VoicingInterval, Bass, Tenor, Soprano
 
 import pytest
 
@@ -9,12 +9,12 @@ def test_cases():
             VoicingInterval(
                 Tenor(9),
                 Soprano(10),
-                MelodicInterval.Semitone
+                Interval.Semitone
             ),
             VoicingInterval(
                 Tenor(10),
                 Soprano(11),
-                MelodicInterval.Semitone
+                Interval.Semitone
             ),
             False
         ),
@@ -22,12 +22,12 @@ def test_cases():
             VoicingInterval(
                 Bass(9),
                 Soprano(16),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             VoicingInterval(
                 Bass(9),
                 Soprano(16),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             False
         ),
@@ -35,12 +35,12 @@ def test_cases():
             VoicingInterval(
                 Bass(9),
                 Soprano(16),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             VoicingInterval(
                 Bass(8),
                 Soprano(15),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             True
         )
@@ -58,12 +58,12 @@ def exception_cases():
             VoicingInterval(
                 Bass(9),
                 Soprano(16),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             VoicingInterval(
                 Tenor(8),
                 Soprano(15),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             pytest.raises(Exception)
         ),
@@ -71,12 +71,12 @@ def exception_cases():
             VoicingInterval(
                 Bass(9),
                 Tenor(16),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             VoicingInterval(
                 Bass(8),
                 Soprano(15),
-                MelodicInterval.PerfectFifth
+                Interval.PerfectFifth
             ),
             pytest.raises(Exception)
         )

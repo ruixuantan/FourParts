@@ -1,3 +1,6 @@
+NOTE_VALUE_EXCEPTION_MESSAGE = "Ensure note value is greater than 0."
+
+
 class Notes:
     """A class to define notes, based on the midi input.
     """
@@ -17,31 +20,65 @@ class Notes:
         'B'  # 11
     )
 
-    @classmethod
-    def create_note(cls, note_int):
-        """Factory method to construct a note.
-        
+    def __init__(self, note_int):
+        """Constructor method.
+
         Parameters
         ----------
         note_int : int
-            The input integer to be converted into a Note.
+            Expected to be less than 12.
 
-        Returns
-        -------
-        str
-            The note as defined from NOTES.
-        
         Raises
         ------
         ValueError
-            If `note_int` is less than 0.
+            If note_int is lesser than 0.
         """
 
         if note_int < 0:
-            raise ValueError('Ensure note value is greater than 0.')
+            raise ValueError(NOTE_VALUE_EXCEPTION_MESSAGE)
 
-        actual_note_int = note_int % 12
-        return Notes.NOTES[actual_note_int]
+        self.note_int = note_int
+
+    def __eq__(self, other):
+        return self.note_int == other.note_int
+
+    def __repr__(self):
+        return str(self.note_int)
+
+    @classmethod
+    def create_base_note(cls, note_int):
+        """Creates a base note.
+        A base note has a value from 0 to 11.
+
+        Parameter
+        ---------
+        note_int : int
+
+        Returns
+        -------
+        Notes
+
+        Raises
+        ------
+        ValueException
+            If the value of note_int is negative
+        """
+
+        if note_int < 0:
+            raise ValueError(NOTE_VALUE_EXCEPTION_MESSAGE)
+
+        return Notes(note_int % 12)
+
+    def get_note_name(self):
+        """Gets the name of the note.
+
+        Parameters
+        ----------
+        str
+            Name of the note.
+        """
+
+        return Notes.NOTES[self.note_int]
 
     @classmethod
     def get_note_names(cls):
@@ -78,3 +115,19 @@ class Notes:
             return Notes.NOTES.index(note)
         else:
             raise KeyError("Given note does not exist.")
+
+    def create_note_with_melodic_interval(self, melodic_interval):
+        """Creates note based on the MelodicInterval.
+
+        Parameters
+        ----------
+        melodic_interval : MelodicInterval
+
+        Returns
+        -------
+        Notes
+        """
+
+        new_note_int = melodic_interval.create_note_int(self.note_int)
+        assert new_note_int >= 0
+        return Notes(new_note_int)
