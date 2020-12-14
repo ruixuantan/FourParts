@@ -3,12 +3,7 @@ import pytest
 
 
 def test_cases():
-    return [
-        (0, Notes(0)),
-        (13, Notes(1)),
-        (29, Notes(5)),
-        (60, Notes(0))
-    ]
+    return [(0, Notes(0)), (13, Notes(1)), (29, Notes(5)), (60, Notes(0))]
 
 
 @pytest.mark.parametrize("note_int, expected", test_cases())
@@ -17,9 +12,7 @@ def test_eval(note_int, expected):
 
 
 def exception_cases():
-    return [
-        (-1, pytest.raises(ValueError))
-    ]
+    return [(-1, pytest.raises(ValueError))]
 
 
 @pytest.mark.parametrize("note_int, exception", exception_cases())

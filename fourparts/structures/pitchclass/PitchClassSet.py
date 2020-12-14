@@ -1,4 +1,7 @@
-from fourparts.structures.pitchclass.PitchClassSetMap import PITCH_CLASS_SET_MAP, NOT_NAMED
+from fourparts.structures.pitchclass.PitchClassSetMap import (
+    PITCH_CLASS_SET_MAP,
+    NOT_NAMED,
+)
 from fourparts.commons.Orbit import Orbit
 
 
@@ -119,12 +122,10 @@ class PitchClassSet:
         self.name = name
 
     def __eq__(self, other):
-        return self.pitches == other.pitches and \
-               self.name == other.name
+        return self.pitches == other.pitches and self.name == other.name
 
     def __str__(self):
-        return "Pitches: {0}, Name: {1}".format(self.pitches,
-                                                self.name)
+        return "Pitches: {0}, Name: {1}".format(self.pitches, self.name)
 
     @classmethod
     def normalise(cls, *input_pitches):
@@ -165,7 +166,7 @@ class PitchClassSet:
         _zero(pitch_orbit)
 
         return pitch_orbit.get_curr_orbit()
-        
+
     @classmethod
     def get_pitch_class_set_name(cls, *pitches):
         """Finds the pitch class set name in PitchClassSetNames.py.

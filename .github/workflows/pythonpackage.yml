@@ -22,9 +22,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Format codestyle with black
+        run: |
+          black fourparts
+          black tests
+
       - name: Lint with flake8
         run: |
-          pip install flake8
           flake8
 
       - name: Test with coverage and check that demo.py works

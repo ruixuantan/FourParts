@@ -61,10 +61,10 @@ class NoteFrequencies:
         dict of int
         """
 
-        count_df = df[df['Events'] == 'Note_on_c']
+        count_df = df[df["Events"] == "Note_on_c"]
 
         for _, row in count_df.iterrows():
-            curr_note = Notes(row['Note_values'] % 12)
+            curr_note = Notes(row["Note_values"] % 12)
             self.note_count[curr_note.get_note_name()] += 1
 
         return self.note_count
@@ -97,7 +97,7 @@ class NoteFrequencies:
 
         return self.note_count
 
-    def to_csv(self, filename='note_frequencies.csv'):
+    def to_csv(self, filename="note_frequencies.csv"):
         """Converts self.note_count to a csv file.
 
         Parameters
@@ -107,10 +107,10 @@ class NoteFrequencies:
             Default is given as 'note_frequencies.csv'.
         """
 
-        if filename[-4:] != '.csv':
-            filename += '.csv'
+        if filename[-4:] != ".csv":
+            filename += ".csv"
 
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             f.write("Note,Count\n")
             for key in self.note_count.keys():
                 f.write("%s,%s\n" % (key, self.note_count[key]))

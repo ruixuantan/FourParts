@@ -5,18 +5,12 @@ import pytest
 
 def test_cases():
     return [
-        (
-            [Dyad(60, 65)],
-            [Interval.PerfectFourth]
-        ),
-        (
-            [Dyad(60, 65), Dyad(62, 65)],
-            [Interval.PerfectFourth, Interval.MinorThird]
-        ),
+        ([Dyad(60, 65)], [Interval.PerfectFourth]),
+        ([Dyad(60, 65), Dyad(62, 65)], [Interval.PerfectFourth, Interval.MinorThird]),
         (
             [Dyad(10, 20), Dyad(17, 18), Dyad(15, 23)],
-            [Interval.MinorSeventh, Interval.Semitone, Interval.MinorSixth]
-        )
+            [Interval.MinorSeventh, Interval.Semitone, Interval.MinorSixth],
+        ),
     ]
 
 

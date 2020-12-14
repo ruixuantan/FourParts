@@ -11,7 +11,7 @@ def test_cases():
         (9, 11, Interval.Tone),
         (28, 34, Interval.Tritone),
         (30, 49, Interval.PerfectFifth),
-        (10, 3, Interval.PerfectFifth)
+        (10, 3, Interval.PerfectFifth),
     ]
 
 

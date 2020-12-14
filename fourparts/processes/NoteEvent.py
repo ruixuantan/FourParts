@@ -1,6 +1,6 @@
 class NoteEvent:
     """Represents a note-on or note-off event in a converted csv file.
-        
+
     Attributes
     ----------
     note : int

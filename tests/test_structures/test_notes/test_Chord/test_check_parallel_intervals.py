@@ -8,7 +8,7 @@ from fourparts.structures.notes.Chord import (
     ALTO_SOPRANO,
     PARALLEL_DEFAULT,
     PARALLEL_FIFTH,
-    PARALLEL_OCTAVE
+    PARALLEL_OCTAVE,
 )
 
 import pytest
@@ -17,49 +17,53 @@ import pytest
 def test_cases():
     return [
         (
-            Chord(0, 1, 2, 3), Chord(1, 2, 3, 4),
+            Chord(0, 1, 2, 3),
+            Chord(1, 2, 3, 4),
             {
                 BASS_TENOR: PARALLEL_DEFAULT,
                 BASS_ALTO: PARALLEL_DEFAULT,
                 BASS_SOPRANO: PARALLEL_DEFAULT,
                 TENOR_ALTO: PARALLEL_DEFAULT,
                 TENOR_SOPRANO: PARALLEL_DEFAULT,
-                ALTO_SOPRANO: PARALLEL_DEFAULT
-            }
+                ALTO_SOPRANO: PARALLEL_DEFAULT,
+            },
         ),
         (
-            Chord(0, 1, 2, 7), Chord(1, 2, 3, 8),
+            Chord(0, 1, 2, 7),
+            Chord(1, 2, 3, 8),
             {
                 BASS_TENOR: PARALLEL_DEFAULT,
                 BASS_ALTO: PARALLEL_DEFAULT,
                 BASS_SOPRANO: PARALLEL_FIFTH,
                 TENOR_ALTO: PARALLEL_DEFAULT,
                 TENOR_SOPRANO: PARALLEL_DEFAULT,
-                ALTO_SOPRANO: PARALLEL_DEFAULT
-            }
+                ALTO_SOPRANO: PARALLEL_DEFAULT,
+            },
         ),
         (
-            Chord(5, 10, 16, 22), Chord(6, 11, 17, 23),
+            Chord(5, 10, 16, 22),
+            Chord(6, 11, 17, 23),
             {
                 BASS_TENOR: PARALLEL_DEFAULT,
                 BASS_ALTO: PARALLEL_DEFAULT,
                 BASS_SOPRANO: PARALLEL_DEFAULT,
                 TENOR_ALTO: PARALLEL_DEFAULT,
                 TENOR_SOPRANO: PARALLEL_OCTAVE,
-                ALTO_SOPRANO: PARALLEL_DEFAULT
-            }
+                ALTO_SOPRANO: PARALLEL_DEFAULT,
+            },
         ),
         (
-            Chord(20, 27, 32, 36), Chord(8, 27, 32, 36),
+            Chord(20, 27, 32, 36),
+            Chord(8, 27, 32, 36),
             {
                 BASS_TENOR: PARALLEL_DEFAULT,
                 BASS_ALTO: PARALLEL_DEFAULT,
                 BASS_SOPRANO: PARALLEL_DEFAULT,
                 TENOR_ALTO: PARALLEL_DEFAULT,
                 TENOR_SOPRANO: PARALLEL_DEFAULT,
-                ALTO_SOPRANO: PARALLEL_DEFAULT
-            }
-        )
+                ALTO_SOPRANO: PARALLEL_DEFAULT,
+            },
+        ),
     ]
 
 

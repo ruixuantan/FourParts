@@ -2,8 +2,7 @@ from enum import Enum
 
 
 class Interval(Enum):
-    """Represents different Melodic Intervals.
-    """
+    """Represents different Melodic Intervals."""
 
     # TODO: to include augmented and diminished intervals
     Octave = 0
@@ -108,8 +107,7 @@ class MelodicInterval:
         self.order = order
 
     def __eq__(self, other):
-        return self.interval == other.interval and \
-               self.order == other.order
+        return self.interval == other.interval and self.order == other.order
 
     @classmethod
     def create_melodic_interval(cls, bottom_note_int, top_note_int):
@@ -125,8 +123,10 @@ class MelodicInterval:
         MelodicInterval
         """
 
-        return cls(Interval.get_interval(bottom_note_int, top_note_int),
-                   Order.check_order(bottom_note_int, top_note_int))
+        return cls(
+            Interval.get_interval(bottom_note_int, top_note_int),
+            Order.check_order(bottom_note_int, top_note_int),
+        )
 
     def swap_order(self):
         """Changes a MelodicInterval with Ascending Order to Descending Order and

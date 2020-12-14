@@ -8,7 +8,7 @@ def test_cases():
     # Voice and its subtypes.
     return [
         (
-            pd.read_csv('samples/chorale_G_2parts.csv'),
+            pd.read_csv("samples/chorale_G_2parts.csv"),
             [
                 Dyad(43, 67),
                 Dyad(55, 67),
@@ -22,8 +22,8 @@ def test_cases():
                 Dyad(45, 67),
                 Dyad(45, 69),
                 Dyad(43, 71),
-                Dyad(50, 69)
-            ]
+                Dyad(50, 69),
+            ],
         )
     ]
 

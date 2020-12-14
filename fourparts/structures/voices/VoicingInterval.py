@@ -35,7 +35,7 @@ class VoicingInterval:
         ----------
         bottom_voice : Voice
         top_voice : Voice
-        
+
         Returns
         -------
         VoicingInterval
@@ -45,21 +45,25 @@ class VoicingInterval:
         bottom_note = bottom_voice.note
 
         if bottom_note > top_note:
-            raise NoteOrderException("Top note must be greater or equal to bottom note.")
+            raise NoteOrderException(
+                "Top note must be greater or equal to bottom note."
+            )
 
         interval = Interval.get_interval(bottom_note, top_note)
         return cls(bottom_voice, top_voice, interval)
 
     def __str__(self):
-        return "Bottom Voice: {0}, Top Voice: {1}, Interval: {2}".format(self.bottom_voice,
-                                                                         self.top_voice,
-                                                                         self.melodic_interval)
+        return "Bottom Voice: {0}, Top Voice: {1}, Interval: {2}".format(
+            self.bottom_voice, self.top_voice, self.melodic_interval
+        )
 
     def __eq__(self, other):
-        return isinstance(other, VoicingInterval) and \
-               self.bottom_voice == other.bottom_voice and \
-               self.top_voice == other.top_voice and \
-               self.melodic_interval == other.melodic_interval
+        return (
+            isinstance(other, VoicingInterval)
+            and self.bottom_voice == other.bottom_voice
+            and self.top_voice == other.top_voice
+            and self.melodic_interval == other.melodic_interval
+        )
 
     def _is_parallel(self, other):
         """Checks if 2 successive VoicingIntervals are
@@ -68,7 +72,7 @@ class VoicingInterval:
         Parameters
         ----------
         other : VoicingInterval
-        
+
         Returns
         -------
         boolean
@@ -80,12 +84,16 @@ class VoicingInterval:
             If the top voice and bottom voice are of different types (different voices).
         """
 
-        if self.top_voice.get_voice_name() != other.top_voice.get_voice_name() or \
-                self.bottom_voice.get_voice_name() != other.bottom_voice.get_voice_name():
+        if (
+            self.top_voice.get_voice_name() != other.top_voice.get_voice_name()
+            or self.bottom_voice.get_voice_name() != other.bottom_voice.get_voice_name()
+        ):
             raise TypeError("Top and Bottom voices must be of the same type.")
 
-        return self.melodic_interval == other.melodic_interval and \
-            self.top_voice != other.top_voice
+        return (
+            self.melodic_interval == other.melodic_interval
+            and self.top_voice != other.top_voice
+        )
 
     def is_parallel_fifth(self, other):
         """Checks if 2 successive VoicingIntervals are
@@ -94,7 +102,7 @@ class VoicingInterval:
         Parameters
         ----------
         other : VoicingInterval
-        
+
         Returns
         -------
         boolean
@@ -113,7 +121,7 @@ class VoicingInterval:
         Parameters
         ----------
         other : VoicingInterval
-        
+
         Returns
         -------
         boolean
@@ -136,16 +144,15 @@ class VoicingInterval:
         pass
 
 
-BASS_TENOR = 'BassTenor'
-BASS_ALTO = 'BassAlto'
-BASS_SOPRANO = 'BassSoprano'
-TENOR_ALTO = 'TenorAlto'
-TENOR_SOPRANO = 'TenorSoprano'
-ALTO_SOPRANO = 'AltoSoprano'
+BASS_TENOR = "BassTenor"
+BASS_ALTO = "BassAlto"
+BASS_SOPRANO = "BassSoprano"
+TENOR_ALTO = "TenorAlto"
+TENOR_SOPRANO = "TenorSoprano"
+ALTO_SOPRANO = "AltoSoprano"
 
 
 class BassTenor(VoicingInterval):
-
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
 
@@ -155,7 +162,6 @@ class BassTenor(VoicingInterval):
 
 
 class BassAlto(VoicingInterval):
-
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
 
@@ -165,7 +171,6 @@ class BassAlto(VoicingInterval):
 
 
 class BassSoprano(VoicingInterval):
-
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
 
@@ -175,7 +180,6 @@ class BassSoprano(VoicingInterval):
 
 
 class TenorAlto(VoicingInterval):
-
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
 
@@ -185,7 +189,6 @@ class TenorAlto(VoicingInterval):
 
 
 class TenorSoprano(VoicingInterval):
-
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
 
@@ -195,7 +198,6 @@ class TenorSoprano(VoicingInterval):
 
 
 class AltoSoprano(VoicingInterval):
-
     def __init__(self, bottom_voice, top_voice, melodic_interval):
         super().__init__(bottom_voice, top_voice, melodic_interval)
 

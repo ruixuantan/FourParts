@@ -16,10 +16,7 @@ class DyadContainer(NoteContainer):
         bass, soprano : int
         """
 
-        self.container = {
-            BASS: bass,
-            SOPRANO: soprano
-        }
+        self.container = {BASS: bass, SOPRANO: soprano}
 
     @classmethod
     def create_container(cls, notes):
@@ -41,7 +38,7 @@ class DyadContainer(NoteContainer):
         """
 
         if len(notes) != 2:
-            raise IndexError('Ensure 2 notes are passed in.')
+            raise IndexError("Ensure 2 notes are passed in.")
 
         return cls(notes[0], notes[1])
 

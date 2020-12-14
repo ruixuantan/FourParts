@@ -21,12 +21,7 @@ class ChordContainer(NoteContainer):
         bass, tenor, alto, soprano : int
         """
 
-        self.container = {
-            BASS: bass,
-            TENOR: tenor,
-            ALTO: alto,
-            SOPRANO: soprano
-        }
+        self.container = {BASS: bass, TENOR: tenor, ALTO: alto, SOPRANO: soprano}
 
     @classmethod
     def create_container(cls, notes):
@@ -48,7 +43,7 @@ class ChordContainer(NoteContainer):
         """
 
         if len(notes) != 4:
-            raise IndexError('Ensure 4 notes are passed in notes.')
+            raise IndexError("Ensure 4 notes are passed in notes.")
 
         return cls(notes[0], notes[1], notes[2], notes[3])
 
@@ -66,7 +61,9 @@ class ChordContainer(NoteContainer):
         Chord
         """
 
-        return Chord(self.container[BASS],
-                     self.container[TENOR],
-                     self.container[ALTO],
-                     self.container[SOPRANO])
+        return Chord(
+            self.container[BASS],
+            self.container[TENOR],
+            self.container[ALTO],
+            self.container[SOPRANO],
+        )

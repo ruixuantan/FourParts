@@ -8,16 +8,16 @@ def test_cases():
     return [
         (
             MelodicInterval(Interval.Octave, Order.Static),
-            MelodicInterval(Interval.Octave, Order.Static)
+            MelodicInterval(Interval.Octave, Order.Static),
         ),
         (
             MelodicInterval(Interval.PerfectFourth, Order.Ascending),
-            MelodicInterval(Interval.PerfectFourth, Order.Descending)
+            MelodicInterval(Interval.PerfectFourth, Order.Descending),
         ),
         (
             MelodicInterval(Interval.PerfectFifth, Order.Descending),
-            MelodicInterval(Interval.PerfectFifth, Order.Ascending)
-        )
+            MelodicInterval(Interval.PerfectFifth, Order.Ascending),
+        ),
     ]
 
 

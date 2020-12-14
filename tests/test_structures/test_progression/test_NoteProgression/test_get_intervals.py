@@ -5,17 +5,11 @@ import pytest
 
 def test_cases():
     return [
-        (
-            [Notes(60), Notes(72)],
-            [Interval.Octave]
-        ),
-        (
-            [Notes(60), Notes(65)],
-            [Interval.PerfectFourth]
-        ),
+        ([Notes(60), Notes(72)], [Interval.Octave]),
+        ([Notes(60), Notes(65)], [Interval.PerfectFourth]),
         (
             [Notes(50), Notes(52), Notes(44), Notes(70)],
-            [Interval.Tone, Interval.MinorSixth, Interval.Tone]
+            [Interval.Tone, Interval.MinorSixth, Interval.Tone],
         ),
     ]
 

@@ -7,7 +7,7 @@ def test_cases():
         (Notes(0), MelodicInterval(Interval.PerfectFifth, Order.Ascending), Notes(7)),
         (Notes(13), MelodicInterval(Interval.Tritone, Order.Descending), Notes(7)),
         (Notes(0), MelodicInterval(Interval.Semitone, Order.Descending), Notes(11)),
-        (Notes(13), MelodicInterval(Interval.Octave, Order.Static), Notes(13))
+        (Notes(13), MelodicInterval(Interval.Octave, Order.Static), Notes(13)),
     ]
 
 

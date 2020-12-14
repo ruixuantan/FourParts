@@ -75,8 +75,9 @@ class NoteProgression:
 
         interval_list = []
         for i in range(len(self.progression) - 1):
-            melodic_interval = Interval.get_interval(self.progression[i].note_int,
-                                                     self.progression[i + 1].note_int)
+            melodic_interval = Interval.get_interval(
+                self.progression[i].note_int, self.progression[i + 1].note_int
+            )
             interval_list.append(melodic_interval)
 
         return interval_list

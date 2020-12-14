@@ -32,7 +32,7 @@ class Dyad:
         self.soprano = Soprano(soprano)
 
     def __str__(self):
-        return 'Bass:{0}, Soprano: {1}'.format(self.bass, self.soprano)
+        return "Bass:{0}, Soprano: {1}".format(self.bass, self.soprano)
 
     def __eq__(self, other):
         if not isinstance(other, Dyad):
@@ -48,4 +48,6 @@ class Dyad:
         MelodicInterval
         """
 
-        return BassSoprano.create_voicing_interval(self.bass, self.soprano).melodic_interval
+        return BassSoprano.create_voicing_interval(
+            self.bass, self.soprano
+        ).melodic_interval
