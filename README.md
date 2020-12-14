@@ -4,11 +4,11 @@
 [![codecov](https://codecov.io/gh/ruixuantan/FourParts/branch/master/graph/badge.svg)](https://codecov.io/gh/ruixuantan/FourParts)
 
 A python package to analyse 4 part writing. \
-Currently, it can only check for:
+Currently, it can only analyse:
 * Parallel fifths and octaves.
 * Pitch Class Set.
 * Melodic Intervals between 2 part writing.
-* A KeyClassifier object that is able to identify the key of a midifile.
+* Tone Rows.
 
 ## Build Package
 First, run:
@@ -32,8 +32,6 @@ One of which is an analysis of a 2 part writing.
 
 The midi files input should contain, strictly, either 2 or 4 parts at all times.
 Overlaps in voices will be sorted in accordance to pitch and treated as SATB from there.
-
-Configure `KeyClassifier_demo.py` to read in the training data and midifile input. Running `python KeyClassifier_demo.py` will print out the key of the midifile.
 
 ## How it works
 
