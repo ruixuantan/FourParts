@@ -16,7 +16,13 @@ from fourparts.structures.progressions.ToneRow import ToneRow, InvalidToneRowExc
 
 from fourparts.structures.voices.Voice import Voice, Bass, Tenor, Alto, Soprano
 from fourparts.structures.voices.VoicingInterval import (
-    VoicingInterval, BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
+    VoicingInterval,
+    BassTenor,
+    BassAlto,
+    BassSoprano,
+    TenorAlto,
+    TenorSoprano,
+    AltoSoprano,
 )
 
 

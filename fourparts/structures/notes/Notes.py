@@ -2,22 +2,21 @@ NOTE_VALUE_EXCEPTION_MESSAGE = "Ensure note value is greater than 0."
 
 
 class Notes:
-    """A class to define notes, based on the midi input.
-    """
+    """A class to define notes, based on the midi input."""
 
     NOTES = (
-        'C',  # 0
-        'C#/Db',  # 1
-        'D',  # 2
-        'D#/Eb',  # 3
-        'E',  # 4
-        'F',  # 5
-        'F#/Gb',  # 6
-        'G',  # 7
-        'G#/Ab',  # 8
-        'A',  # 9
-        'A#/Bb',  # 10
-        'B'  # 11
+        "C",  # 0
+        "C#/Db",  # 1
+        "D",  # 2
+        "D#/Eb",  # 3
+        "E",  # 4
+        "F",  # 5
+        "F#/Gb",  # 6
+        "G",  # 7
+        "G#/Ab",  # 8
+        "A",  # 9
+        "A#/Bb",  # 10
+        "B",  # 11
     )
 
     def __init__(self, note_int):

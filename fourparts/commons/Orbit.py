@@ -15,7 +15,7 @@ class Orbit:
 
     def __init__(self, orbit, index=0):
         """Constructor method.
-        
+
         Parameters
         ----------
         orbit: iterable
@@ -25,8 +25,10 @@ class Orbit:
         """
 
         if index >= len(orbit):
-            raise IndexError("Ensure index is contained within the length of the orbit.")
-        
+            raise IndexError(
+                "Ensure index is contained within the length of the orbit."
+            )
+
         self.orbit = list(orbit)
         self.index = index
         self.current = -1
@@ -37,7 +39,7 @@ class Orbit:
 
     def __iter__(self):
         return self
-        
+
     def length(self):
         return self.high
 
@@ -77,7 +79,7 @@ class Orbit:
 
     def _shift_clockwise(self):
         """Shifts the index clockwise by 1 unit.
-        
+
         Returns
         -------
         None
@@ -89,13 +91,13 @@ class Orbit:
 
     def shift(self, n):
         """Shifts the index by n steps.
-        
+
         Parameters
         ----------
         n : int
             If n > 0, it is shifted clockwise.
             If n < 0, it is shifted counterclockwise.
-        
+
         Returns
         -------
         object
@@ -108,11 +110,11 @@ class Orbit:
             self._shift_clockwise()
 
         return self.curr_elem()
-    
+
     def get_curr_orbit(self):
         """Gets a list of the Orbit, with the starting element
         being the element the current index is pointing to.
-        
+
         Returns
         -------
         list of object

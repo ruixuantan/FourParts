@@ -16,54 +16,18 @@ class Key:
     """
 
     KEYS = {
-        Notes.NOTES[0]: {
-            Scales.Major: 'C_MAJOR',
-            Scales.Minor: 'C_MINOR'
-        },
-        Notes.NOTES[1]: {
-            Scales.Major: 'C#/Db_MAJOR',
-            Scales.Minor: 'C#/Db_MINOR'
-        },
-        Notes.NOTES[2]: {
-            Scales.Major: 'D_MAJOR',
-            Scales.Minor: 'D_MINOR'
-        },
-        Notes.NOTES[3]: {
-            Scales.Major: 'D#/Eb_MAJOR',
-            Scales.Minor: 'D#/Eb_MINOR'
-        },
-        Notes.NOTES[4]: {
-            Scales.Major: 'E_MAJOR',
-            Scales.Minor: 'E_MINOR'
-        },
-        Notes.NOTES[5]: {
-            Scales.Major: 'F_MAJOR',
-            Scales.Minor: 'F_MINOR'
-        },
-        Notes.NOTES[6]: {
-            Scales.Major: 'F#/Gb_MAJOR',
-            Scales.Minor: 'F#/Gb_MINOR'
-        },
-        Notes.NOTES[7]: {
-            Scales.Major: 'G_MAJOR',
-            Scales.Minor: 'G_MINOR'
-        },
-        Notes.NOTES[8]: {
-            Scales.Major: 'G#/Gb_MAJOR',
-            Scales.Minor: 'G#/Ab_MINOR'
-        },
-        Notes.NOTES[9]: {
-            Scales.Major: 'A_MAJOR',
-            Scales.Minor: 'A_MINOR'
-        },
-        Notes.NOTES[10]: {
-            Scales.Major: 'A#/Bb_MAJOR',
-            Scales.Minor: 'A#/Bb_MINOR'
-        },
-        Notes.NOTES[11]: {
-            Scales.Major: 'B_MAJOR',
-            Scales.Minor: 'B_MINOR'
-        }
+        Notes.NOTES[0]: {Scales.Major: "C_MAJOR", Scales.Minor: "C_MINOR"},
+        Notes.NOTES[1]: {Scales.Major: "C#/Db_MAJOR", Scales.Minor: "C#/Db_MINOR"},
+        Notes.NOTES[2]: {Scales.Major: "D_MAJOR", Scales.Minor: "D_MINOR"},
+        Notes.NOTES[3]: {Scales.Major: "D#/Eb_MAJOR", Scales.Minor: "D#/Eb_MINOR"},
+        Notes.NOTES[4]: {Scales.Major: "E_MAJOR", Scales.Minor: "E_MINOR"},
+        Notes.NOTES[5]: {Scales.Major: "F_MAJOR", Scales.Minor: "F_MINOR"},
+        Notes.NOTES[6]: {Scales.Major: "F#/Gb_MAJOR", Scales.Minor: "F#/Gb_MINOR"},
+        Notes.NOTES[7]: {Scales.Major: "G_MAJOR", Scales.Minor: "G_MINOR"},
+        Notes.NOTES[8]: {Scales.Major: "G#/Gb_MAJOR", Scales.Minor: "G#/Ab_MINOR"},
+        Notes.NOTES[9]: {Scales.Major: "A_MAJOR", Scales.Minor: "A_MINOR"},
+        Notes.NOTES[10]: {Scales.Major: "A#/Bb_MAJOR", Scales.Minor: "A#/Bb_MINOR"},
+        Notes.NOTES[11]: {Scales.Major: "B_MAJOR", Scales.Minor: "B_MINOR"},
     }
 
     def __init__(self, pitchcenter, scale):

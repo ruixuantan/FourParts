@@ -1,8 +1,18 @@
 from fourparts.exceptions.NoteOrderException import NoteOrderException
 from fourparts.structures.voices.Voice import Bass, Tenor, Alto, Soprano
 from fourparts.structures.voices.VoicingInterval import (
-    BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano,
-    BASS_TENOR, BASS_ALTO, BASS_SOPRANO, TENOR_ALTO, TENOR_SOPRANO, ALTO_SOPRANO
+    BassTenor,
+    BassAlto,
+    BassSoprano,
+    TenorAlto,
+    TenorSoprano,
+    AltoSoprano,
+    BASS_TENOR,
+    BASS_ALTO,
+    BASS_SOPRANO,
+    TENOR_ALTO,
+    TENOR_SOPRANO,
+    ALTO_SOPRANO,
 )
 from fourparts.structures.pitchclass.PitchClassSet import PitchClassSet
 
@@ -42,17 +52,20 @@ class Chord:
         self.soprano = Soprano(soprano)
 
     def __str__(self):
-        return 'Bass: {0}, Tenor: {1}, Alto: {2}, Soprano: {3}' \
-            .format(self.bass, self.tenor, self.alto, self.soprano)
+        return "Bass: {0}, Tenor: {1}, Alto: {2}, Soprano: {3}".format(
+            self.bass, self.tenor, self.alto, self.soprano
+        )
 
     def __eq__(self, other):
         if not isinstance(other, Chord):
             return False
 
-        return self.bass == other.bass and \
-            self.tenor == other.tenor and \
-            self.alto == other.alto and \
-            self.soprano == other.soprano
+        return (
+            self.bass == other.bass
+            and self.tenor == other.tenor
+            and self.alto == other.alto
+            and self.soprano == other.soprano
+        )
 
     def get_intervals(self):
         """Generates a dictionary of intervals of the chord.
@@ -67,8 +80,10 @@ class Chord:
             BASS_ALTO: BassAlto.create_voicing_interval(self.bass, self.alto),
             BASS_SOPRANO: BassSoprano.create_voicing_interval(self.bass, self.soprano),
             TENOR_ALTO: TenorAlto.create_voicing_interval(self.tenor, self.alto),
-            TENOR_SOPRANO: TenorSoprano.create_voicing_interval(self.tenor, self.soprano),
-            ALTO_SOPRANO: AltoSoprano.create_voicing_interval(self.alto, self.soprano)
+            TENOR_SOPRANO: TenorSoprano.create_voicing_interval(
+                self.tenor, self.soprano
+            ),
+            ALTO_SOPRANO: AltoSoprano.create_voicing_interval(self.alto, self.soprano),
         }
 
     def check_parallel_intervals(self, other):
@@ -94,7 +109,7 @@ class Chord:
             BASS_SOPRANO: PARALLEL_DEFAULT,
             TENOR_ALTO: PARALLEL_DEFAULT,
             TENOR_SOPRANO: PARALLEL_DEFAULT,
-            ALTO_SOPRANO: PARALLEL_DEFAULT
+            ALTO_SOPRANO: PARALLEL_DEFAULT,
         }
 
         for interval in result.keys():
@@ -118,9 +133,7 @@ class Chord:
         """
 
         pitch_class_set = PitchClassSet.create_pitch_class_set(
-            self.bass.note,
-            self.tenor.note,
-            self.alto.note,
-            self.soprano.note)
+            self.bass.note, self.tenor.note, self.alto.note, self.soprano.note
+        )
 
         return pitch_class_set

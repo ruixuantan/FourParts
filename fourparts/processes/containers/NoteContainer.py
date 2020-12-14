@@ -37,8 +37,7 @@ class NoteContainer(ABC):
         return str(self.container)
 
     def _sort_notes(self):
-        """Sort notes in `container` to ascending order.
-        """
+        """Sort notes in `container` to ascending order."""
 
         notes = list(self.container.values())
         notes.sort()

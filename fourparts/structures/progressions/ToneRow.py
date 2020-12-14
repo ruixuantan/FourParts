@@ -92,7 +92,9 @@ class ToneRow:
         ToneRow
         """
 
-        new_progression = [Notes.create_base_note(note.note_int) for note in progression]
+        new_progression = [
+            Notes.create_base_note(note.note_int) for note in progression
+        ]
         note_progression = NoteProgression(new_progression)
         return cls(note_progression)
 
@@ -122,10 +124,14 @@ class ToneRow:
             curr_note = self.tone_row[i]
             next_note = self.tone_row[i + 1]
 
-            melodic_interval = MelodicInterval.create_melodic_interval(curr_note.note_int, next_note.note_int)
+            melodic_interval = MelodicInterval.create_melodic_interval(
+                curr_note.note_int, next_note.note_int
+            )
             melodic_interval = melodic_interval.swap_order()
 
-            new_note = curr_inverse_note.create_note_with_melodic_interval(melodic_interval)
+            new_note = curr_inverse_note.create_note_with_melodic_interval(
+                melodic_interval
+            )
             new_base_note = Notes.create_base_note(new_note.note_int)
 
             inverse_note_progression.append(new_base_note)
@@ -145,7 +151,6 @@ class ToneRow:
 
 
 class InvalidToneRowException(Exception):
-    """Exception raised when ToneRow is not valid.
-    """
+    """Exception raised when ToneRow is not valid."""
 
     pass

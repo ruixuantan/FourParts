@@ -25,8 +25,7 @@ class Voice:
         self.note = note
 
     def __eq__(self, other):
-        return isinstance(other, Voice) and \
-               self.note == other.note
+        return isinstance(other, Voice) and self.note == other.note
 
     def __str__(self):
         return str(self.note)
@@ -42,7 +41,6 @@ class Voice:
 
 
 class Soprano(Voice):
-
     def __init__(self, note):
         super().__init__(note)
 
@@ -51,7 +49,6 @@ class Soprano(Voice):
 
 
 class Alto(Voice):
-
     def __init__(self, note):
         super().__init__(note)
 
@@ -60,7 +57,6 @@ class Alto(Voice):
 
 
 class Tenor(Voice):
-
     def __init__(self, note):
         super().__init__(note)
 
@@ -69,7 +65,6 @@ class Tenor(Voice):
 
 
 class Bass(Voice):
-
     def __init__(self, note):
         super().__init__(note)
 

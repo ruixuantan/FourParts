@@ -2,6 +2,7 @@
 
 [![Actions Status](https://github.com/ruixuantan/FourParts/workflows/Python%20Package%20CI/badge.svg)](https://github.com/ruixuantan/FourParts/actions)
 [![codecov](https://codecov.io/gh/ruixuantan/FourParts/branch/master/graph/badge.svg)](https://codecov.io/gh/ruixuantan/FourParts)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A python package to analyse 4 part writing. \
 Currently, it can only analyse:

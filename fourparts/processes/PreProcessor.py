@@ -18,8 +18,8 @@ def _convert_to_off(df):
             Name: 5, dtype: int64
     """
 
-    if df[5] == 0 and df[2] == 'Note_on_c':
-        return 'Note_off_c'
+    if df[5] == 0 and df[2] == "Note_on_c":
+        return "Note_off_c"
     else:
         return df[2]
 
@@ -47,11 +47,11 @@ def midi_to_df(midi_file, save=False):
         If `midi_file` is not pointing towards a .mid file.
     """
 
-    if midi_file[-4:] != '.mid':
+    if midi_file[-4:] != ".mid":
         raise ValueError("Pass in a .mid file!")
 
     csv_string = py_midicsv.midi_to_csv(midi_file)
-    df = pd.DataFrame([ls.strip().split(',') for ls in csv_string])
+    df = pd.DataFrame([ls.strip().split(",") for ls in csv_string])
 
     # strip all whitespaces
     df[2] = df[2].str.strip()
@@ -59,22 +59,26 @@ def midi_to_df(midi_file, save=False):
 
     # convert values to int
     for col in [0, 1, 4, 5]:
-        df[col] = df[col].apply(pd.to_numeric, errors='coerce')
+        df[col] = df[col].apply(pd.to_numeric, errors="coerce")
         df[col] = df[col].fillna(0).astype(int)
 
     # convert note velocity of 0 to 'Note_off_c' events
     # Key assumption that note velocity of 0 equals to a note off event
     df[2] = df.apply(_convert_to_off, axis=1)
-    
-    # rename df columns
-    df = df.rename(columns={0: 'Track_id',
-                            1: 'Timings',
-                            2: 'Events',
-                            3: 'Time_signatures',
-                            4: 'Note_values',
-                            5: 'Velocity'})
 
-    df.to_csv(midi_file[:-4] + '.csv') if save else None
+    # rename df columns
+    df = df.rename(
+        columns={
+            0: "Track_id",
+            1: "Timings",
+            2: "Events",
+            3: "Time_signatures",
+            4: "Note_values",
+            5: "Velocity",
+        }
+    )
+
+    df.to_csv(midi_file[:-4] + ".csv") if save else None
     return df
 
 
@@ -98,16 +102,16 @@ def get_note_events(df, time):
     list of NoteEvent
     """
 
-    df_chord_notes = df[df['Timings'] == time]
-    chord_notes = df_chord_notes['Note_values'].to_list()
+    df_chord_notes = df[df["Timings"] == time]
+    chord_notes = df_chord_notes["Note_values"].to_list()
     chord_notes.sort()
 
     on_events = []
     off_events = []
 
     for note in chord_notes:
-        idx = df_chord_notes[df_chord_notes['Note_values'] == note]['Events'].index[0]
-        on = df_chord_notes['Events'].loc[idx] == 'Note_on_c'
+        idx = df_chord_notes[df_chord_notes["Note_values"] == note]["Events"].index[0]
+        on = df_chord_notes["Events"].loc[idx] == "Note_on_c"
         df_chord_notes = df_chord_notes.drop(idx)
 
         if on:
@@ -129,7 +133,7 @@ class PreProcessor:
 
     def __init__(self, n):
         """Constructor method.
-        
+
         Parameters
         ----------
         n : int
@@ -165,7 +169,7 @@ class PreProcessor:
             The list of timings, in ascending order.
         """
 
-        timings = list(df['Timings'].unique())
+        timings = list(df["Timings"].unique())
         timings.sort()
 
         return timings
@@ -192,7 +196,9 @@ class PreProcessor:
             Currently, either list of Chords or VoicingIntervals.
         """
 
-        df_all_notes = df[(df['Events'] == 'Note_off_c') | (df['Events'] == 'Note_on_c')]
+        df_all_notes = df[
+            (df["Events"] == "Note_off_c") | (df["Events"] == "Note_on_c")
+        ]
         timings = PreProcessor.get_event_timings(df_all_notes)
 
         first_timing = timings.pop(0)

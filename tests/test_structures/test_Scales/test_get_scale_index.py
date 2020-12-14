@@ -15,9 +15,7 @@ def test_eval(scale, expected):
 
 
 def exception_cases():
-    return [
-        ('wrong type', pytest.raises(ValueError))
-    ]
+    return [("wrong type", pytest.raises(ValueError))]
 
 
 @pytest.mark.parametrize("scale, exception", exception_cases())

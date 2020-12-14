@@ -1,5 +1,6 @@
 from tests.test_structures.test_progression.test_ToneRow.tone_row_samples import (
-    TONEROW, TONEROW_RETROGRADE
+    TONEROW,
+    TONEROW_RETROGRADE,
 )
 
 import pytest

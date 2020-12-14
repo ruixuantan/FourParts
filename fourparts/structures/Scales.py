@@ -6,8 +6,8 @@ class Scales(Enum):
     Currently, only major or minor scales are implemented.
     """
 
-    Major = 'MAJOR'
-    Minor = 'MINOR'
+    Major = "MAJOR"
+    Minor = "MINOR"
 
     @classmethod
     def create_scale(cls, scale):
@@ -21,7 +21,7 @@ class Scales(Enum):
         try:
             return cls(scale.upper())
         except ValueError:
-            raise ValueError('Only minor or major scales are supported.')
+            raise ValueError("Only minor or major scales are supported.")
 
     @classmethod
     def create_scale_from_index(cls, scale):
@@ -43,9 +43,9 @@ class Scales(Enum):
         """
 
         if scale == 0:
-            return cls('MAJOR')
+            return cls("MAJOR")
         elif scale == 1:
-            return cls('MINOR')
+            return cls("MINOR")
         else:
             raise ValueError("Pass in only either 0 for major or 1 for minor.")
 
@@ -73,4 +73,6 @@ class Scales(Enum):
         elif scale == Scales.Minor:
             return 1
         else:
-            raise ValueError("Scale input does not exist. Only major or minor scales are supported.")
+            raise ValueError(
+                "Scale input does not exist. Only major or minor scales are supported."
+            )

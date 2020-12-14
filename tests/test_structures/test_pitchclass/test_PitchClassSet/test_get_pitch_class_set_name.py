@@ -1,5 +1,8 @@
 from fourparts import PitchClassSet
-from fourparts.structures.pitchclass.PitchClassSetMap import PITCH_CLASS_SET_MAP, NOT_NAMED
+from fourparts.structures.pitchclass.PitchClassSetMap import (
+    PITCH_CLASS_SET_MAP,
+    NOT_NAMED,
+)
 
 import pytest
 
@@ -18,7 +21,7 @@ def test_cases():
         ((0, 5), PITCH_CLASS_SET_MAP[2][(0, 5)]),
         ((0, 4, 7), PITCH_CLASS_SET_MAP[3][(0, 4, 7)]),
         ((0, 3, 6, 9), PITCH_CLASS_SET_MAP[4][(0, 3, 6, 9)]),
-        ((0, 1, 2), NOT_NAMED)
+        ((0, 1, 2), NOT_NAMED),
     ]
 
 
