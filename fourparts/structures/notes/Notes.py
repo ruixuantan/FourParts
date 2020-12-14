@@ -1,6 +1,3 @@
-from fourparts.structures.MelodicInterval import MelodicInterval
-
-
 NOTE_VALUE_EXCEPTION_MESSAGE = "Ensure note value is greater than 0."
 
 
