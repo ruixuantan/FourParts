@@ -1,4 +1,4 @@
-from fourparts import MelodicInterval
+from fourparts import Interval
 
 import pytest
 
@@ -6,15 +6,15 @@ import pytest
 def test_cases():
 
     return [
-        (0, 0, MelodicInterval.Octave),
-        (1, 2, MelodicInterval.Semitone),
-        (9, 11, MelodicInterval.Tone),
-        (28, 34, MelodicInterval.Tritone),
-        (30, 49, MelodicInterval.PerfectFifth),
-        (10, 3, MelodicInterval.PerfectFifth)
+        (0, 0, Interval.Octave),
+        (1, 2, Interval.Semitone),
+        (9, 11, Interval.Tone),
+        (28, 34, Interval.Tritone),
+        (30, 49, Interval.PerfectFifth),
+        (10, 3, Interval.PerfectFifth)
     ]
 
 
 @pytest.mark.parametrize("note_top, note_bottom, expected", test_cases())
 def test_eval(note_top, note_bottom, expected):
-    assert MelodicInterval.get_melodic_interval(note_top, note_bottom) == expected
+    assert Interval.get_interval(note_top, note_bottom) == expected

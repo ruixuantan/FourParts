@@ -1,6 +1,6 @@
 # structures
 from fourparts.structures.Key import Key
-from fourparts.structures.MelodicInterval import MelodicInterval
+from fourparts.structures.MelodicInterval import Interval, Order, MelodicInterval
 from fourparts.structures.Scales import Scales
 
 from fourparts.structures.notes.Chord import Chord

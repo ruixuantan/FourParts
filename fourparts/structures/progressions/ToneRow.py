@@ -78,6 +78,24 @@ class ToneRow:
 
         return set(pitch_list) == set(valid_tone_row)
 
+    @classmethod
+    def create_tone_row(cls, progression):
+        """Converts `progression` into a tone row.
+        `progression` need not be contained within an octave.
+
+        Parameters
+        ----------
+        progression : NoteProgression
+
+        Returns
+        -------
+        ToneRow
+        """
+
+        new_progression = [Notes.create_base_note(note.note_int) for note in progression]
+        note_progression = NoteProgression(new_progression)
+        return cls(note_progression)
+
     def get_retrograde(self):
         """Gets the retrograde of the tone row.
 
@@ -103,16 +121,15 @@ class ToneRow:
         for i in range(TONEROW_LENGTH - 1):
             curr_note = self.tone_row[i]
             next_note = self.tone_row[i + 1]
-            is_ascending = not curr_note.is_next_note_higher(next_note)
-            interval = MelodicInterval.get_melodic_interval(curr_note.note_int, next_note.note_int)
-            new_note = curr_inverse_note.create_note_with_melodic_interval(interval, is_ascending)
 
-            # ====== TODO: Refactor line here ======
-            new_note = Notes(new_note.note_int % 12)
-            # ======================================
+            melodic_interval = MelodicInterval.create_melodic_interval(curr_note.note_int, next_note.note_int)
+            melodic_interval = melodic_interval.swap_order()
 
-            inverse_note_progression.append(new_note)
-            curr_inverse_note = new_note
+            new_note = curr_inverse_note.create_note_with_melodic_interval(melodic_interval)
+            new_base_note = Notes.create_base_note(new_note.note_int)
+
+            inverse_note_progression.append(new_base_note)
+            curr_inverse_note = new_base_note
 
         return ToneRow(NoteProgression(inverse_note_progression))
 

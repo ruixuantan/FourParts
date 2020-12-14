@@ -1,4 +1,4 @@
-from fourparts import Notes, NoteProgression, MelodicInterval
+from fourparts import Notes, NoteProgression, Interval
 
 import pytest
 
@@ -7,15 +7,15 @@ def test_cases():
     return [
         (
             [Notes(60), Notes(72)],
-            [MelodicInterval.Octave]
+            [Interval.Octave]
         ),
         (
             [Notes(60), Notes(65)],
-            [MelodicInterval.PerfectFourth]
+            [Interval.PerfectFourth]
         ),
         (
             [Notes(50), Notes(52), Notes(44), Notes(70)],
-            [MelodicInterval.Tone, MelodicInterval.MinorSixth, MelodicInterval.Tone]
+            [Interval.Tone, Interval.MinorSixth, Interval.Tone]
         ),
     ]
 

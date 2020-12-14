@@ -1,3 +1,9 @@
+from fourparts.structures.MelodicInterval import MelodicInterval
+
+
+NOTE_VALUE_EXCEPTION_MESSAGE = "Ensure note value is greater than 0."
+
+
 class Notes:
     """A class to define notes, based on the midi input.
     """
@@ -32,7 +38,7 @@ class Notes:
         """
 
         if note_int < 0:
-            raise ValueError('Ensure note value is greater than 0.')
+            raise ValueError(NOTE_VALUE_EXCEPTION_MESSAGE)
 
         self.note_int = note_int
 
@@ -41,6 +47,30 @@ class Notes:
 
     def __repr__(self):
         return str(self.note_int)
+
+    @classmethod
+    def create_base_note(cls, note_int):
+        """Creates a base note.
+        A base note has a value from 0 to 11.
+
+        Parameter
+        ---------
+        note_int : int
+
+        Returns
+        -------
+        Notes
+
+        Raises
+        ------
+        ValueException
+            If the value of note_int is negative
+        """
+
+        if note_int < 0:
+            raise ValueError(NOTE_VALUE_EXCEPTION_MESSAGE)
+
+        return Notes(note_int % 12)
 
     def get_note_name(self):
         """Gets the name of the note.
@@ -89,42 +119,18 @@ class Notes:
         else:
             raise KeyError("Given note does not exist.")
 
-    def is_next_note_higher(self, other):
-        """Checks if the other note is higher or lower than the current note.
-
-        Parameters
-        ----------
-        other : Notes
-
-        Returns
-        -------
-        boolean
-        """
-
-        # TODO: Create new class that represents an ascending or descending interval
-        difference = other.note_int - self.note_int
-        assert difference != 0
-        return difference > 0
-
-    def create_note_with_melodic_interval(self, melodic_interval, is_ascending):
-        """Creates note based on the MelodicInterval and if it is ascending or descending.
+    def create_note_with_melodic_interval(self, melodic_interval):
+        """Creates note based on the MelodicInterval.
 
         Parameters
         ----------
         melodic_interval : MelodicInterval
-        is_ascending : boolean
 
         Returns
         -------
         Notes
         """
 
-        if is_ascending:
-            new_note_int = self.note_int + melodic_interval.value
-        else:
-            new_note_int = self.note_int - melodic_interval.value
-
-        while new_note_int < 0:
-            new_note_int += 12
-
+        new_note_int = melodic_interval.create_note_int(self.note_int)
+        assert new_note_int >= 0
         return Notes(new_note_int)

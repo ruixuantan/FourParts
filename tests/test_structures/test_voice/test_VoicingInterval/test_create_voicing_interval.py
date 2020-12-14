@@ -1,4 +1,4 @@
-from fourparts import MelodicInterval, Bass, Tenor, Alto, Soprano, VoicingInterval
+from fourparts import Interval, Bass, Tenor, Alto, Soprano, VoicingInterval
 from fourparts.exceptions.NoteOrderException import NoteOrderException
 
 import pytest
@@ -6,9 +6,9 @@ import pytest
 
 def test_cases():
     return [
-        (Tenor(9), Soprano(10), MelodicInterval.Semitone),
-        (Alto(20), Soprano(20), MelodicInterval.Octave),
-        (Bass(30), Soprano(50), MelodicInterval.MinorSixth)
+        (Tenor(9), Soprano(10), Interval.Semitone),
+        (Alto(20), Soprano(20), Interval.Octave),
+        (Bass(30), Soprano(50), Interval.MinorSixth)
     ]
 
 

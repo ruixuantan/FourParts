@@ -1,5 +1,5 @@
 from fourparts import (
-    Chord, MelodicInterval,
+    Chord, Interval,
     BassTenor, BassAlto, BassSoprano, TenorAlto, TenorSoprano, AltoSoprano
 )
 
@@ -9,11 +9,11 @@ import pytest
 def test_cases():
     test_cases = [
         (0, 1, 2, 3,
-         MelodicInterval.Semitone, MelodicInterval.Tone, MelodicInterval.MinorThird,
-         MelodicInterval.Semitone, MelodicInterval.Tone, MelodicInterval.Semitone),
+         Interval.Semitone, Interval.Tone, Interval.MinorThird,
+         Interval.Semitone, Interval.Tone, Interval.Semitone),
         (30, 37, 40, 45,
-         MelodicInterval.PerfectFifth, MelodicInterval.MinorSeventh, MelodicInterval.MinorThird,
-         MelodicInterval.MinorThird, MelodicInterval.MinorSixth, MelodicInterval.PerfectFourth),
+         Interval.PerfectFifth, Interval.MinorSeventh, Interval.MinorThird,
+         Interval.MinorThird, Interval.MinorSixth, Interval.PerfectFourth),
     ]
 
     return test_cases
