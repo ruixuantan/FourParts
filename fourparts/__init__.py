@@ -29,3 +29,4 @@ from fourparts.structures.voices.VoicingInterval import (
 # processes
 from fourparts.processes.NoteFrequencies import NoteFrequencies
 from fourparts.processes.PreProcessor import midi_to_df, get_note_events, PreProcessor
+from fourparts.processes.MelodyExtractor import MelodyExtractor
