@@ -1,4 +1,5 @@
 from fourparts import MelodyTrainer
+from tests.samples import CHORALE_F_MIDI
 
 
 def test():
@@ -6,7 +7,7 @@ def test():
     Update if necessary.
     """
 
-    markov_chain = MelodyTrainer.create(["samples/chorale_F.mid"]).train()
+    markov_chain = MelodyTrainer.create([CHORALE_F_MIDI]).train()
     note_progression = markov_chain.random_walk(5)
     for note in note_progression:
         print(note)

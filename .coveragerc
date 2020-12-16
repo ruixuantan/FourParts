@@ -20,6 +20,7 @@ exclude_lines =
     def __next__
     def __repr__
     def __reversed__
+    def __hash__
     def __str__
     if __name__ == .__main__.:
     pass

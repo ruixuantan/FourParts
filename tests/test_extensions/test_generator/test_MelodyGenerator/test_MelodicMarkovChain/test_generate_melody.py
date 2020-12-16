@@ -1,9 +1,9 @@
 from fourparts import MelodyTrainer, MelodyGenerator, NoteProgression
-
+from tests.samples import CHORALE_F_MIDI
 import pytest
 
 
-MARKOV_CHAIN = MelodyTrainer.create(["samples/chorale_F.mid"]).train()
+MARKOV_CHAIN = MelodyTrainer.create([CHORALE_F_MIDI]).train()
 
 
 def test():

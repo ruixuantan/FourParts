@@ -1,4 +1,5 @@
 from fourparts import MelodyExtractor, Notes, NoteProgression
+from tests.samples import PERFECT_CADENCE_CSV, TYPEA_PERFECT_CADENCE_CSV, CHORALE_F_CSV, UNISON_CSV
 import pandas as pd
 import pytest
 
@@ -6,15 +7,15 @@ import pytest
 def test_cases():
     return [
         (
-            pd.read_csv("samples/perfect_cadence.csv"),
+            pd.read_csv(PERFECT_CADENCE_CSV),
             [Notes(65), Notes(65), Notes(64)],
         ),
         (
-            pd.read_csv("samples/typeA_perfect_cadence.csv"),
+            pd.read_csv(TYPEA_PERFECT_CADENCE_CSV),
             [Notes(64), Notes(64), Notes(62)],
         ),
         (
-            pd.read_csv("samples/chorale_F.csv"),
+            pd.read_csv(CHORALE_F_CSV),
             [
                 Notes(65),
                 Notes(65),
@@ -28,7 +29,7 @@ def test_cases():
             ],
         ),
         (
-            pd.read_csv("samples/unison.csv"),
+            pd.read_csv(UNISON_CSV),
             [Notes(67), Notes(69)],
         ),
     ]

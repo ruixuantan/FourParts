@@ -1,4 +1,5 @@
 from fourparts import Dyad, PreProcessor
+from tests.samples import CHORALE_G_2PARTS_CSV
 import pandas as pd
 import pytest
 
@@ -8,7 +9,7 @@ def test_cases():
     # Voice and its subtypes.
     return [
         (
-            pd.read_csv("samples/chorale_G_2parts.csv"),
+            pd.read_csv(CHORALE_G_2PARTS_CSV),
             [
                 Dyad(43, 67),
                 Dyad(55, 67),
