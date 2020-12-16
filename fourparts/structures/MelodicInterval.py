@@ -87,6 +87,7 @@ class Order(Enum):
 
 
 class MelodicInterval:
+    # TODO: add attribute that shows compound intervals
     """Represents an actual MelodicInterval.
 
     Attributes
