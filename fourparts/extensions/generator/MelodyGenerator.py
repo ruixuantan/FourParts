@@ -36,6 +36,9 @@ class MelodicMarkovChain:
             and self.markov_chain == other.markov_chain
         )
 
+    def __repr__(self):
+        return self.markov_chain
+
     @classmethod
     def initialise(cls):
         """Generates an empty Markov Chain.
