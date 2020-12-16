@@ -35,10 +35,11 @@ class Dyad:
         return "Bass:{0}, Soprano: {1}".format(self.bass, self.soprano)
 
     def __eq__(self, other):
-        if not isinstance(other, Dyad):
-            return False
-
-        return self.bass == other.bass and self.soprano == other.soprano
+        return (
+            self.__class__ == other.__class__
+            and self.bass == other.bass
+            and self.soprano == other.soprano
+        )
 
     def get_interval(self):
         """Gets the melodic interval between the 2 notes.

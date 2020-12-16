@@ -32,8 +32,10 @@ class MelodicMarkovChain:
         self.markov_chain = markov_chain
 
     def __eq__(self, other):
-        return self.__class__ == other.__class__ \
+        return (
+            self.__class__ == other.__class__
             and self.markov_chain == other.markov_chain
+        )
 
     @classmethod
     def initialise(cls):
@@ -90,8 +92,9 @@ class MelodicMarkovChain:
         if note not in self.markov_chain:
             return random.choice(list(self.markov_chain.keys()))
 
-        return random.choices(list(self.markov_chain[note].keys()),
-                              list(self.markov_chain[note].values()))[0]
+        return random.choices(
+            list(self.markov_chain[note].keys()), list(self.markov_chain[note].values())
+        )[0]
 
     def random_walk(self, length):
         """Gets a list of random notes based on the markov chain.

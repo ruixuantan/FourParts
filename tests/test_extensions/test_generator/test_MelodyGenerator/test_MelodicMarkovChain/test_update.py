@@ -5,31 +5,14 @@ import pytest
 
 def test_cases():
     return [
+        ({Notes(3): {Notes(1): 1}}, Notes(3), Notes(1), {Notes(3): {Notes(1): 2}}),
         (
-            {
-                Notes(3): {Notes(1): 1}
-            },
-            Notes(3), Notes(1),
-            {
-                Notes(3): {Notes(1): 2}
-            }
+            {Notes(3): {Notes(1): 1}},
+            Notes(3),
+            Notes(2),
+            {Notes(3): {Notes(1): 1, Notes(2): 1}},
         ),
-        (
-            {
-                Notes(3): {Notes(1): 1}
-            },
-            Notes(3), Notes(2),
-            {
-                Notes(3): {Notes(1): 1, Notes(2): 1}
-            }
-        ),
-        (
-            {},
-            Notes(3), Notes(1),
-            {
-                Notes(3): {Notes(1): 1}
-            }
-        ),
+        ({}, Notes(3), Notes(1), {Notes(3): {Notes(1): 1}}),
     ]
 
 

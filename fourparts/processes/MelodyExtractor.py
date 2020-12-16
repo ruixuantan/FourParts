@@ -51,9 +51,7 @@ class MelodyExtractor:
         NoteProgression
         """
 
-        df_all_notes = df[
-            (df["Events"] == "Note_on_c")
-        ]
+        df_all_notes = df[(df["Events"] == "Note_on_c")]
         timings = MelodyExtractor.get_event_timings(df_all_notes)
 
         notes_list = []
@@ -70,4 +68,5 @@ class MelodyExtractor:
 
 if __name__ == "__main__":
     from fourparts.processes.PreProcessor import midi_to_df
+
     print(MelodyExtractor.get_melody(midi_to_df("samples/chorale_F.mid")))

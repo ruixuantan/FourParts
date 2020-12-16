@@ -42,7 +42,7 @@ class Notes:
         return hash(self.note_int)
 
     def __eq__(self, other):
-        return self.note_int == other.note_int
+        return self.__class__ == other.__class__ and self.note_int == other.note_int
 
     def __repr__(self):
         return "Note: " + str(self.note_int)

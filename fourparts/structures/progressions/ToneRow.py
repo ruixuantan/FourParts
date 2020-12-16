@@ -50,7 +50,7 @@ class ToneRow:
         raise StopIteration
 
     def __eq__(self, other):
-        return self.tone_row == other.tone_row
+        return self.__class__ == other.__class__ and self.tone_row == other.tone_row
 
     def __repr__(self):
         return str(self.tone_row)

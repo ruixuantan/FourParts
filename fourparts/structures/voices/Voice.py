@@ -25,7 +25,7 @@ class Voice:
         self.note = note
 
     def __eq__(self, other):
-        return isinstance(other, Voice) and self.note == other.note
+        return self.__class__ == other.__class__ and self.note == other.note
 
     def __str__(self):
         return str(self.note)

@@ -57,11 +57,9 @@ class Chord:
         )
 
     def __eq__(self, other):
-        if not isinstance(other, Chord):
-            return False
-
         return (
-            self.bass == other.bass
+            self.__class__ == other.__class__
+            and self.bass == other.bass
             and self.tenor == other.tenor
             and self.alto == other.alto
             and self.soprano == other.soprano

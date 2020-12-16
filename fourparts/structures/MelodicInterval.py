@@ -108,7 +108,11 @@ class MelodicInterval:
         self.order = order
 
     def __eq__(self, other):
-        return self.interval == other.interval and self.order == other.order
+        return (
+            self.__class__ == other.__class__
+            and self.interval == other.interval
+            and self.order == other.order
+        )
 
     @classmethod
     def create_melodic_interval(cls, bottom_note_int, top_note_int):

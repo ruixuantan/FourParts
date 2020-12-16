@@ -122,7 +122,11 @@ class PitchClassSet:
         self.name = name
 
     def __eq__(self, other):
-        return self.pitches == other.pitches and self.name == other.name
+        return (
+            self.__class__ == other.__class__
+            and self.pitches == other.pitches
+            and self.name == other.name
+        )
 
     def __str__(self):
         return "Pitches: {0}, Name: {1}".format(self.pitches, self.name)
