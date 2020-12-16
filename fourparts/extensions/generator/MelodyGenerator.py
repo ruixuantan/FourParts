@@ -1,7 +1,6 @@
 import random
 from fourparts.processes.PreProcessor import midi_to_df
 from fourparts.processes.MelodyExtractor import MelodyExtractor
-from fourparts.structures.notes.Notes import Notes
 from fourparts.structures.progressions.NoteProgression import NoteProgression
 
 
@@ -47,16 +46,6 @@ class MelodicMarkovChain:
         """
 
         return cls({})
-
-    def keys(self):
-        """Gets the keys of the markov chain.
-
-        Returns
-        -------
-        list of Notes
-        """
-
-        return self.markov_chain.keys()
 
     def update(self, key, value):
         """Updates the markov chain.
@@ -107,7 +96,15 @@ class MelodicMarkovChain:
         Returns
         -------
         NoteProgression
+
+        Raises
+        ------
+        ValueError
+            If length is not more than 0
         """
+
+        if length <= 0:
+            raise ValueError("Length must be more than 0.")
 
         next_note = random.choice(list(self.markov_chain.keys()))
         notes_list = [next_note]
@@ -115,7 +112,6 @@ class MelodicMarkovChain:
         for _ in range(length):
             next_note = self.random_select_note(next_note)
             notes_list.append(next_note)
-            print(next_note)
 
         return NoteProgression(notes_list)
 
@@ -174,14 +170,17 @@ class MelodyTrainer:
         MelodicMarkovChain
         """
 
-        markov_chain = MelodicMarkovChain.initialise()
+        trained_markov_chain = MelodicMarkovChain.initialise()
         for progression in self.seed:
             for i in range(len(progression) - 1):
                 curr_note = progression[i]
                 next_note = progression[i + 1]
-                markov_chain.update(curr_note, next_note)
+                trained_markov_chain.update(curr_note, next_note)
 
-        return markov_chain
+        # To complete the markov chain
+        trained_markov_chain.update(progression[-1], progression[0])
+
+        return trained_markov_chain
 
 
 class MelodyGenerator:
@@ -189,18 +188,18 @@ class MelodyGenerator:
 
     Attributes
     ----------
-    markov_chain : MelodicMarkovChain
+    melodic_markov_chain : MelodicMarkovChain
     """
 
-    def __init__(self, markov_chain):
+    def __init__(self, melodic_markov_chain):
         """Constructor method.
 
         Parameters
         ----------
-        markov_chain : MelodicMarkovChain
+        melodic_markov_chain : MelodicMarkovChain
             It has to be trained and have percentages calculated.
         """
-        self.markov_chain = markov_chain
+        self.markov_chain = melodic_markov_chain
 
     def generate_melody(self, length):
         """Generates the melody.
@@ -217,11 +216,11 @@ class MelodyGenerator:
         Raises
         ------
         ValueError
-            If length is not more than 0
+            If length is not more than 0.
         """
 
         if length <= 0:
-            raise ValueError("Length must be more than 0")
+            raise ValueError("Length must be more than 0.")
 
         return self.markov_chain.random_walk(length)
 

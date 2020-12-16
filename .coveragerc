@@ -14,7 +14,6 @@ exclude_lines =
     pragma: no cover
 
     def __init__
-    def __eq__
     def __getitem__
     def __iter__
     def __len__

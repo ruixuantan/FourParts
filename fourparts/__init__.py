@@ -34,6 +34,7 @@ from fourparts.processes.MelodyExtractor import MelodyExtractor
 
 # extensions
 from fourparts.extensions.generator.MelodyGenerator import (
+    MelodyGenerator,
     MelodyTrainer,
     MelodicMarkovChain,
 )
