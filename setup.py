@@ -1,7 +1,6 @@
-from distutils.core import setup
-from Cython.Build import cythonize
-
 import setuptools
+
+from Cython.Build import cythonize
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
@@ -26,5 +25,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.8.0',
-    ext_modules=cythonize("helloworld.pyx")
+    ext_modules=cythonize("fourparts/commons/OrbitC.pyx")
 )
