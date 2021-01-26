@@ -49,7 +49,7 @@ class Key:
         return self.key
 
     def __eq__(self, other):
-        return self.key == other.key
+        return self.__class__ == other.__class__ and self.key == other.key
 
     def get_key_index(self):
         """Maps the key to its associated index.

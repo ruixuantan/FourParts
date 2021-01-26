@@ -93,21 +93,31 @@ class MelodicInterval:
     ----------
     interval : Interval
     order : Order
+    octaves : int
+        Number of octaves separating the 2 notes.
     """
 
-    def __init__(self, interval, order):
+    def __init__(self, interval, order, octaves):
         """Constructor method.
 
         Parameters
         ----------
         interval : Interval
         order : Order
+        octaves : int
         """
+
         self.interval = interval
         self.order = order
+        self.octaves = octaves
 
     def __eq__(self, other):
-        return self.interval == other.interval and self.order == other.order
+        return (
+            self.__class__ == other.__class__
+            and self.interval == other.interval
+            and self.order == other.order
+            and self.octaves == other.octaves
+        )
 
     @classmethod
     def create_melodic_interval(cls, bottom_note_int, top_note_int):
@@ -123,9 +133,14 @@ class MelodicInterval:
         MelodicInterval
         """
 
+        number_of_octaves = (top_note_int - bottom_note_int) // 12
+        if number_of_octaves < 0:
+            number_of_octaves = (number_of_octaves + 1) * -1
+
         return cls(
             Interval.get_interval(bottom_note_int, top_note_int),
             Order.check_order(bottom_note_int, top_note_int),
+            number_of_octaves,
         )
 
     def swap_order(self):
@@ -138,7 +153,7 @@ class MelodicInterval:
         """
 
         new_order = self.order.swap_order()
-        return MelodicInterval(self.interval, new_order)
+        return MelodicInterval(self.interval, new_order, self.octaves)
 
     def create_note_int(self, note_int):
         """Generates a note_int based on MelodicInterval.
@@ -155,10 +170,12 @@ class MelodicInterval:
         if self.order == Order.Static:
             return note_int
 
+        octave_intervals = self.octaves * 12
+
         if self.order == Order.Ascending:
-            new_note_int = note_int + self.interval.value
+            new_note_int = note_int + self.interval.value + octave_intervals
         elif self.order == Order.Descending:
-            new_note_int = note_int - self.interval.value
+            new_note_int = note_int - self.interval.value - octave_intervals
 
         # TODO: Find more elegant way of avoiding negative Note values.
         while new_note_int < 0:

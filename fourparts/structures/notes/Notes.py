@@ -38,11 +38,14 @@ class Notes:
 
         self.note_int = note_int
 
+    def __hash__(self):
+        return hash(self.note_int)
+
     def __eq__(self, other):
-        return self.note_int == other.note_int
+        return self.__class__ == other.__class__ and self.note_int == other.note_int
 
     def __repr__(self):
-        return str(self.note_int)
+        return "Note: " + str(self.note_int)
 
     @classmethod
     def create_base_note(cls, note_int):

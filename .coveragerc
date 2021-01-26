@@ -14,13 +14,13 @@ exclude_lines =
     pragma: no cover
 
     def __init__
-    def __eq__
     def __getitem__
     def __iter__
     def __len__
     def __next__
     def __repr__
     def __reversed__
+    def __hash__
     def __str__
     if __name__ == .__main__.:
     pass

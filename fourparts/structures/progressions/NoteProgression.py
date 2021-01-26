@@ -27,7 +27,9 @@ class NoteProgression:
         self.high = len(progression)
 
     def __eq__(self, other):
-        return self.progression == other.progression
+        return (
+            self.__class__ == other.__class__ and self.progression == other.progression
+        )
 
     def __iter__(self):
         return self
