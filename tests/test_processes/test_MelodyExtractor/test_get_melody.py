@@ -1,5 +1,10 @@
 from fourparts import MelodyExtractor, Notes, NoteProgression
-from tests.samples import PERFECT_CADENCE_CSV, TYPEA_PERFECT_CADENCE_CSV, CHORALE_F_CSV, UNISON_CSV
+from tests.samples import (
+    PERFECT_CADENCE_CSV,
+    TYPEA_PERFECT_CADENCE_CSV,
+    CHORALE_F_CSV,
+    UNISON_CSV,
+)
 import pandas as pd
 import pytest
 

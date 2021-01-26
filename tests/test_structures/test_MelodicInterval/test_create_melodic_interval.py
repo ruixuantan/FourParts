@@ -11,7 +11,7 @@ def test_cases():
         (1, 0, MelodicInterval(Interval.Semitone, Order.Descending, 0)),
         (12, 31, MelodicInterval(Interval.PerfectFifth, Order.Ascending, 1)),
         (60, 30, MelodicInterval(Interval.Tritone, Order.Descending, 2)),
-        (20, 35, MelodicInterval(Interval.MinorThird, Order.Ascending, 1))
+        (20, 35, MelodicInterval(Interval.MinorThird, Order.Ascending, 1)),
     ]
 
 

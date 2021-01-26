@@ -140,7 +140,7 @@ class MelodicInterval:
         return cls(
             Interval.get_interval(bottom_note_int, top_note_int),
             Order.check_order(bottom_note_int, top_note_int),
-            number_of_octaves
+            number_of_octaves,
         )
 
     def swap_order(self):
